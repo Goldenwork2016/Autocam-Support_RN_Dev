@@ -17,11 +17,6 @@ public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
         @Override
-        public boolean getUseDeveloperSupport() {
-          return BuildConfig.DEBUG;
-        }
-
-        @Override
         protected String getJSBundleFile() {
           return CodePush.getJSBundleFile();
         }
@@ -34,6 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new MyReactNativePackage());
           packages.add(new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG));
           return packages;
+        }
+
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
         }
 
         @Override
