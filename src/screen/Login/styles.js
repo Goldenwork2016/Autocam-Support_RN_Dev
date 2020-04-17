@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import colors from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,8 +8,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     alignItems: 'center',
   },
+  formContainer: {
+    flex: 1,
+    position: 'absolute',
+  },
   login: {
-    color: '#676767',
+    color: colors.lightGrey,
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -19,7 +24,7 @@ const styles = StyleSheet.create({
     maxWidth: Dimensions.get('window').height * 0.11 * 3,
   },
   instructions: {
-    color: '#5E5E5E',
+    color: colors.grey,
     fontSize: 14,
     marginTop: 20,
     textAlign: 'center',
@@ -30,28 +35,28 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 10,
     paddingHorizontal: Dimensions.get('window').width * 0.11 * 2.5,
-    backgroundColor: '#C8C8C8',
-    borderColor: '#787878',
+    backgroundColor: colors.darkWhite,
+    borderColor: colors.lightestGrey,
     borderLeftWidth: 0.5,
     borderRightWidth: 0.5,
     borderBottomWidth: 2,
     borderRadius: 3,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.9,
     shadowRadius: 2,
     elevation: 8,
   },
   inputContainer: {
-    borderBottomWidth: 0.2,
+    borderBottomWidth: 0.3,
     borderWidth: 0.3,
-    borderColor: '#787878',
+    borderColor: colors.lightestGrey,
     marginVertical: 10,
   },
   input: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: colors.snowWhite,
   },
   bottomView: {
     paddingVertical: 20,
