@@ -6,4 +6,5 @@ export default {
   snowWhite: '#f2f2f2',
   black: '#000',
   white: '#fff',
+  opacityWhite: 'rgba(0, 0, 0, 0.2)',
 };
