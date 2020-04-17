@@ -6,7 +6,7 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
-    color: '#515151',
+    color: colors.darkGrey,
     fontSize: 15,
     paddingVertical: 10,
   },

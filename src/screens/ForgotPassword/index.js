@@ -18,7 +18,7 @@ const RecoverPassword = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Forgot Passowrd" />
+      <Title title="Forgot Passoword" goBack />
 
       <Logo img={logo} />
 
@@ -27,7 +27,6 @@ const RecoverPassword = () => {
       verification code to reset your password."
       />
       <Input content="Email Address" />
-
       <View style={styles.bottomView}>
         <Button
           title="Confirm"
