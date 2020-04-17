@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import {Input, Button} from 'react-native-elements';
 
+import colors from '../../styles';
+
 import styles from './styles';
 import bg from '../../assets/background/bg.png';
 import logo from '../../assets/logo/logo.png';
@@ -23,26 +25,24 @@ const Login = () => (
       placeholder="Email Address"
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
-      placeholderTextColor={'rgba(0, 0, 0, 0.2)'}
+      placeholderTextColor={colors.opacityWhite}
     />
     <Input
       placeholder="Password"
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
-      placeholderTextColor={'rgba(0, 0, 0, 0.2)'}
+      placeholderTextColor={colors.opacityWhite}
       secureTextEntry={true}
     />
-    <TouchableOpacity>
-      <Text style={[styles.instructions, styles.alignRight]}>
-        Forgot Password?
-      </Text>
+    <TouchableOpacity style={styles.alignRight}>
+      <Text style={styles.instructions}>Forgot Password?</Text>
     </TouchableOpacity>
 
     <View style={styles.bottomView}>
       <Button
         title="Log In"
         buttonStyle={styles.button}
-        titleStyle={{color: '#656565'}}
+        titleStyle={{color: colors.lightGrey}}
       />
 
       <View>
@@ -53,7 +53,7 @@ const Login = () => (
         <Button
           title="Sign Up"
           buttonStyle={styles.button}
-          titleStyle={{color: '#656565'}}
+          titleStyle={{color: colors.lightGrey}}
         />
       </View>
     </View>
