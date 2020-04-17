@@ -19,6 +19,7 @@ import logo from '~/assets/logo/logo.png';
 
 const Login = () => {
   const navigation = useContext(NavigationContext);
+
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />

@@ -18,7 +18,7 @@ const RecoverPassword = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Change Password" />
+      <Title title="Change Password" goBack />
 
       <Logo img={logo} />
 
