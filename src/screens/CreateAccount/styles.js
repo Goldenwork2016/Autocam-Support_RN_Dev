@@ -1,5 +1,4 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import colors from '~/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,10 +7,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     alignItems: 'center',
   },
-  bottomView: {
-    paddingVertical: 80,
-    flex: 1,
-    justifyContent: 'space-between',
+  button: {
+    paddingTop: Dimensions.get('window').height * 0.11 * 0.8,
   },
 });
 

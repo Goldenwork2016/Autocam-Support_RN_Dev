@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.snowWhite,
+    paddingHorizontal: 2,
+    paddingVertical: 0,
   },
 });
 
