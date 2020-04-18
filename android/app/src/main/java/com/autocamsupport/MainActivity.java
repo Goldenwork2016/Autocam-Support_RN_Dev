@@ -1,8 +1,6 @@
 package com.autocamsupport;
 
-// ...
 import com.facebook.react.ReactActivity;
-// Importações adicionadas
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
@@ -16,7 +14,7 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "AutocamSupport";
   }
-  @Override
+   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new ReactActivityDelegate(this, getMainComponentName()) {
       @Override
