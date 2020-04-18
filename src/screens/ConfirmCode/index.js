@@ -12,7 +12,7 @@ import styles from './styles';
 import bg from '~/assets/background/bg.png';
 import logo from '~/assets/logo/logo.png';
 
-const RecoverPassword = () => {
+const ConfirmCode = () => {
   const navigation = useContext(NavigationContext);
 
   return (
@@ -36,4 +36,4 @@ const RecoverPassword = () => {
   );
 };
 
-export default RecoverPassword;
+export default ConfirmCode;
