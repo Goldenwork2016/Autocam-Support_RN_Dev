@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <title>RMnews</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"><img class="logo" src="/src/assets/rm.png" /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inscreva-se</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Registre</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              tabindex="-1"
+              aria-disabled="true"
+              >Log In</a
+            >
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div class="cabelin">
+    <section class="titulo">
+      <div
+        id="carouselExampleCaptions"
+        class="carousel slide"
+        data-ride="carousel"
+      >
+        <ol class="carousel-indicators">
+          <li
+            data-target="#carouselExampleCaptions"
+            data-slide-to="0"
+            class="active"
+          ></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="/src/assets/ronaldin algemado.jfif"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Jogador e ídolo e levado preso no Paraguai.</h1>
+              <p>Ídolo Ronaldinho levado preso.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/src/assets/ronaldin jogando fut preso.jfif"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Ronaldinho jogando campeonato na prisao.</h1>
+              <p>Ídolo Ronaldinho jogando na prisao.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="/src/assets/ronaldin pagando fiança.jfif"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Ronaldinho paga fiança e vai para prisão de luxo.</h1>
+              <p>Ídolo Ronaldinho pagando fiança.</p>
+            </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExampleCaptions"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExampleCaptions"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+
+
+    <div>
+      <div class="box">
+      <div class="card" style="width: 18rem;">
+      <img src="/src/assets/torcida.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Ministério da Saúde não recomenda futebol antes de junho</h5>
+        <p class="card-text">O Ministério da Saúde recomendou à Confederação Brasileira de Futebol a não realização de partidas de futebol antes do
+        mês de junho.
+        </p>
+        <a href="https://www.nenoticias.com.br/ministerio-da-saude-nao-recomenda-futebol-antes-de-junho/" class="btn btn-primary">Saiba mais.</a>
+      </div>
+    </div> 
+<div class="card" style="width: 18rem;">
+  <img src="/src/assets/equipesgringas.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Nove clubes ingleses vão propor conclusão do campeonato antes de 30 de junho</h5>
+    <p class="card-text">A Premier League vai discutir na sexta-feira (17 de abril) a possibilidade de retomar a competição em uma reunião em que
+    nove clubes vão propor que ela termine antes de 30 de junho, segundo a imprensa inglesa.
+    </p>
+    <a href="https://www.foxsports.com.br/br/article/nove-clubes-ingleses-vao-propor-conclusao-do-campeonato-antes-de-30-de-junho_sn9j3r"
+      class="btn btn-primary">Saiba mais.</a>
+  </div>
+</div><div class="card" style="width: 18rem;">
+  <img src="/src/assets/desafio-djokovic-ioga1.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Em acrobacia de yoga, Djokovic desafia Nadal, Federer, Messi, CR7, LeBron, Bolt e Tom Brady.</h5>
+    <p class="card-text">O sérvio Novak Djokovic aproveitou o domingo de Páscoa não só para felicitar seus seguidores em um perfil de rede social
+    mas também para lançar um desafio a alguns dos atuais maiores astros do esporte mundial.
+    </p>
+    <a href="https://globoesporte.globo.com/olimpiadas/coronavirus/noticia/em-acrobacia-de-yoga-djokovic-desafia-nadal-federer-messi-cr7-lebron-bolt-e-tom-brady.ghtml"
+      class="btn btn-primary">Saiba mais.</a>
+  </div>
+</div><div class="card" style="width: 18rem;">
+  <img src="/src/assets/cristiane.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Cristiane faz alerta sobre clubes menores: "Tem time que nem pagou 50% do salário das atletas"</h5>
+    <p class="card-text">Cristiane, jogadora do Santos e da seleção brasileira, é uma das entrevistadas do programa. A atacante demonstrou
+    preocupação com as atletas de clubes menores.
+    </p>
+    <a href="https://globoesporte.globo.com/futebol/futebol-feminino/noticia/cristiane-faz-alerta-sobre-clubes-menores-tem-time-que-nem-pagou-50percent-do-salario-das-atletas.ghtml"
+      class="btn btn-primary">Saiba mais.</a>
+  </div>
+  </div>
+</div>
+  </div>
+  </div>
+  </div>
+    <footer>
+      <div><a class="nav-link" href="http://127.0.0.1:5500/src/index.html#"> <h1 class="preto">Home</h1></a>
+
+      <a class="nav-link" href="https://globoesporte.globo.com/futebol/"><h3 class="preto">Veja também outras notícias.</h3></a>
+      <a class="nav-link" href="https://www.instagram.com/espnbrasil/"><h3 class="preto">Nos siga nas redes sociais.</h3></a></div>
+      </div>
+      <div>
+      <div>
+          <h1>Em destaque</h1>
+         <a class="nav-link" href="https://www.espn.com.br/futebol/liga/_/nome/bra.1/brasileiro"><h3 class="preto">Brasileirão</h3></a>
+         <a class="nav-link" href="https://www.espn.com.br/futebol/liga/_/nome/conmebol.libertadores/libertadores"><h3 class="preto">Libertadores</h3></a>
+         <a class="nav-link" href="https://www.espn.com.br/futebol/liga/_/nome/eng.1/premier-league"><h3 class="preto">Premier League</h3></a>
+         <a class="nav-link" href="https://www.espn.com.br/futebol/liga/_/nome/esp.1/espanhol"><h3 class="preto">Campeonato Espanhol</h3></a>
+      </div>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
