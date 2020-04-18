@@ -44,7 +44,10 @@ const Login = () => {
             Don't Have An Account?
           </Text>
 
-          <Button title="Sign Up" />
+          <Button
+            title="Sign Up"
+            onPress={() => navigation.navigate('Signup')}
+          />
         </View>
       </View>
     </ImageBackground>
