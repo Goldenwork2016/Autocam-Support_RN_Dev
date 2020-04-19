@@ -4,7 +4,7 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingVertical: 20,
     alignItems: 'center',
   },
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   alignRight: {
-    marginLeft: Dimensions.get('window').width * 0.11 * 5,
+    marginLeft: Dimensions.get('window').width * 0.5,
   },
   bottomView: {
     paddingVertical: 20,

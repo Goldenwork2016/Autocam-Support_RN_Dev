@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {ImageBackground, StatusBar, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, StatusBar, View} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 
 import Title from '~/components/Title';
