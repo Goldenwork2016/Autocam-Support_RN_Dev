@@ -4,12 +4,12 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
+    paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
     alignItems: 'center',
   },
   bottomView: {
-    paddingVertical: 80,
+    paddingVertical: (Dimensions.get('window').width * 0.1) / 0.5,
     flex: 1,
     justifyContent: 'space-between',
   },

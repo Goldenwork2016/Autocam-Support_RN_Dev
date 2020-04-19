@@ -20,13 +20,13 @@ const CreateAccount = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <Title title="Create Account" goBack />
 
-      <Logo img={emptyProfile} noMargin />
+      <Logo img={emptyProfile} />
 
       <Input content="City" />
       <Input content="Country" />
-      <Input content="Email Address" />
-      <Input content="Password" password />
-      <Input content="Confirm Password" password />
+      <Input content="Phone Number" />
+      <Input content="Company Name" password />
+      <Input content="Company Address" password />
 
       <View style={styles.button}>
         <Button title="Save" onPress={() => navigation.navigate('Login')} />

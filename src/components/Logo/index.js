@@ -8,17 +8,18 @@ const styles = StyleSheet.create({
     marginVertical: (Dimensions.get('window').height * 0.11) / 2,
     maxWidth: Dimensions.get('window').height * 0.11 * 3,
   },
-  noMargin: {
+  lessMargin: {
     alignItems: 'center',
+    marginVertical: (Dimensions.get('window').height * 0.11) / 6,
     maxWidth: Dimensions.get('window').height * 0.11 * 3,
   },
 });
 
-const Logo = ({img, noMargin}) =>
-  noMargin ? (
+const Logo = ({img, lessMargin}) =>
+  !lessMargin ? (
     <Image source={img} style={styles.logo} resizeMode="contain" />
   ) : (
-    <Image source={img} style={styles.noMargin} resizeMode="contain" />
+    <Image source={img} style={styles.lessMargin} resizeMode="contain" />
   );
 
 export default Logo;

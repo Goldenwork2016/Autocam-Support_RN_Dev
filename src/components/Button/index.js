@@ -7,7 +7,7 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   button: {
     paddingVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
     width: Dimensions.get('window').width * 0.8,
     backgroundColor: colors.darkWhite,
     borderColor: colors.lightestGrey,

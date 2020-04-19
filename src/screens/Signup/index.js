@@ -22,7 +22,7 @@ const Signup = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <Title title="Signup" />
 
-      <Logo img={logo} />
+      <Logo img={logo} lessMargin />
 
       <Input content="Full Name" />
       <Input content="Email Address" />

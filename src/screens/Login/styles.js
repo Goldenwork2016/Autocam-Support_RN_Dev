@@ -4,8 +4,8 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 20,
+    paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
+    paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
     alignItems: 'center',
   },
   instructions: {
