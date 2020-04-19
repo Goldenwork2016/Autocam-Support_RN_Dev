@@ -1,11 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {
-  ImageBackground,
-  StatusBar,
-  TouchableOpacity,
-  View,
-  Text,
-} from 'react-native';
+import {ImageBackground, StatusBar, View, Text} from 'react-native';
 import {CheckBox, Icon} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';

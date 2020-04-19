@@ -10,7 +10,7 @@ import Input from '~/components/Input';
 
 import styles from './styles';
 import bg from '~/assets/background/bg.png';
-import logo from '~/assets/logo/logo.png';
+import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 
 const CreateAccount = () => {
   const navigation = useContext(NavigationContext);
@@ -18,9 +18,9 @@ const CreateAccount = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Create Account" />
+      <Title title="Create Account" goBack />
 
-      <Logo img={logo} noMargin />
+      <Logo img={emptyProfile} noMargin />
 
       <Input content="City" />
       <Input content="Country" />

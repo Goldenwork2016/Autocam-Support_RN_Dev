@@ -29,7 +29,7 @@ const RecoverPassword = () => {
       <Input content="Email Address" />
       <View style={styles.bottomView}>
         <Button
-          title="Confirm"
+          title="Continue"
           onPress={() => navigation.navigate('ConfirmCode')}
         />
       </View>
