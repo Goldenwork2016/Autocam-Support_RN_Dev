@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
-    marginVertical: 10,
+    marginVertical: (Dimensions.get('window').width * 0.1) / 4,
     marginHorizontal: 20,
     width: Dimensions.get('window').width * 0.8,
   },
