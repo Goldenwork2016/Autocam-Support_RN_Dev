@@ -23,7 +23,6 @@ const Signup = () => {
       <Title title="Signup" />
 
       <Logo img={logo} lessMargin />
-
       <Input content="Full Name" />
       <Input content="Email Address" />
       <Input content="Password" password />
