@@ -4,12 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
-    paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
+    paddingVertical: (Dimensions.get('window').height * 0.1) / 4,
     alignItems: 'center',
   },
   bottomView: {
-    paddingVertical: 80,
-    flex: 1,
+    paddingVertical: (Dimensions.get('window').height * 0.1) / 0.95,
     justifyContent: 'space-between',
   },
 });

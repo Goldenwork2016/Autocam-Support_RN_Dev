@@ -23,6 +23,7 @@ const RecoverPassword = () => {
       <Logo img={logo} />
 
       <Instruction
+        style={styles.instructions}
         content="Enter your email and we will send you a 
       verification code to reset your password."
       />

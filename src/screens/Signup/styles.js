@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontSize: 12,
   },
+  underline: {textDecorationLine: 'underline'},
   bottomInstructions: {
     color: colors.grey,
     fontSize: 14,
