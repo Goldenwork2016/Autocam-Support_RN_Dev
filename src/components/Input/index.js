@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 });
 
 const InputField = ({content, password}) =>
-  Dimensions < 400 ? (
+  Dimensions.get('window').height < 650 ? (
     <Input
       placeholder={content}
       inputStyle={styles.input}
