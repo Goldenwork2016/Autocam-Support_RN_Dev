@@ -27,18 +27,23 @@ const Signup = () => {
       <Input content="Full Name" />
       <Input content="Email Address" />
       <Input content="Password" password />
-      <Input content="Password" password />
+      <Input content="Confirm Password" password />
 
       <CheckBox
         center
-        title="I have read and agree to your Privacy policy and Terms of Use"
+        title={
+          <Text style={styles.instructions}>
+            I have read and agree to your{' '}
+            <Text style={styles.underline}>Privacy policy </Text> and{' '}
+            <Text style={styles.underline}>Terms of Use </Text>
+          </Text>
+        }
         iconLeft
         type="material"
         checkedIcon={<Icon name="check-box" />}
         uncheckedIcon={<Icon name="check-box-outline-blank" />}
         checked={checked}
         containerStyle={styles.instructionsContainer}
-        textStyle={styles.instructions}
         onPress={() => setChecked(!checked)}
       />
 
