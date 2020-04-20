@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
 const Logo = ({img, lessMargin}) => {
   if (Dimensions.get('window').height < 650) {
     return !lessMargin ? (
-      <Image source={img} style={styles.logo} resizeMode="contain" />
+      <Image source={img} style={styles.logoSmall} resizeMode="contain" />
     ) : (
-      <Image source={img} style={styles.lessMargin} resizeMode="contain" />
+      <Image source={img} style={styles.lessMarginSmall} resizeMode="contain" />
     );
   }
   return !lessMargin ? (

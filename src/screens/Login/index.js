@@ -24,7 +24,6 @@ const Login = () => {
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <Title title="Login" />
-
       <Logo img={logo} />
 
       <Input content="Email Address" />
