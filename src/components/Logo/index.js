@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 });
 
 const Logo = ({img, lessMargin}) => {
-  if (Dimensions < 400) {
+  if (Dimensions.get('window').height < 550) {
     return !lessMargin ? (
       <Image source={img} style={styles.logo} resizeMode="contain" />
     ) : (
