@@ -18,9 +18,10 @@ const CreateAccount = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
+
       <Title title="Create Account" goBack />
 
-      <Logo img={emptyProfile} />
+      <Logo img={emptyProfile} lessMargin />
 
       <Input content="City" />
       <Input content="Country" />
