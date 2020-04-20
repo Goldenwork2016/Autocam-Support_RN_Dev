@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomView: {
-    paddingVertical: (Dimensions.get('window').height * 0.1) / 0.8,
+    paddingVertical: (Dimensions.get('window').height * 0.1) / 0.65,
     flex: 1,
     justifyContent: 'space-between',
   },
