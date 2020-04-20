@@ -5,12 +5,12 @@ import {StyleSheet, Dimensions, Image} from 'react-native';
 const styles = StyleSheet.create({
   logo: {
     alignItems: 'center',
-    marginVertical: (Dimensions.get('window').height * 0.11) / 2.5,
+    marginTop: (Dimensions.get('window').height * 0.11) / 2.5,
     maxWidth: Dimensions.get('window').height * 0.11 * 3,
   },
   lessMargin: {
     alignItems: 'center',
-    marginVertical: (Dimensions.get('window').height * 0.11) / 6,
+    marginTop: (Dimensions.get('window').height * 0.11) / 8,
     maxWidth: Dimensions.get('window').height * 0.11 * 3,
   },
 });
