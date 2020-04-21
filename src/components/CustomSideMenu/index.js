@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
+import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import Title from '~/components/Title';
 
+import menu from '~/assets/menu/hamburger.png';
 import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 import colors from '~/styles';
 
 const items = [
   {
     navOptionName: 'Place Orders',
-    screenToNavigate: 'NavScreen1',
+    screenToNavigate: 'Products',
   },
   {
     navOptionName: 'RMA',
@@ -32,7 +33,7 @@ const items = [
   },
   {
     navOptionName: 'Logout',
-    screenToNavigate: 'NavScreen3',
+    screenToNavigate: 'Login',
   },
 ];
 
@@ -48,52 +49,59 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
     width: 150,
     height: 150,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 150 / 2,
+  },
+  img: {
+    paddingLeft: '5%',
+    alignSelf: 'baseline',
   },
 });
 
-const CustomSidebarMenu = ({navigation, descriptors}) => (
-  <View style={styles.sideMenuContainer}>
-    <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
-    <Title title="Chris Nweke" />
-
-    <View
-      style={{
-        width: '80%',
-        height: 0.5,
-        backgroundColor: colors.white,
-        marginTop: '20%',
-      }}
-    />
-    {/*Setting up Navigation Options from option array using loop*/}
-    <View style={{width: '80%'}}>
-      {items.map((item, key) => (
-        <View
-          style={{
-            flexDirection: 'row',
-            borderBottomWidth: 0.5,
-            borderColor: colors.white,
-            paddingTop: 10,
-            paddingBottom: 10,
-            backgroundColor: 'transparent',
-          }}
-          key={key}>
-          <Text
-            style={{
-              fontSize: 18,
-              fontWeight: 'bold',
-            }}
+const CustomSidebarMenu = ({navigation, descriptors}) => {
+  return (
+    <View style={styles.sideMenuContainer}>
+      <View style={styles.img}>
+        <Image source={menu} resizeMode="contain" />
+      </View>
+      <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
+      <Title title="Chris Nweke" />
+      <View
+        style={{
+          width: '80%',
+          height: 0.5,
+          backgroundColor: colors.white,
+          marginTop: '20%',
+        }}
+      />
+      {/*Setting up Navigation Options from option array using loop*/}
+      <View style={{width: '80%'}}>
+        {items.map((item, key) => (
+          <TouchableOpacity
             onPress={() => {
-              global.currentScreenIndex = key;
-              navigation.navigate(descriptors.CheckOut.key);
-            }}>
-            {item.navOptionName}
-          </Text>
-        </View>
-      ))}
+              navigation.navigate(item.screenToNavigate);
+            }}
+            style={{
+              flexDirection: 'row',
+              borderBottomWidth: 0.5,
+              borderColor: colors.white,
+              paddingTop: 10,
+              paddingBottom: 10,
+              backgroundColor: 'transparent',
+            }}
+            key={key}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: 'bold',
+              }}>
+              {item.navOptionName}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default CustomSidebarMenu;

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   list: {
     flexDirection: 'row',
     backgroundColor: 'transparent',
-    paddingVertical: '4%',
+    paddingVertical: Dimensions.get('window').height < 700 ? '1%' : '4%',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -31,18 +31,35 @@ const styles = StyleSheet.create({
     paddingLeft: '2.5%',
   },
   button: {
-    paddingTop: Dimensions.get('window').height * 0.11 * 0.8,
+    paddingTop: '8%',
+  },
+  changeButton: {
+    backgroundColor: colors.darkWhite,
+    borderColor: colors.lightestGrey,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    borderBottomWidth: 2,
+    borderRadius: 3,
+    shadowColor: colors.black,
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 8,
   },
   title: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   subtitle: {
+    fontSize: 16,
     fontWeight: 'bold',
   },
   image: {
     width: 25,
     height: 25,
+  },
+  marginBottom: {
+    marginBottom: '5%',
   },
 });
 
