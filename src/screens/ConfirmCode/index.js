@@ -18,7 +18,7 @@ const ConfirmCode = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Confirm Code" goBack />
+      <Title title="Confirm Code" Icon="goBack" />
 
       <Logo img={logo} />
 
