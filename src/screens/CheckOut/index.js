@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
 import {NavigationContext} from 'react-navigation';
-import {Icon, Input} from 'react-native-elements';
+import {Icon, Input, Button} from 'react-native-elements';
 
 import Title from '~/components/Title';
 import colors from '~/styles';
 import styles from './styles';
-import Button from '~/components/Button';
+import ButtonComponent from '~/components/Button';
+import plus from '~/assets/plus-minus/bigPlus.png';
 import bg from '~/assets/background-white/whiteBg.png';
 import paypal from '~/assets/payments/paypal.png';
 import visa from '~/assets/payments/visa.png';
@@ -27,7 +28,23 @@ const CheckOut = () => {
             paddingBottom: '2%',
           }}>
           <Text style={styles.title}>Delivery Address</Text>
-          <Text>Change</Text>
+          <Button
+            title="Change"
+            titleStyle={{color: colors.lightGrey}}
+            buttonStyle={{
+              backgroundColor: colors.darkWhite,
+              borderColor: colors.lightestGrey,
+              borderLeftWidth: 0.5,
+              borderRightWidth: 0.5,
+              borderBottomWidth: 2,
+              borderRadius: 3,
+              shadowColor: colors.black,
+              shadowOffset: {width: 0, height: 1},
+              shadowOpacity: 0.9,
+              shadowRadius: 2,
+              elevation: 8,
+            }}
+          />
         </View>
         <Text style={styles.paddingLeft}>
           123 York StBrooklyn, NY, 11201, USA
@@ -36,7 +53,7 @@ const CheckOut = () => {
         <View style={styles.card}>
           <View style={styles.list}>
             <Text style={styles.title}>Payment Method</Text>
-            <Icon name="add-circle" color="#C8c8c8" size={30} />
+            <Image source={plus} />
           </View>
           <Input
             containerStyle={styles.paddingLeft}
@@ -74,7 +91,7 @@ const CheckOut = () => {
       </View>
 
       <View style={styles.button}>
-        <Button
+        <ButtonComponent
           title="Send Order"
           onPress={() => navigation.navigate('Products')}
         />
