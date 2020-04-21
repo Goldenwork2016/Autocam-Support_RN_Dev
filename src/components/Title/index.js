@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  BackHandler,
+  Platform
 } from 'react-native';
 import {StyleSheet} from 'react-native';
 import colors from '~/styles';
@@ -15,6 +15,7 @@ import backButton from '~/assets/backButton/backButton.png';
 
 const styles = StyleSheet.create({
   container: {
+   marginTop: Platform.OS=== "ios" ? 10 : 0,
     flexDirection: 'row',
   },
   col1: {
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   login: {
+    marginTop: Platform.OS=== "ios" ? 15 : 0,
     color: colors.lightGrey,
     fontSize: 22,
     fontWeight: 'bold',
