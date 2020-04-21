@@ -6,20 +6,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
     paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
   },
-  listContainer: {
-    marginTop: '10%',
+  topContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
+    marginVertical: '10%',
   },
   list: {
     flexDirection: 'row',
     backgroundColor: 'transparent',
-    paddingVertical: '4%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderTopWidth: 0.8,
     marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
+    marginVertical: 10,
   },
   button: {
-    paddingTop: Dimensions.get('window').height * 0.11 * 0.8,
+    borderTopWidth: 0.8,
+    marginHorizontal: '1%',
   },
   productBg: {
     alignItems: 'center',

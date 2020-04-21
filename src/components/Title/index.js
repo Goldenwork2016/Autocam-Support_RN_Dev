@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
   col1: {
     flex: 0.3,
   },
+  col5: {
+    flex: 0.5,
+  },
   colMenu: {
     flex: 0.5,
   },
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Title = ({title, Icon}) => {
+const Title = ({title, Icon, small}) => {
   const navigation = useContext(NavigationContext);
 
   const IconOptions = {['goBack']: backButton, ['menu']: menuButton};
@@ -53,10 +56,19 @@ const Title = ({title, Icon}) => {
     <Text style={styles.login}>{title}</Text>
   ) : (
     <View style={styles.container}>
-      <View style={Icon === 'goBack' ? styles.col1 : styles.colMenu}>
+      <View
+        style={
+          !small
+            ? Icon === 'goBack'
+              ? styles.col1
+              : styles.colMenu
+            : styles.col5
+        }>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.goBack()}>
+          onPress={() =>
+            Icon === 'goBack' ? navigation.goBack() : navigation.openDrawer()
+          }>
           <Image
             source={IconOptions[Icon]}
             style={styles.img}
