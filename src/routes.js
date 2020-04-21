@@ -12,6 +12,9 @@ import ConfirmCode from '~/screens/ConfirmCode';
 import Signup from '~/screens/Signup';
 import CreateAccount from '~/screens/CreateAccount';
 import Products from '~/screens/Products';
+import MyOrder from '~/screens/MyOrder';
+import CheckOut from '~/screens/CheckOut';
+
 import CustomSideMenu from '~/components/CustomSideMenu';
 
 const AppDrawerNavigator = createDrawerNavigator(
@@ -19,6 +22,8 @@ const AppDrawerNavigator = createDrawerNavigator(
     Login,
     ForgotPassword,
     Products,
+    MyOrder,
+    CheckOut,
   },
   {
     contentComponent: CustomSideMenu,
@@ -41,6 +46,9 @@ const Routes = createStackNavigator(
     ConfirmCode,
     Signup,
     CreateAccount,
+    Products,
+    MyOrder,
+    CheckOut,
   },
   {
     defaultNavigationOptions: {

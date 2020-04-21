@@ -1,67 +1,70 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
-import {ListItem} from 'react-native-elements';
-
 import {NavigationContext} from 'react-navigation';
 import plus from '~/assets/plus-minus/plus.png';
 import minus from '~/assets/plus-minus/minus.png';
 import Title from '~/components/Title';
 import colors from '~/styles';
 import styles from './styles';
-import bg from '~/assets/background/bg.png';
+import Button from '~/components/Button';
+import bg from '~/assets/background-white/whiteBg.png';
+import lightswitch from '~/assets/products/lightswitch.png';
+import RF610ADUSX4 from '~/assets/products/RF610ADUSX4_exterior_listingg_dsp_rt.png';
+import tv from '~/assets/products/tv.png';
+import vg from '~/assets/products/vg-series_0.png';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const list = [
+const items = [
   {
     name: 'AC 300SE',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    avatar: RF610ADUSX4,
     subtitle: '$279.00 per unit',
     amount: 0,
   },
   {
     name: 'KMZ-4HD',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar: tv,
     subtitle: '$120.00 per unit',
     amount: 0,
   },
   {
     name: 'SF-10P',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar: lightswitch,
     subtitle: '$99.00 per unit',
     amount: 0,
   },
   {
     name: 'DSM-D10',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar: vg,
     subtitle: '$45.00 per unit',
     amount: 0,
   },
   // more items
 ];
 
-const RightField = ({amount}) => {
+const ListItem = ({amount, avatar, name, subtitle}) => {
+  const [qt, setQt] = useState(0);
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-      }}>
-      <Image source={minus} color={colors.grey} />
-      <Text
+    <View style={styles.list}>
+      <View style={styles.productBg}>
+        <Image source={avatar} style={styles.productImage} />
+      </View>
+      <View>
+        <Text>{name}</Text>
+        <Text>{subtitle}</Text>
+      </View>
+      <View
         style={{
-          fontSize: 20,
-          fontWeight: 'bold',
-          borderTopWidth: 0.5,
-          borderBottomWidth: 0.5,
-          paddingHorizontal: 5,
-          paddingVertical: 0,
+          flexDirection: 'row',
         }}>
-        {amount}
-      </Text>
-
-      <Image source={plus} color={colors.grey} />
+        <TouchableOpacity onPress={() => setQt(qt - 1)}>
+          <Image source={minus} style={styles.image} />
+        </TouchableOpacity>
+        <Text>{qt ? qt : amount}</Text>
+        <TouchableOpacity onPress={() => setQt(qt + 1)}>
+          <Image source={plus} style={styles.image} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -74,26 +77,30 @@ const Products = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
 
       <Title title="Products" Icon="menu" />
-
       <View style={styles.listContainer}>
-        <Text style={{fontSize: 16, paddingLeft: 5}}>Products</Text>
-        {list.map((l, i) => (
+        <Text style={{paddingLeft: '10%'}}>Products</Text>
+        {items.map((item, key) => (
           <ListItem
-            containerStyle={styles.list}
-            key={i}
-            leftAvatar={{source: {uri: l.avatar_url}}}
-            title={l.name}
-            subtitle={l.subtitle}
-            topDivider
-            bottomDivider
-            rightElement={<RightField amount={l.amount} />}
+            key={key}
+            amount={item.amount}
+            avatar={item.avatar}
+            name={item.name}
+            subtitle={item.subtitle}
           />
         ))}
+        <View
+          style={{
+            borderTopWidth: 0.8,
+          }}
+        />
       </View>
 
-      {/*<View style={styles.button}>
-        <Button title="Save" onPress={() => navigation.navigate('Login')} />
-      </View>*/}
+      <View style={styles.button}>
+        <Button
+          title="Calculate Shipping"
+          onPress={() => navigation.navigate('MyOrder')}
+        />
+      </View>
     </ImageBackground>
   );
 };

@@ -57,7 +57,7 @@ const CustomSidebarMenu = ({navigation, descriptors}) => (
   <View style={styles.sideMenuContainer}>
     <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
     <Title title="Chris Nweke" />
-    {console.log(descriptors)}
+
     <View
       style={{
         width: '80%',
@@ -86,7 +86,7 @@ const CustomSidebarMenu = ({navigation, descriptors}) => (
             }}
             onPress={() => {
               global.currentScreenIndex = key;
-              navigation.navigate(descriptors.Products.key);
+              navigation.navigate(descriptors.CheckOut.key);
             }}>
             {item.navOptionName}
           </Text>
