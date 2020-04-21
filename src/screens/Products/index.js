@@ -53,12 +53,14 @@ const ListItem = ({amount, avatar, name, subtitle}) => {
   const [qt, setQt] = useState(0);
   return (
     <View style={styles.list}>
-      <View style={styles.productBg}>
-        <Image source={avatar} style={styles.productImage} />
-      </View>
-      <View>
-        <Text style={{fontWeight: 'bold', fontSize: 18}}>{name}</Text>
-        <Text>{subtitle}</Text>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={styles.productBg}>
+          <Image source={avatar} style={styles.productImage} />
+        </View>
+        <View style={{paddingLeft: '5%'}}>
+          <Text style={{fontWeight: 'bold', fontSize: 18}}>{name}</Text>
+          <Text>{subtitle}</Text>
+        </View>
       </View>
       <View
         style={{
