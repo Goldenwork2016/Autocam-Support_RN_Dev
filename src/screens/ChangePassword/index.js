@@ -18,7 +18,7 @@ const ChangePassword = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Change Password" goBack />
+      <Title title="Change Password" Icon="goBack" />
 
       <Logo img={logo} />
 

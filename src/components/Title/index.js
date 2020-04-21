@@ -7,19 +7,23 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
-  Platform
+  Platform,
 } from 'react-native';
 import {StyleSheet} from 'react-native';
 import colors from '~/styles';
 import backButton from '~/assets/backButton/backButton.png';
+import menuButton from '~/assets/menu/hamburger.png';
 
 const styles = StyleSheet.create({
   container: {
-   marginTop: Platform.OS=== "ios" ? 10 : 0,
+    marginTop: Platform.OS === 'ios' ? 10 : 0,
     flexDirection: 'row',
   },
   col1: {
     flex: 0.3,
+  },
+  colMenu: {
+    flex: 0.5,
   },
   col2: {
     flex: 0.8,
@@ -33,25 +37,31 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   login: {
-    marginTop: Platform.OS=== "ios" ? 15 : 0,
+    marginTop: Platform.OS === 'ios' ? 15 : 0,
     color: colors.lightGrey,
     fontSize: 22,
     fontWeight: 'bold',
   },
 });
 
-const Title = ({title, goBack}) => {
+const Title = ({title, Icon}) => {
   const navigation = useContext(NavigationContext);
 
-  return !goBack ? (
+  const IconOptions = {['goBack']: backButton, ['menu']: menuButton};
+
+  return !Icon ? (
     <Text style={styles.login}>{title}</Text>
   ) : (
     <View style={styles.container}>
-      <View style={styles.col1}>
+      <View style={Icon === 'goBack' ? styles.col1 : styles.colMenu}>
         <TouchableOpacity
           style={styles.btn}
           onPress={() => navigation.goBack()}>
-          <Image source={backButton} style={styles.img} resizeMode="contain" />
+          <Image
+            source={IconOptions[Icon]}
+            style={styles.img}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.col2}>
