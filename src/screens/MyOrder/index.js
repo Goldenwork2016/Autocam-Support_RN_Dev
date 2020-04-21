@@ -20,15 +20,14 @@ const MyOrder = () => {
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.topContainer}>
           <View>
-            <Text style={{fontSize: 16, fontWeight: 'bold'}}>Subtotal</Text>
-            <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-              Delivery Cost
-            </Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>AC 300SE</Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>KMC-4HD</Text>
           </View>
           <View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>1x</Text>
-              <Text style={{paddingHorizontal: 5, letterSpacing: 0}}>
+              <Text
+                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16}}>
                 $279.00
               </Text>
               <Icon
@@ -40,7 +39,8 @@ const MyOrder = () => {
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>2x</Text>
-              <Text style={{paddingHorizontal: 5, letterSpacing: 0}}>
+              <Text
+                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16}}>
                 $240.00
               </Text>
               <Icon
@@ -55,11 +55,13 @@ const MyOrder = () => {
 
         <View style={styles.button}>
           <View style={styles.list}>
-            <View>
-              <Text>Subtotal</Text>
-              <Text>Delivery Costa</Text>
+            <View style={{paddingBottom: '5%'}}>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>Subtotal</Text>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                Delivery Cost
+              </Text>
             </View>
-            <View>
+            <View style={{paddingBottom: '5%'}}>
               <Text>$ 5759.00</Text>
               <Text style={{textAlign: 'right'}}>Free</Text>
             </View>

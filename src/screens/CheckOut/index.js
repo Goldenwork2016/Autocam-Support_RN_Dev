@@ -31,19 +31,7 @@ const CheckOut = () => {
           <Button
             title="Change"
             titleStyle={{color: colors.lightGrey}}
-            buttonStyle={{
-              backgroundColor: colors.darkWhite,
-              borderColor: colors.lightestGrey,
-              borderLeftWidth: 0.5,
-              borderRightWidth: 0.5,
-              borderBottomWidth: 2,
-              borderRadius: 3,
-              shadowColor: colors.black,
-              shadowOffset: {width: 0, height: 1},
-              shadowOpacity: 0.9,
-              shadowRadius: 2,
-              elevation: 8,
-            }}
+            buttonStyle={styles.changeButton}
           />
         </View>
         <Text style={styles.paddingLeft}>
@@ -70,17 +58,25 @@ const CheckOut = () => {
           />
         </View>
         <View style={styles.card}>
-          <Text style={styles.title}>Summary</Text>
+          <Text style={[styles.title, styles.marginBottom]}>Summary</Text>
           <View style={styles.list}>
             <View style={styles.paddingLeft}>
-              <Text style={styles.subtitle}>Subtotal</Text>
-              <Text style={styles.subtitle}>Delivery Cost</Text>
-              <Text style={styles.subtitle}>Discount</Text>
+              <Text style={[styles.subtitle, styles.marginBottom]}>
+                Subtotal
+              </Text>
+              <Text style={[styles.subtitle, styles.marginBottom]}>
+                Delivery Cost
+              </Text>
+              <Text style={[styles.subtitle, styles.marginBottom]}>
+                Discount
+              </Text>
             </View>
             <View>
-              <Text>$5759.00</Text>
-              <Text style={{textAlign: 'right'}}>Free</Text>
-              <Text>-$100.00</Text>
+              <Text style={styles.marginBottom}>$5759.00</Text>
+              <Text style={[styles.marginBottom, {textAlign: 'right'}]}>
+                Free
+              </Text>
+              <Text style={styles.marginBottom}>-$100.00</Text>
             </View>
           </View>
         </View>

@@ -36,13 +36,13 @@ const styles = StyleSheet.create({
   },
   loginWithButton: {
     color: colors.lightGrey,
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
   },
   login: {
     marginTop: Platform.OS === 'ios' ? 15 : 0,
     color: colors.lightGrey,
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
   },
 });

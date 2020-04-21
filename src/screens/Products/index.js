@@ -1,5 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
+import {
+  ImageBackground,
+  StatusBar,
+  View,
+  Text,
+  Image,
+  Dimensions,
+} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import plus from '~/assets/plus-minus/plus.png';
 import minus from '~/assets/plus-minus/minus.png';
@@ -50,7 +57,7 @@ const ListItem = ({amount, avatar, name, subtitle}) => {
         <Image source={avatar} style={styles.productImage} />
       </View>
       <View>
-        <Text>{name}</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 18}}>{name}</Text>
         <Text>{subtitle}</Text>
       </View>
       <View
@@ -75,10 +82,10 @@ const Products = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-
+      {console.log(Dimensions.get('window').height)}
       <Title title="Products" Icon="menu" />
       <View style={styles.listContainer}>
-        <Text style={{paddingLeft: '10%'}}>Products</Text>
+        <Text style={{paddingLeft: '8%', fontSize: 20}}>Products</Text>
         {items.map((item, key) => (
           <ListItem
             key={key}
