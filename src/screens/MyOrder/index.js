@@ -61,7 +61,7 @@ const MyOrder = () => {
             </View>
             <View>
               <Text>$ 5759.00</Text>
-              <Text>Free</Text>
+              <Text style={{textAlign: 'right'}}>Free</Text>
             </View>
           </View>
           <Button
