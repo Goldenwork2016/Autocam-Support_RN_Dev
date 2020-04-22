@@ -75,8 +75,20 @@ const ListItem = ({amount, avatar, name, subtitle}) => {
           <Image source={avatar} style={styles.productImage} />
         </View>
         <View style={{paddingLeft: '5%'}}>
-          <Text style={{fontWeight: 'bold', fontSize: 18}}>{name}</Text>
-          <Text>{subtitle}</Text>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 18,
+              color: colors.lightGrey,
+            }}>
+            {name}
+          </Text>
+          <Text
+            style={{
+              color: colors.lightGrey,
+            }}>
+            {subtitle}
+          </Text>
         </View>
       </View>
       <View

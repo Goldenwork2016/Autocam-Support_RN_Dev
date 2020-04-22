@@ -98,6 +98,7 @@ const CustomSidebarMenu = ({navigation}) => {
               style={{
                 fontSize: 18,
                 fontWeight: 'bold',
+                color: colors.lightGrey,
               }}>
               {item.navOptionName}
             </Text>
