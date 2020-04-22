@@ -1,4 +1,4 @@
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {Dimensions} from 'react-native';
@@ -17,13 +17,42 @@ import CheckOut from '~/screens/CheckOut';
 
 import CustomSideMenu from '~/components/CustomSideMenu';
 
-const AppDrawerNavigator = createDrawerNavigator(
+const AuthRoutes = createStackNavigator(
+  {
+    Products,
+    MyOrder,
+    CheckOut,
+  },
+  {
+    initialRouteNameL: Products,
+    defaultNavigationOptions: {
+      headerShown: false,
+      animationEnabled: false,
+    },
+  },
+);
+
+const noAuthRoutes = createStackNavigator(
   {
     Login,
     ForgotPassword,
     Products,
-    MyOrder,
-    CheckOut,
+    ChangePassword,
+    ConfirmCode,
+    Signup,
+    CreateAccount,
+  },
+  {
+    defaultNavigationOptions: {
+      headerShown: false,
+      animationEnabled: false,
+    },
+  },
+);
+const AppDrawerNavigator = createDrawerNavigator(
+  {
+    noAuthRoutes,
+    AuthRoutes,
   },
   {
     contentComponent: CustomSideMenu,
@@ -36,26 +65,8 @@ const AppDrawerNavigator = createDrawerNavigator(
   },
 );
 
-const Routes = createStackNavigator(
-  {
-    AppDrawerNavigator,
-    Login,
-    ForgotPassword,
-    Products,
-    ChangePassword,
-    ConfirmCode,
-    Signup,
-    CreateAccount,
-    Products,
-    MyOrder,
-    CheckOut,
-  },
-  {
-    defaultNavigationOptions: {
-      headerShown: false,
-      animationEnabled: false,
-    },
-  },
-);
+const Routes = createSwitchNavigator({
+  AppDrawerNavigator,
+});
 
 export default createAppContainer(Routes);

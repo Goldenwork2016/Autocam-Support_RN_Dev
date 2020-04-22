@@ -5,7 +5,8 @@ import {
   View,
   Text,
   Image,
-  Dimensions,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import plus from '~/assets/plus-minus/plus.png';
@@ -15,40 +16,56 @@ import colors from '~/styles';
 import styles from './styles';
 import Button from '~/components/Button';
 import bg from '~/assets/background-white/whiteBg.png';
-import lightswitch from '~/assets/products/lightswitch.png';
-import RF610ADUSX4 from '~/assets/products/RF610ADUSX4_exterior_listingg_dsp_rt.png';
-import tv from '~/assets/products/tv.png';
-import vg from '~/assets/products/vg-series_0.png';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import VZRDRYg from '~/assets/products/VZRDRYg.png';
+import fyK2oGXg from '~/assets/products/fyK2oGXg.png';
+import i4ASW1Pg from '~/assets/products/i4ASW1Pg.png';
+import SAMSUNG from '~/assets/products/SAMSUNG.png';
+import vKBZNpBg from '~/assets/products/vKBZNpBg.png';
 
 const items = [
   {
     name: 'AC 300SE',
-    avatar: RF610ADUSX4,
+    avatar: i4ASW1Pg,
     subtitle: '$279.00 per unit',
     amount: 0,
   },
   {
     name: 'KMZ-4HD',
-    avatar: tv,
+    avatar: fyK2oGXg,
     subtitle: '$120.00 per unit',
     amount: 0,
   },
   {
     name: 'SF-10P',
-    avatar: lightswitch,
+    avatar: vKBZNpBg,
     subtitle: '$99.00 per unit',
     amount: 0,
   },
   {
     name: 'DSM-D10',
-    avatar: vg,
+    avatar: VZRDRYg,
     subtitle: '$45.00 per unit',
     amount: 0,
   },
-  // more items
+  {
+    name: 'KMZ-4HD',
+    avatar: SAMSUNG,
+    subtitle: '$120.00 per unit',
+    amount: 0,
+  },
 ];
 
+/*
+const items = [
+  {
+    name: 'VT-300SE',
+    avatar: VT300SE,
+    subtitle: '$279.00 per unit',
+    amount: 0,
+  },
+
+  // more items
+];*/
 const ListItem = ({amount, avatar, name, subtitle}) => {
   const [qt, setQt] = useState(0);
   return (
@@ -84,19 +101,20 @@ const Products = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      {console.log(Dimensions.get('window').height)}
       <Title title="Products" Icon="menu" />
       <View style={styles.listContainer}>
         <Text style={{paddingLeft: '8%', fontSize: 20}}>Products</Text>
-        {items.map((item, key) => (
-          <ListItem
-            key={key}
-            amount={item.amount}
-            avatar={item.avatar}
-            name={item.name}
-            subtitle={item.subtitle}
-          />
-        ))}
+        <ScrollView style={{height: '80%'}}>
+          {items.map((item, key) => (
+            <ListItem
+              key={key}
+              amount={item.amount}
+              avatar={item.avatar}
+              name={item.name}
+              subtitle={item.subtitle}
+            />
+          ))}
+        </ScrollView>
         <View
           style={{
             borderTopWidth: 0.8,

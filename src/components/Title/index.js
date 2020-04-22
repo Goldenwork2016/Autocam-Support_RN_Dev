@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
 const Title = ({title, Icon, small}) => {
   const navigation = useContext(NavigationContext);
-
+  console.log('navigation => ', navigation);
   const IconOptions = {['goBack']: backButton, ['menu']: menuButton};
 
   return !Icon ? (
