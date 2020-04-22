@@ -39,7 +39,7 @@ const MyOrder = () => {
           </View>
           <View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>1x</Text>
+              <Text style={{fontWeight: 'bold', paddingHorizontal: 5, color: colors.lightGrey}}>1x</Text>
               <Text
                 style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
                 $279.00
@@ -52,7 +52,7 @@ const MyOrder = () => {
               />
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>2x</Text>
+              <Text style={{fontWeight: 'bold', paddingHorizontal: 5, color: colors.lightGrey}}>2x</Text>
               <Text
                 style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
                 $240.00
