@@ -30,7 +30,7 @@ const CreateAccount = () => {
       <Input content="Company Address" />
 
       <View style={styles.button}>
-        <Button title="Save" onPress={() => navigation.navigate('Login')} />
+        <Button title="Save" onPress={() => navigation.navigate('Products')} />
       </View>
     </ImageBackground>
   );

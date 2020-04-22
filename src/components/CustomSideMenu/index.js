@@ -58,12 +58,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const CustomSidebarMenu = ({navigation, descriptors}) => {
+const CustomSidebarMenu = ({navigation}) => {
   return (
     <View style={styles.sideMenuContainer}>
-      <View style={styles.img}>
+      <TouchableOpacity
+        style={styles.img}
+        onPress={() => navigation.closeDrawer()}>
         <Image source={menu} resizeMode="contain" />
-      </View>
+      </TouchableOpacity>
       <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
       <Title title="Chris Nweke" />
       <View
