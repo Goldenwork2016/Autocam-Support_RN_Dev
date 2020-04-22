@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import colors from '~/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,6 +42,27 @@ const styles = StyleSheet.create({
   image: {
     width: 25,
     height: 25,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.lightGrey,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.lightGrey,
+  },
+  amount: {
+    fontWeight: 'bold',
+    paddingHorizontal: 5,
+    color: colors.lightGrey,
+  },
+  price: {
+    paddingHorizontal: 5,
+    letterSpacing: 0,
+    fontSize: 16,
+    color: colors.lightGrey,
   },
 });
 

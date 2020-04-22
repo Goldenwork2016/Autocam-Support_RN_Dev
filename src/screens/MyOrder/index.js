@@ -20,30 +20,13 @@ const MyOrder = () => {
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.topContainer}>
           <View>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                color: colors.lightGrey,
-              }}>
-              VT-300SE
-            </Text>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                color: colors.lightGrey,
-              }}>
-              KMC-4HD
-            </Text>
+            <Text style={styles.title}>VT-300SE</Text>
+            <Text style={styles.title}>KMC-4HD</Text>
           </View>
           <View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{fontWeight: 'bold', paddingHorizontal: 5, color: colors.lightGrey}}>1x</Text>
-              <Text
-                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
-                $279.00
-              </Text>
+              <Text style={styles.amount}>1x</Text>
+              <Text style={styles.price}>$279.00</Text>
               <Icon
                 name="delete"
                 color={colors.grey}
@@ -52,11 +35,8 @@ const MyOrder = () => {
               />
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{fontWeight: 'bold', paddingHorizontal: 5, color: colors.lightGrey}}>2x</Text>
-              <Text
-                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
-                $240.00
-              </Text>
+              <Text style={styles.amount}>2x</Text>
+              <Text style={styles.price}>$240.00</Text>
               <Icon
                 name="delete"
                 color={colors.grey}
@@ -70,26 +50,14 @@ const MyOrder = () => {
         <View style={styles.button}>
           <View style={styles.list}>
             <View style={{paddingBottom: '5%'}}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: colors.lightGrey,
-                }}>
-                Subtotal
-              </Text>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: colors.lightGrey,
-                }}>
-                Delivery Cost
-              </Text>
+              <Text style={styles.subtitle}>Subtotal</Text>
+              <Text style={styles.subtitle}>Delivery Cost</Text>
             </View>
             <View style={{paddingBottom: '5%'}}>
               <Text style={{color: colors.lightGrey}}>$ 5759.00</Text>
-              <Text style={{textAlign: 'right', color: colors.lightGrey}}>Free</Text>
+              <Text style={{textAlign: 'right', color: colors.lightGrey}}>
+                Free
+              </Text>
             </View>
           </View>
           <Button

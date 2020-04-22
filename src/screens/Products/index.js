@@ -16,56 +16,9 @@ import colors from '~/styles';
 import styles from './styles';
 import Button from '~/components/Button';
 import bg from '~/assets/background-white/whiteBg.png';
-import VZRDRYg from '~/assets/products/VZRDRYg.png';
-import fyK2oGXg from '~/assets/products/fyK2oGXg.png';
-import i4ASW1Pg from '~/assets/products/i4ASW1Pg.png';
-import SAMSUNG from '~/assets/products/SAMSUNG.png';
-import vKBZNpBg from '~/assets/products/vKBZNpBg.png';
 
-const items = [
-  {
-    name: 'VT 300SE',
-    avatar: i4ASW1Pg,
-    subtitle: '$279.00 per unit',
-    amount: 0,
-  },
-  {
-    name: 'KMZ-4HD',
-    avatar: fyK2oGXg,
-    subtitle: '$120.00 per unit',
-    amount: 0,
-  },
-  {
-    name: 'SF-10P',
-    avatar: VZRDRYg,
-    subtitle: '$99.00 per unit',
-    amount: 0,
-  },
-  {
-    name: 'DSM-D10',
-    avatar: vKBZNpBg,
-    subtitle: '$45.00 per unit',
-    amount: 0,
-  },
-  {
-    name: 'SANSUMG MEMORY',
-    avatar: SAMSUNG,
-    subtitle: '$10.00 per unit',
-    amount: 0,
-  },
-];
+import items from '~/config/products';
 
-/*
-const items = [
-  {
-    name: 'VT-300SE',
-    avatar: VT300SE,
-    subtitle: '$279.00 per unit',
-    amount: 0,
-  },
-
-  // more items
-];*/
 const ListItem = ({amount, avatar, name, subtitle}) => {
   const [qt, setQt] = useState(0);
   return (
@@ -115,7 +68,10 @@ const Products = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <Title title="Products" Icon="menu" />
       <View style={styles.listContainer}>
-        <Text style={{paddingLeft: '8%', fontSize: 20, color: colors.lightGrey}}>Products</Text>
+        <Text
+          style={{paddingLeft: '8%', fontSize: 20, color: colors.lightGrey}}>
+          Products
+        </Text>
         <ScrollView style={{height: '80%'}}>
           {items.map((item, key) => (
             <ListItem
