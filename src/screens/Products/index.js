@@ -98,7 +98,7 @@ const ListItem = ({amount, avatar, name, subtitle}) => {
         <TouchableOpacity onPress={() => setQt(qt - 1)}>
           <Image source={minus} style={styles.image} />
         </TouchableOpacity>
-        <Text>{qt ? qt : amount}</Text>
+        <Text sttyle={{color: colors.lightGrey}}>{qt ? qt : amount}</Text>
         <TouchableOpacity onPress={() => setQt(qt + 1)}>
           <Image source={plus} style={styles.image} />
         </TouchableOpacity>
@@ -115,7 +115,7 @@ const Products = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <Title title="Products" Icon="menu" />
       <View style={styles.listContainer}>
-        <Text style={{paddingLeft: '8%', fontSize: 20}}>Products</Text>
+        <Text style={{paddingLeft: '8%', fontSize: 20, color: colors.lightGrey}}>Products</Text>
         <ScrollView style={{height: '80%'}}>
           {items.map((item, key) => (
             <ListItem

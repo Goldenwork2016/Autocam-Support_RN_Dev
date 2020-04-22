@@ -41,7 +41,7 @@ const MyOrder = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>1x</Text>
               <Text
-                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16}}>
+                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
                 $279.00
               </Text>
               <Icon
@@ -54,7 +54,7 @@ const MyOrder = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', paddingHorizontal: 5}}>2x</Text>
               <Text
-                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16}}>
+                style={{paddingHorizontal: 5, letterSpacing: 0, fontSize: 16, color: colors.lightGrey}}>
                 $240.00
               </Text>
               <Icon
@@ -88,8 +88,8 @@ const MyOrder = () => {
               </Text>
             </View>
             <View style={{paddingBottom: '5%'}}>
-              <Text>$ 5759.00</Text>
-              <Text style={{textAlign: 'right'}}>Free</Text>
+              <Text style={{color: colors.lightGrey}}>$ 5759.00</Text>
+              <Text style={{textAlign: 'right', color: colors.lightGrey}}>Free</Text>
             </View>
           </View>
           <Button

@@ -34,7 +34,7 @@ const CheckOut = () => {
             buttonStyle={styles.changeButton}
           />
         </View>
-        <Text style={styles.paddingLeft}>
+        <Text style={styles.paddingLeft, {color: colors.lightGrey}}>
           123 York StBrooklyn, NY, 11201, USA
         </Text>
         <View style={{borderTopWidth: 0.2, marginTop: '4%'}} />
@@ -72,17 +72,17 @@ const CheckOut = () => {
               </Text>
             </View>
             <View>
-              <Text style={styles.marginBottom}>$5759.00</Text>
-              <Text style={[styles.marginBottom, {textAlign: 'right'}]}>
+              <Text style={styles.marginBottom, {color: colors.lightGrey}}>$5759.00</Text>
+              <Text style={[styles.marginBottom, {textAlign: 'right', color: colors.lightGrey}]}>
                 Free
               </Text>
-              <Text style={styles.marginBottom}>-$100.00</Text>
+              <Text style={styles.marginBottom, {color: colors.lightGrey}}>-$100.00</Text>
             </View>
           </View>
         </View>
         <View style={styles.list}>
           <Text style={styles.title}>Total</Text>
-          <Text>$5659.00</Text>
+          <Text style={{color: colors.lightGrey}}>$5659.00</Text>
         </View>
       </View>
 
