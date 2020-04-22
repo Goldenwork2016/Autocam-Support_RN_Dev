@@ -81,7 +81,9 @@ const CustomSidebarMenu = ({navigation}) => {
         {items.map((item, key) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate(item.screenToNavigate);
+              item.navOptionName === 'Place Orders'
+                ? navigation.closeDrawer()
+                : navigation.navigate(item.screenToNavigate);
             }}
             style={{
               flexDirection: 'row',
