@@ -98,7 +98,7 @@ const ListItem = ({amount, avatar, name, subtitle}) => {
         <TouchableOpacity onPress={() => setQt(qt - 1)}>
           <Image source={minus} style={styles.image} />
         </TouchableOpacity>
-        <Text sttyle={{color: colors.lightGrey}}>{qt ? qt : amount}</Text>
+        <Text style={{color: colors.lightGrey}}>{qt ? qt : amount}</Text>
         <TouchableOpacity onPress={() => setQt(qt + 1)}>
           <Image source={plus} style={styles.image} />
         </TouchableOpacity>
