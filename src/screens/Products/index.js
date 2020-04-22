@@ -24,7 +24,7 @@ import vKBZNpBg from '~/assets/products/vKBZNpBg.png';
 
 const items = [
   {
-    name: 'AC 300SE',
+    name: 'VT 300SE',
     avatar: i4ASW1Pg,
     subtitle: '$279.00 per unit',
     amount: 0,
@@ -37,20 +37,20 @@ const items = [
   },
   {
     name: 'SF-10P',
-    avatar: vKBZNpBg,
+    avatar: VZRDRYg,
     subtitle: '$99.00 per unit',
     amount: 0,
   },
   {
     name: 'DSM-D10',
-    avatar: VZRDRYg,
+    avatar: vKBZNpBg,
     subtitle: '$45.00 per unit',
     amount: 0,
   },
   {
-    name: 'KMZ-4HD',
+    name: 'SANSUMG MEMORY',
     avatar: SAMSUNG,
-    subtitle: '$120.00 per unit',
+    subtitle: '$10.00 per unit',
     amount: 0,
   },
 ];
