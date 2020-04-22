@@ -20,7 +20,7 @@ const MyOrder = () => {
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.topContainer}>
           <View>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>AC 300SE</Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>VT-300SE</Text>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>KMC-4HD</Text>
           </View>
           <View>
