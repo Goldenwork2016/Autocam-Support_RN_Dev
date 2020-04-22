@@ -51,7 +51,6 @@ const noAuthRoutes = createStackNavigator(
 );
 const AppDrawerNavigator = createDrawerNavigator(
   {
-    noAuthRoutes,
     AuthRoutes,
   },
   {
@@ -67,6 +66,7 @@ const AppDrawerNavigator = createDrawerNavigator(
 
 const Routes = createSwitchNavigator({
   AppDrawerNavigator,
+  noAuthRoutes,
 });
 
 export default createAppContainer(Routes);
