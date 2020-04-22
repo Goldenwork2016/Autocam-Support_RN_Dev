@@ -20,8 +20,22 @@ const MyOrder = () => {
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.topContainer}>
           <View>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>VT-300SE</Text>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>KMC-4HD</Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: colors.lightGrey,
+              }}>
+              VT-300SE
+            </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: colors.lightGrey,
+              }}>
+              KMC-4HD
+            </Text>
           </View>
           <View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -56,8 +70,20 @@ const MyOrder = () => {
         <View style={styles.button}>
           <View style={styles.list}>
             <View style={{paddingBottom: '5%'}}>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>Subtotal</Text>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: colors.lightGrey,
+                }}>
+                Subtotal
+              </Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: colors.lightGrey,
+                }}>
                 Delivery Cost
               </Text>
             </View>

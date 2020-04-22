@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {NavigationContext} from 'react-navigation';
+import {DrawerActions} from 'react-navigation-drawer';
 
 import {
   View,
@@ -23,10 +24,10 @@ const styles = StyleSheet.create({
     flex: 0.3,
   },
   col5: {
-    flex: 0.5,
+    flex: 0.4,
   },
   colMenu: {
-    flex: 0.5,
+    flex: 0.4,
   },
   col2: {
     flex: 0.8,
@@ -49,7 +50,8 @@ const styles = StyleSheet.create({
 
 const Title = ({title, Icon, small}) => {
   const navigation = useContext(NavigationContext);
-  console.log('navigation => ', navigation);
+  const drawer = DrawerActions;
+  console.log('navigation => ', DrawerActions);
   const IconOptions = {['goBack']: backButton, ['menu']: menuButton};
 
   return !Icon ? (
@@ -67,7 +69,9 @@ const Title = ({title, Icon, small}) => {
         <TouchableOpacity
           style={styles.btn}
           onPress={() =>
-            Icon === 'goBack' ? navigation.goBack() : navigation.openDrawer()
+            Icon === 'goBack'
+              ? navigation.goBack()
+              : navigation.dispatch(DrawerActions.openDrawer())
           }>
           <Image
             source={IconOptions[Icon]}

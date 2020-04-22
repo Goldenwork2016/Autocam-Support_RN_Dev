@@ -24,7 +24,6 @@ const AuthRoutes = createStackNavigator(
     CheckOut,
   },
   {
-    initialRouteNameL: Products,
     defaultNavigationOptions: {
       headerShown: false,
       animationEnabled: false,
@@ -43,6 +42,7 @@ const noAuthRoutes = createStackNavigator(
     CreateAccount,
   },
   {
+    initialRouteNameL: Login,
     defaultNavigationOptions: {
       headerShown: false,
       animationEnabled: false,
@@ -64,9 +64,14 @@ const AppDrawerNavigator = createDrawerNavigator(
   },
 );
 
-const Routes = createSwitchNavigator({
-  AppDrawerNavigator,
-  noAuthRoutes,
-});
-
-export default createAppContainer(Routes);
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Auth: noAuthRoutes,
+      App: AppDrawerNavigator,
+    },
+    {
+      initialRouteName: 'Auth',
+    },
+  ),
+);

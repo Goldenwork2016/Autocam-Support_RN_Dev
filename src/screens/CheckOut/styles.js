@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: colors.lightGrey,
   },
   subtitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: colors.lightGrey,
   },
   image: {
     width: 25,
