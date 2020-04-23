@@ -3,6 +3,7 @@ import {ImageBackground, StatusBar, View, Text} from 'react-native';
 import {CheckBox, Icon} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';
+import {useHeaderHeight} from 'react-navigation-stack';
 
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';

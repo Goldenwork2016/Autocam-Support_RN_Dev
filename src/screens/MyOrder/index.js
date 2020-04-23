@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {NavigationContext} from 'react-navigation';
+import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import styles from './styles';
 import Button from '~/components/Button';
@@ -14,7 +15,12 @@ const MyOrder = () => {
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
 
-      <View style={{flex: 1, justifyContent: 'space-between'}}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'space-between',
+          marginTop: useHeaderHeight() + useHeaderHeight() / 8,
+        }}>
         <View style={styles.topContainer}>
           <View>
             <Text style={styles.title}>VT-300SE</Text>

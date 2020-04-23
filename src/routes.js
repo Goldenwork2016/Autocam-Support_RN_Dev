@@ -82,6 +82,9 @@ const noAuthRoutes = createStackNavigator(
       headerTitleAlign: 'center',
       headerTransparent: true,
       headerTintColor: 'transparent',
+      headerLeftContainerStyle: {
+        paddingLeft: '50%',
+      },
       headerTitleStyle: {
         color: colors.lightGrey,
         fontSize: 26,
@@ -146,6 +149,9 @@ const AuthRoutes = createStackNavigator(
       headerTitleAlign: 'center',
       headerTransparent: true,
       headerTintColor: 'transparent',
+      headerLeftContainerStyle: {
+        paddingLeft: '50%',
+      },
       headerTitleStyle: {
         color: colors.lightGrey,
         fontSize: 26,
