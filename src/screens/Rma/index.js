@@ -42,6 +42,7 @@ const Rma = () => {
               avatar={item.avatar}
               name={item.name}
               subtitle={item.subtitle}
+              repairCost={item.repairCost}
             />
           ))}
         </ScrollView>
@@ -50,7 +51,7 @@ const Rma = () => {
       <View style={styles.button}>
         <Button
           title="Send Faulty Device"
-          onPress={() => navigation.navigate('MyOrder')}
+          onPress={() => navigation.navigate('ReportFaulty')}
         />
       </View>
     </ImageBackground>
