@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
-import Title from '~/components/Title';
 
 import menu from '~/assets/menu/hamburger.png';
 import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
@@ -13,7 +12,7 @@ const items = [
   },
   {
     navOptionName: 'RMA',
-    screenToNavigate: 'NavScreen2',
+    screenToNavigate: 'Rma',
   },
   {
     navOptionName: 'Billing',
@@ -67,7 +66,9 @@ const CustomSidebarMenu = ({navigation}) => {
         <Image source={menu} resizeMode="contain" />
       </TouchableOpacity>
       <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
-      <Title title="Chris Nweke" />
+      <Text style={{color: colors.lightGrey, fontSize: 26, fontWeight: 'bold'}}>
+        Chris Nweke
+      </Text>
       <View
         style={{
           width: '80%',

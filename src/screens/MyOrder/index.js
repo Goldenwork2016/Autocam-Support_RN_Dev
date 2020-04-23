@@ -3,7 +3,6 @@ import {ImageBackground, StatusBar, View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {NavigationContext} from 'react-navigation';
 import colors from '~/styles';
-import Title from '~/components/Title';
 import styles from './styles';
 import Button from '~/components/Button';
 import bg from '~/assets/background-white/whiteBg.png';
@@ -14,8 +13,6 @@ const MyOrder = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-
-      <Title title="My Order" Icon="goBack" small />
 
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={styles.topContainer}>

@@ -4,7 +4,6 @@ import {CheckBox, Icon} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';
 
-import Title from '~/components/Title';
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
@@ -20,7 +19,6 @@ const Signup = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Signup" />
 
       <Logo img={logo} lessMargin />
       <Input content="Full Name" />

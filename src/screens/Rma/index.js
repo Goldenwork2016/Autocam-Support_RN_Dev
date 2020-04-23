@@ -8,7 +8,6 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-
 import colors from '~/styles';
 import styles from './styles';
 import Button from '~/components/Button';
@@ -16,9 +15,9 @@ import bg from '~/assets/background-white/whiteBg.png';
 
 import ListProducts from '~/components/ListProducts';
 
-import items from '~/config/products';
+import items from '~/config/productsSent';
 
-const Products = () => {
+const Rma = () => {
   const navigation = useContext(NavigationContext);
 
   return (
@@ -26,8 +25,8 @@ const Products = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <View style={styles.listContainer}>
         <Text
-          style={{paddingLeft: '8%', fontSize: 20, color: colors.lightGrey}}>
-          Products
+          style={{paddingLeft: '5%', fontSize: 20, color: colors.lightGrey}}>
+          Devices Already Sent
         </Text>
         <View
           style={{
@@ -38,8 +37,8 @@ const Products = () => {
         <ScrollView style={{height: '80%'}}>
           {items.map((item, key) => (
             <ListProducts
+              RMA
               key={key}
-              amount={item.amount}
               avatar={item.avatar}
               name={item.name}
               subtitle={item.subtitle}
@@ -50,7 +49,7 @@ const Products = () => {
 
       <View style={styles.button}>
         <Button
-          title="Calculate Shipping"
+          title="Send Faulty Device"
           onPress={() => navigation.navigate('MyOrder')}
         />
       </View>
@@ -58,4 +57,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Rma;
