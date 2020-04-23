@@ -6,13 +6,13 @@ import vKBZNpBg from '~/assets/products/vKBZNpBg.png';
 
 export default [
   {
-    name: 'VT 300SE',
+    name: 'VT-300SE',
     avatar: i4ASW1Pg,
     subtitle: '$279.00 per unit',
     amount: 0,
   },
   {
-    name: 'KMZ-4HD',
+    name: 'KMC-4HD',
     avatar: fyK2oGXg,
     subtitle: '$120.00 per unit',
     amount: 0,
