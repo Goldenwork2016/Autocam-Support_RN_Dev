@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {NavigationContext} from 'react-navigation';
 import plus from '~/assets/plus-minus/plus.png';
 import minus from '~/assets/plus-minus/minus.png';
 import colors from '~/styles';
 import styles from './styles';
 
-const ListProducts = ({RMA, amount, avatar, name, subtitle}) => {
+const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
+  const navigation = useContext(NavigationContext);
   const [qt, setQt] = useState(0);
   return !RMA ? (
     <View style={styles.list}>
@@ -53,17 +55,27 @@ const ListProducts = ({RMA, amount, avatar, name, subtitle}) => {
           <Text
             style={{
               fontWeight: 'bold',
-              fontSize: 18,
+              fontSize: 22,
               color: colors.lightGrey,
             }}>
             {name}
           </Text>
-          <Text
-            style={{
-              color: colors.lightGrey,
-            }}>
-            Click for progress
-          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Progress', {
+                name,
+                repairCost,
+                avatar,
+              })
+            }>
+            <Text
+              style={{
+                color: colors.lightGrey,
+                fontSize: 13,
+              }}>
+              Click for progress
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

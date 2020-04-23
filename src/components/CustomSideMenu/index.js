@@ -17,7 +17,7 @@ const items = [
   },
   {
     navOptionName: 'Billing',
-    screenToNavigate: 'NavScreen3',
+    screenToNavigate: 'Progress',
   },
   {
     navOptionName: 'Requests',

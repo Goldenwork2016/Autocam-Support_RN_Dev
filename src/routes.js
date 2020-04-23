@@ -19,6 +19,8 @@ import Products from '~/screens/Products';
 import MyOrder from '~/screens/MyOrder';
 import CheckOut from '~/screens/CheckOut';
 import Rma from '~/screens/Rma';
+import Progress from '~/screens/Progress';
+import ReportFaulty from '~/screens/ReportFaulty';
 
 import backButton from '~/assets/backButton/backButton.png';
 import menuButton from '~/assets/menu/hamburger.png';
@@ -139,6 +141,28 @@ const AuthRoutes = createStackNavigator(
           <TouchableOpacity
             onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
             <Image source={menuButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Progress: {
+      screen: Progress,
+      navigationOptions: ({navigation}) => ({
+        title: 'Progress',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    ReportFaulty: {
+      screen: ReportFaulty,
+      navigationOptions: ({navigation}) => ({
+        title: 'Report Faulty',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
           </TouchableOpacity>
         ),
       }),
