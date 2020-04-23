@@ -25,6 +25,7 @@ const ConfirmCode = () => {
       <Input content="Enter code" />
       <View style={styles.bottomView}>
         <Button
+          noAuth
           title="Confirm"
           onPress={() => navigation.navigate('ChangePassword')}
         />

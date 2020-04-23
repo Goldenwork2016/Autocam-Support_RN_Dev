@@ -7,8 +7,6 @@ import colors from '~/styles';
 const styles = StyleSheet.create({
   button: {
     paddingVertical: 10,
-    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
-    width: Dimensions.get('window').width * 0.8,
     backgroundColor: colors.darkWhite,
     borderColor: colors.lightestGrey,
     borderLeftWidth: 0.5,
@@ -21,12 +19,23 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 8,
   },
+  marginNoAuth: {
+    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
+    width: Dimensions.get('window').width * 0.8,
+  },
+  marginAuth: {
+    marginHorizontal: '10%',
+    width: '80%',
+  },
 });
 
-const Btn = ({title, onPress}) => (
+const Btn = ({title, onPress, noAuth}) => (
   <Button
     title={title}
-    buttonStyle={styles.button}
+    buttonStyle={[
+      styles.button,
+      noAuth ? styles.marginNoAuth : styles.marginAuth,
+    ]}
     titleStyle={{color: colors.lightGrey}}
     onPress={onPress}
   />

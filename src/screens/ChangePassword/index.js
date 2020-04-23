@@ -26,7 +26,11 @@ const ChangePassword = () => {
       <Input content="Confirm Password" password />
 
       <View style={styles.bottomView}>
-        <Button title="Confirm" onPress={() => navigation.navigate('Login')} />
+        <Button
+          noAuth
+          title="Confirm"
+          onPress={() => navigation.navigate('Login')}
+        />
       </View>
     </ImageBackground>
   );
