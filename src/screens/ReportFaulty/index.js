@@ -153,8 +153,8 @@ const ReportFaulty = () => {
         </View>
         <View style={styles.button}>
           <ButtonComponent
-            title="Send Order"
-            onPress={() => navigation.navigate('Products')}
+            title="Request PickUp"
+            onPress={() => navigation.navigate('Rma')}
           />
         </View>
       </View>
