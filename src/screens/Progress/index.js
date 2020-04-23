@@ -78,7 +78,7 @@ const Progress = () => {
                   maximumTrackTintColor="#DBDBDB"
                   thumbTintColor="#E18700"
                   trackStyle={{
-                    width: (Dimensions.get('window').width * 0.2) / 4,
+                    width: (Dimensions.get('window').width * 0.2) / 8,
                     borderRadius: 70,
                   }}
                   thumbStyle={{
