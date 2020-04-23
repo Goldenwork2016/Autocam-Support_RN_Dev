@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {NavigationContext} from 'react-navigation';
 import {
   ImageBackground,
@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import {Slider} from 'react-native-elements';
 import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import bg from '~/assets/background-white/whiteBg.png';
@@ -18,7 +19,13 @@ const Progress = () => {
   const name = navigation.getParam('name');
   const repairCost = navigation.getParam('repairCost');
   const avatar = navigation.getParam('avatar');
+  const [progress, setProgress] = useState(Math.floor(Math.random() * 6));
+  const [sliderHeight, setSliderHeight] = useState(0);
 
+  const heightOfView = (layout) => {
+    const {height} = layout;
+    return setSliderHeight(height);
+  };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
@@ -56,13 +63,37 @@ const Progress = () => {
             </View>
           </View>
           <View style={styles.steps}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
               <View
                 style={{
-                  borderLeftWidth: 10,
-                  borderColor: '#E18700',
+                  marginRight: '10%',
+                  alignSelf: 'stretch',
                 }}
-              />
+                onLayout={(event) => {
+                  heightOfView(event.nativeEvent.layout);
+                }}>
+                <Slider
+                  disabled
+                  minimumTrackTintColor="#E18700"
+                  maximumTrackTintColor="#DBDBDB"
+                  thumbTintColor="#E18700"
+                  trackStyle={{
+                    width: (Dimensions.get('window').width * 0.2) / 4,
+                    borderRadius: 70,
+                  }}
+                  thumbStyle={{
+                    width: Dimensions.get('window').width * 0.1,
+                    height: Dimensions.get('window').width * 0.1,
+                    borderRadius: 100,
+                  }}
+                  height={sliderHeight}
+                  orientation="vertical"
+                  value={progress}
+                  minimumValue={1}
+                  maximumValue={5}
+                  onValueChange={(progress) => setProgress(progress)}
+                />
+              </View>
               <View style={{justifyContent: 'space-between'}}>
                 <Text style={styles.stepText}>Device is Recieved</Text>
                 <Text style={styles.stepText}>Device is Fixed</Text>

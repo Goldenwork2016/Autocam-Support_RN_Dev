@@ -28,7 +28,11 @@ const CreateAccount = () => {
       <Input content="Company Address" />
 
       <View style={styles.button}>
-        <Button title="Save" onPress={() => navigation.navigate('Products')} />
+        <Button
+          noAuth
+          title="Save"
+          onPress={() => navigation.navigate('Products')}
+        />
       </View>
     </ImageBackground>
   );

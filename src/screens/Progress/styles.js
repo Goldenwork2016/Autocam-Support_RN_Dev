@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'transparent',
     alignItems: 'baseline',
-    marginHorizontal: Dimensions.get('window').width * 0.2,
+    marginHorizontal: (Dimensions.get('window').width * 0.2) / 2,
   },
   productBg: {
     alignItems: 'center',

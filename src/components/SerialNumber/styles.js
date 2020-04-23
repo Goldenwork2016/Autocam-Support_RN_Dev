@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
   },
   listContainer: {
-    marginHorizontal: '2%',
+    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
   },
   list: {
     flexDirection: 'row',

@@ -47,6 +47,7 @@ const Signup = () => {
 
       <View style={styles.bottomView}>
         <Button
+          noAuth
           title="Sign Up"
           onPress={() => navigation.navigate('CreateAccount')}
         />
@@ -56,7 +57,11 @@ const Signup = () => {
             Already Have An Account?
           </Text>
 
-          <Button title="Log In" onPress={() => navigation.navigate('Login')} />
+          <Button
+            noAuth
+            title="Log In"
+            onPress={() => navigation.navigate('Login')}
+          />
         </View>
       </View>
     </ImageBackground>

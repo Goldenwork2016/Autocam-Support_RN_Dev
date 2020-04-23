@@ -37,6 +37,7 @@ const Login = () => {
 
       <View style={styles.bottomView}>
         <Button
+          noAuth
           title="Log In"
           onPress={() => navigation.navigate('Products')}
         />
@@ -47,6 +48,7 @@ const Login = () => {
           </Text>
 
           <Button
+            noAuth
             title="Sign Up"
             onPress={() => navigation.navigate('Signup')}
           />
