@@ -12,7 +12,6 @@ import {NavigationContext} from 'react-navigation';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 import Logo from '~/components/Logo';
-import Title from '~/components/Title';
 
 import styles from './styles';
 import bg from '~/assets/background/bg.png';
@@ -23,7 +22,7 @@ const Login = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <Title title="Login" />
+
       <Logo img={logo} />
 
       <Input content="Email Address" />

@@ -3,7 +3,6 @@ import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {Icon, Input, Button} from 'react-native-elements';
 
-import Title from '~/components/Title';
 import colors from '~/styles';
 import styles from './styles';
 import ButtonComponent from '~/components/Button';
@@ -18,8 +17,6 @@ const CheckOut = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-
-      <Title title="Check Out" Icon="goBack" small />
       <View style={styles.listContainer}>
         <View
           style={{
@@ -34,7 +31,7 @@ const CheckOut = () => {
             buttonStyle={styles.changeButton}
           />
         </View>
-        <Text style={styles.paddingLeft, {color: colors.lightGrey}}>
+        <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>
           123 York StBrooklyn, NY, 11201, USA
         </Text>
         <View style={{borderTopWidth: 0.2, marginTop: '4%'}} />
@@ -72,11 +69,19 @@ const CheckOut = () => {
               </Text>
             </View>
             <View>
-              <Text style={styles.marginBottom, {color: colors.lightGrey}}>$5759.00</Text>
-              <Text style={[styles.marginBottom, {textAlign: 'right', color: colors.lightGrey}]}>
+              <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
+                $5759.00
+              </Text>
+              <Text
+                style={[
+                  styles.marginBottom,
+                  {textAlign: 'right', color: colors.lightGrey},
+                ]}>
                 Free
               </Text>
-              <Text style={styles.marginBottom, {color: colors.lightGrey}}>-$100.00</Text>
+              <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
+                -$100.00
+              </Text>
             </View>
           </View>
         </View>
