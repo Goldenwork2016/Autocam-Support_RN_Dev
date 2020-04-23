@@ -8,6 +8,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
+import {useHeaderHeight} from 'react-navigation-stack';
 
 import colors from '~/styles';
 import styles from './styles';
@@ -24,7 +25,7 @@ const Products = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <View style={styles.listContainer}>
+      <View style={{marginTop: useHeaderHeight() + useHeaderHeight() / 8}}>
         <Text
           style={{paddingLeft: '8%', fontSize: 20, color: colors.lightGrey}}>
           Products

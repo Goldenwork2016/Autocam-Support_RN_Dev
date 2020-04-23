@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View} from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import {useHeaderHeight} from 'react-navigation-stack';
 
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';

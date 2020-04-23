@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
+import {DrawerActions} from 'react-navigation-drawer';
 
 import menu from '~/assets/menu/hamburger.png';
 import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
@@ -58,6 +59,21 @@ const styles = StyleSheet.create({
 });
 
 const CustomSidebarMenu = ({navigation}) => {
+  const getActiveRouteState = function (route) {
+    if (
+      !route.routes ||
+      route.routes.length === 0 ||
+      route.index >= route.routes.length
+    ) {
+      return route;
+    }
+
+    const childActiveRoute = route.routes[route.index];
+    return getActiveRouteState(childActiveRoute);
+  };
+
+  const routeName = getActiveRouteState(navigation.state).routeName;
+
   return (
     <View style={styles.sideMenuContainer}>
       <TouchableOpacity
@@ -81,11 +97,11 @@ const CustomSidebarMenu = ({navigation}) => {
       <View style={{width: '80%'}}>
         {items.map((item, key) => (
           <TouchableOpacity
-            onPress={() => {
-              item.navOptionName === 'Place Orders'
-                ? navigation.closeDrawer()
-                : navigation.navigate(item.screenToNavigate);
-            }}
+            onPress={() =>
+              routeName !== item.screenToNavigate
+                ? navigation.navigate(item.screenToNavigate)
+                : navigation.dispatch(DrawerActions.closeDrawer())
+            }
             style={{
               flexDirection: 'row',
               borderBottomWidth: 0.5,

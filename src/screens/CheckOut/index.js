@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import {useHeaderHeight} from 'react-navigation-stack';
+
 import {Icon, Input, Button} from 'react-native-elements';
 
 import colors from '~/styles';
@@ -17,7 +19,11 @@ const CheckOut = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <View style={styles.listContainer}>
+      <View
+        style={[
+          styles.listContainer,
+          {marginTop: useHeaderHeight() + useHeaderHeight() / 8},
+        ]}>
         <View
           style={{
             flexDirection: 'row',

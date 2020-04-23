@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import {useHeaderHeight} from 'react-navigation-stack';
 
 import Button from '~/components/Button';
 import Input from '~/components/Input';
