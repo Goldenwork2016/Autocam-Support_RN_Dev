@@ -77,6 +77,12 @@ target 'AutocamSupport' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'SGActionView', :git => 'https://github.com/prscX/SGActionView.git'
+
+   	use_native_modules!
+
+ 	pod 'RNBottomActionSheet', :path => '../node_modules/react-native-bottom-action-sheet/ios'
+ 	pod 'RNImageHelper', :path => '../node_modules/react-native-image-helper/ios'
 
   target 'AutocamSupportTests' do
     inherit! :complete

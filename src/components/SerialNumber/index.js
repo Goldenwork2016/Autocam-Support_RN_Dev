@@ -5,8 +5,9 @@ import {Input, CheckBox, Icon} from 'react-native-elements';
 
 import colors from '~/styles';
 import styles from './styles';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const SerialNumber = () => {
+const SerialNumber = ({openPopup}) => {
   const [checked, setChecked] = useState(false);
   return (
     <>
@@ -15,13 +16,15 @@ const SerialNumber = () => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingBottom: '2%',
+          paddingVertical: '2%',
         }}>
         <Text style={styles.title}>Serial Number</Text>
         <View style={styles.showSerial}>
-          <Text style={{color: colors.lightGrey, textAlign: 'center'}}>
-            9700283
-          </Text>
+          <TouchableOpacity onPress={openPopup}>
+            <Text style={{color: colors.lightGrey, textAlign: 'center'}}>
+              9700283
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.card}>
@@ -35,7 +38,7 @@ const SerialNumber = () => {
             color: colors.opacityWhite,
             textAlignVertical: 'top',
           }}
-          placeholder="Whats wrong?"
+          placeholder="What's wrong?"
           multiline={true}
           numberOfLines={8}
         />

@@ -46,28 +46,29 @@ const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
       </View>
     </View>
   ) : (
-    <View style={styles.list}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={styles.productBg}>
-          <Image source={avatar} style={styles.productImage} />
-        </View>
-        <View style={{paddingLeft: '5%'}}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              fontSize: 22,
-              color: colors.lightGrey,
-            }}>
-            {name}
-          </Text>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('Progress', {
-                name,
-                repairCost,
-                avatar,
-              })
-            }>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Progress', {
+          name,
+          repairCost,
+          avatar,
+        })
+      }>
+      <View style={styles.list}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={styles.productBg}>
+            <Image source={avatar} style={styles.productImage} />
+          </View>
+          <View style={{paddingLeft: '5%'}}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 22,
+                color: colors.lightGrey,
+              }}>
+              {name}
+            </Text>
+
             <Text
               style={{
                 color: colors.lightGrey,
@@ -75,10 +76,10 @@ const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
               }}>
               Click for progress
             </Text>
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
