@@ -46,7 +46,11 @@ const TimelineProgress = ({sliderHeight}) => {
         circleColor="#E18700"
         listViewStyle={{color: '#444'}}
         rowContainerStyle={{height: sliderHeight / 5}}
-        titleStyle={{color: colors.lightGrey}}
+        titleStyle={{
+          color: colors.lightGrey,
+          fontSize: 17,
+          fontWeight: 'normal',
+        }}
         style={styles.list}
         data={data}
       />
