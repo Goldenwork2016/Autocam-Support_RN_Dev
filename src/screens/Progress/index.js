@@ -8,7 +8,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import {Slider} from 'react-native-elements';
+import Timeline from '~/components/Timeline';
 import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import bg from '~/assets/background-white/whiteBg.png';
@@ -62,45 +62,17 @@ const Progress = () => {
               </View>
             </View>
           </View>
-          <View style={styles.steps}>
-            <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
-              <View
-                style={{
-                  marginRight: '10%',
-                  alignSelf: 'stretch',
-                }}
-                onLayout={(event) => {
-                  heightOfView(event.nativeEvent.layout);
-                }}>
-                <Slider
-                  disabled
-                  minimumTrackTintColor="#E18700"
-                  maximumTrackTintColor="#DBDBDB"
-                  thumbTintColor="#E18700"
-                  trackStyle={{
-                    width: (Dimensions.get('window').width * 0.2) / 8,
-                    borderRadius: 70,
-                  }}
-                  thumbStyle={{
-                    width: Dimensions.get('window').width * 0.1,
-                    height: Dimensions.get('window').width * 0.1,
-                    borderRadius: 100,
-                  }}
-                  height={sliderHeight}
-                  orientation="vertical"
-                  value={progress}
-                  minimumValue={1}
-                  maximumValue={5}
-                  onValueChange={(progress) => setProgress(progress)}
-                />
-              </View>
-              <View style={{justifyContent: 'space-between'}}>
-                <Text style={styles.stepText}>Device is Recieved</Text>
-                <Text style={styles.stepText}>Device is Fixed</Text>
-                <Text style={styles.stepText}>Device is Generated</Text>
-                <Text style={styles.stepText}>Device is Shipping</Text>
-                <Text style={styles.stepText}>Device is Received Back</Text>
-              </View>
+          <View style={{flexDirection: 'row', height: '100%'}}>
+            <View
+              style={{
+                flex: 1,
+                alignSelf: 'baseline',
+                height: '50%',
+              }}
+              onLayout={(event) => {
+                heightOfView(event.nativeEvent.layout);
+              }}>
+              <Timeline sliderHeight={sliderHeight} progress={progress} />
             </View>
           </View>
         </View>
