@@ -17,17 +17,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  input: {
-    borderBottomWidth: 0,
-    backgroundColor: colors.snowWhite,
-  },
-  card: {
-    borderBottomWidth: 0.2,
-    paddingVertical: '4%',
-  },
-  paddingLeft: {
-    paddingLeft: '2.5%',
-  },
   showSerial: {
     backgroundColor: colors.darkWhite,
     borderColor: colors.lightestGrey,
@@ -45,18 +34,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     color: colors.lightGrey,
-  },
-  subtitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.lightGrey,
-  },
-  image: {
-    width: 25,
-    height: 25,
-  },
-  marginBottom: {
-    marginBottom: '5%',
   },
 });
 
