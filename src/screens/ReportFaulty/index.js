@@ -68,7 +68,8 @@ const ReportFaulty = () => {
         itemTextColor={colors.grey}
         backgroundColor={'#C0C0C0'}
         delayDismissOnItemClick={true}
-        onSelection={() => setSheetView(!sheetView)}>
+        onSelection={() => setSheetView(!sheetView)}
+        onCancel={() => setSheetView(!sheetView)}>
         <RNBottomActionSheet.SheetView.Item
           title={'Take Picture of Serial Number'}
         />
