@@ -6057,6 +6057,11 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-bottom-action-sheet@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-bottom-action-sheet/-/react-native-bottom-action-sheet-2.0.1.tgz#d2ab05f275e38519142e288acb093d8638c3a964"
+  integrity sha512-7IUgBjYhub0OR/3vq6FybjXIURBXaoI1oYZRhRzyO/6wfad3hjh9J5ZZjtoNaXgFZfXT/94JPS1fdaBBN5t35A==
+
 react-native-code-push@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/react-native-code-push/-/react-native-code-push-6.2.0.tgz#43274d9d01e998be1358b5bedc534e8edddb2dc2"
@@ -6098,6 +6103,11 @@ react-native-gesture-handler@^1.6.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-image-helper@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-helper/-/react-native-image-helper-0.0.2.tgz#57c04658bd36950dce549771d5793d79c38ebc5d"
+  integrity sha512-5honN0zJi2bzwxPBJ5FCSdzxfu6jr/c+KjPb0b5HuDc0Rh6ukZomCiDvoAkcFXmlkZDfIKtnzsG+25kmYpBSGg==
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
