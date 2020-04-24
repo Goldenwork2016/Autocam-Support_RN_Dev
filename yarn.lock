@@ -6158,6 +6158,11 @@ react-native-status-bar-height@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"
   integrity sha512-sYBCPYA/NapBSHkdm/IVL4ID3LLlIuLqINi2FBDyMkc2BU9pfSGOtkz9yfxoK39mYJuTrlTOQ7mManARUsYDSA==
 
+react-native-timeline-flatlist@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/react-native-timeline-flatlist/-/react-native-timeline-flatlist-0.7.2.tgz#0fb468184d8f28e7515a54be89bdc1eacb364c56"
+  integrity sha512-jttAQ704JR28GxQqpejK8MNlKrNeH0Pfd05bvrbSKg1QrOi9g/xTPYLY8R6ozaEZfvE8lcLKGGVZW1hqNwQxcw==
+
 react-native-vector-icons@^6.6.0:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.6.0.tgz#66cf004918eb05d90778d64bd42077c1800d481b"
