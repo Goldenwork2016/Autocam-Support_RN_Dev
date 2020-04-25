@@ -25,11 +25,11 @@ const items = [
   },
   {
     navOptionName: 'Account',
-    screenToNavigate: 'NavScreen2',
+    screenToNavigate: 'Account',
   },
   {
     navOptionName: 'Material',
-    screenToNavigate: 'NavScreen3',
+    screenToNavigate: 'Material',
   },
   {
     navOptionName: 'Logout',

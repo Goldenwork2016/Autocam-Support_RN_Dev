@@ -21,6 +21,13 @@ import CheckOut from '~/screens/CheckOut';
 import Rma from '~/screens/Rma';
 import Progress from '~/screens/Progress';
 import ReportFaulty from '~/screens/ReportFaulty';
+import AuthEnterEmail from '~/screens/AuthEnterEmail';
+import AuthConfirmCode from '~/screens/AuthConfirmCode';
+import AuthChangePassword from '~/screens/AuthChangePassword';
+import Account from '~/screens/Account';
+import Material from '~/screens/Material';
+import Brochure from '~/screens/Brochure';
+import UserGuide from '~/screens/UserGuide';
 
 import backButton from '~/assets/backButton/backButton.png';
 import menuButton from '~/assets/menu/hamburger.png';
@@ -160,6 +167,83 @@ const AuthRoutes = createStackNavigator(
       screen: ReportFaulty,
       navigationOptions: ({navigation}) => ({
         title: 'Report Faulty',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Account: {
+      screen: Account,
+      navigationOptions: ({navigation}) => ({
+        title: 'Account',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={menuButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    AuthEnterEmail: {
+      screen: AuthEnterEmail,
+      navigationOptions: ({navigation}) => ({
+        title: 'Enter Email',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    AuthConfirmCode: {
+      screen: AuthConfirmCode,
+      navigationOptions: ({navigation}) => ({
+        title: 'Confirm Code',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    AuthChangePassword: {
+      screen: AuthChangePassword,
+      navigationOptions: ({navigation}) => ({
+        title: 'Change Password',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Material: {
+      screen: Material,
+      navigationOptions: ({navigation}) => ({
+        title: 'Material',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image source={menuButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Brochure: {
+      screen: Brochure,
+      navigationOptions: ({navigation}) => ({
+        title: 'Brochure',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    UserGuide: {
+      screen: UserGuide,
+      navigationOptions: ({navigation}) => ({
+        title: 'Material',
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={backButton} />
