@@ -15,6 +15,7 @@ import visa from '~/assets/payments/visa.png';
 
 const CheckOut = () => {
   const navigation = useContext(NavigationContext);
+  const myServices = navigation.getParam('myServices');
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -24,23 +25,29 @@ const CheckOut = () => {
           styles.listContainer,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 8},
         ]}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingBottom: '2%',
-          }}>
-          <Text style={styles.title}>Delivery Address</Text>
-          <Button
-            title="Change"
-            titleStyle={{color: colors.lightGrey}}
-            buttonStyle={styles.changeButton}
-          />
-        </View>
-        <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>
-          123 York StBrooklyn, NY, 11201, USA
-        </Text>
-        <View style={{borderTopWidth: 0.2, marginTop: '4%'}} />
+        {!myServices ? (
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingBottom: '2%',
+              }}>
+              <Text style={styles.title}>Delivery Address</Text>
+              <Button
+                title="Change"
+                titleStyle={{color: colors.lightGrey}}
+                buttonStyle={styles.changeButton}
+              />
+            </View>
+            <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>
+              123 York StBrooklyn, NY, 11201, USA
+            </Text>
+          </View>
+        ) : null}
+        {!myServices ? (
+          <View style={{borderTopWidth: 0.2, marginTop: '4%'}} />
+        ) : null}
         <View style={styles.card}>
           <View style={styles.list}>
             <Text style={styles.title}>Payment Method</Text>

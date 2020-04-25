@@ -17,11 +17,11 @@ const items = [
   },
   {
     navOptionName: 'Billing',
-    screenToNavigate: 'NavsScreen1',
+    screenToNavigate: 'Billing',
   },
   {
     navOptionName: 'Requests',
-    screenToNavigate: 'NavScreen1',
+    screenToNavigate: 'Requests',
   },
   {
     navOptionName: 'Account',

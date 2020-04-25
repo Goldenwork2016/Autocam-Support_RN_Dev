@@ -5,31 +5,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   button: {
-    paddingTop: '4%',
+    paddingBottom: '10%',
+  },
+  scrollview: {
+    maxHeight: '80%',
   },
   list: {
     flexDirection: 'row',
     backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     borderBottomWidth: 0.8,
     marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
   },
-  productBg: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#DBDBDB',
-    borderColor: colors.darkGrey,
-    borderRadius: 75,
-    width: 100,
-    height: 100,
-    shadowColor: colors.black,
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.9,
-    shadowRadius: 2,
-    elevation: 8,
+  instructionsContainer: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    paddingLeft: 0,
+    margin: 0,
+  },
+  invoice: {
+    color: colors.grey,
+    fontSize: 20,
   },
 });
 
