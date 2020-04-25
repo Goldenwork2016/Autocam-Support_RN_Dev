@@ -74,23 +74,6 @@ const Requests = () => {
             />
           </TouchableOpacity>
         ))}
-        <TouchableOpacity onPress={() => navigation.navigate('UserGuide')}>
-          <View style={styles.list}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: colors.lightGrey,
-              }}>
-              User
-            </Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color={colors.lightGrey}
-              size={50}
-            />
-          </View>
-        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

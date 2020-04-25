@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
     paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
+    justifyContent: 'space-between',
   },
   listContainer: {
     marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
