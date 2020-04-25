@@ -14,7 +14,7 @@ import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 
-const Material = () => {
+const Billing = () => {
   const navigation = useContext(NavigationContext);
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -26,14 +26,14 @@ const Material = () => {
             marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
           }}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('Brochure')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MyInvoices')}>
           <View style={styles.list}>
             <Text
               style={{
                 fontSize: 20,
                 color: colors.lightGrey,
               }}>
-              Brochure
+              My Invoices
             </Text>
             <Icon
               name="navigate-next"
@@ -43,21 +43,23 @@ const Material = () => {
             />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('UserGuide')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MyServices')}>
           <View style={styles.list}>
             <Text
               style={{
                 fontSize: 20,
                 color: colors.lightGrey,
               }}>
-              User
+              My Services
             </Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color={colors.lightGrey}
-              size={50}
-            />
+            <View style={{margin: 0}}>
+              <Icon
+                name="navigate-next"
+                type="material"
+                color={colors.lightGrey}
+                size={50}
+              />
+            </View>
           </View>
         </TouchableOpacity>
       </View>
@@ -65,4 +67,4 @@ const Material = () => {
   );
 };
 
-export default Material;
+export default Billing;

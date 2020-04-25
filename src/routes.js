@@ -28,6 +28,11 @@ import Account from '~/screens/Account';
 import Material from '~/screens/Material';
 import Brochure from '~/screens/Brochure';
 import UserGuide from '~/screens/UserGuide';
+import Billing from '~/screens/Billing';
+import Requests from '~/screens/Requests';
+import MyInvoices from '~/screens/MyInvoices';
+import MyServices from '~/screens/MyServices';
+import Response from '~/screens/Response';
 
 import backButton from '~/assets/backButton/backButton.png';
 import menuButton from '~/assets/menu/hamburger.png';
@@ -244,6 +249,61 @@ const AuthRoutes = createStackNavigator(
       screen: UserGuide,
       navigationOptions: ({navigation}) => ({
         title: 'Material',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Billing: {
+      screen: Billing,
+      navigationOptions: ({navigation}) => ({
+        title: 'Billing',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image source={menuButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Requests: {
+      screen: Requests,
+      navigationOptions: ({navigation}) => ({
+        title: 'Requests',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image source={menuButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    MyInvoices: {
+      screen: MyInvoices,
+      navigationOptions: ({navigation}) => ({
+        title: 'My Invoices',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    MyServices: {
+      screen: MyServices,
+      navigationOptions: ({navigation}) => ({
+        title: 'My Services',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    Response: {
+      screen: Response,
+      navigationOptions: ({navigation}) => ({
+        title: 'Response',
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={backButton} />

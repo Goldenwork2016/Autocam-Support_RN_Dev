@@ -13,8 +13,9 @@ import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
+import requests from '~/config/requests';
 
-const Material = () => {
+const Requests = () => {
   const navigation = useContext(NavigationContext);
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -26,23 +27,53 @@ const Material = () => {
             marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
           }}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('Brochure')}>
-          <View style={styles.list}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: colors.lightGrey,
-              }}>
-              Brochure
-            </Text>
+        {requests.map((request, index) => (
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('Response')}
+            key={index}>
+            <View>
+              <View style={styles.list}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: colors.lightGrey,
+                    width: '90%',
+                  }}>
+                  {request.name}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginVertical: '2%',
+                }}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    color: colors.lightGrey,
+                  }}>
+                  {request.status}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    color: colors.lightGrey,
+                  }}>
+                  {request.date}
+                </Text>
+              </View>
+            </View>
             <Icon
               name="navigate-next"
               type="material"
               color={colors.lightGrey}
-              size={50}
+              size={55}
             />
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        ))}
         <TouchableOpacity onPress={() => navigation.navigate('UserGuide')}>
           <View style={styles.list}>
             <Text
@@ -65,4 +96,4 @@ const Material = () => {
   );
 };
 
-export default Material;
+export default Requests;
