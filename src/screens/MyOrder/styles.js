@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
-    marginVertical: '10%',
+    marginBottom: '10%',
   },
   list: {
     flexDirection: 'row',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
-    marginVertical: 10,
+    marginBottom: 10,
   },
   button: {
     borderTopWidth: 0.8,

@@ -40,13 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '300',
   },
-  instructionsContainer: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    padding: 0,
-    margin: 0,
-    maxWidth: '70%',
-  },
+
   bottomButton: {
     paddingBottom: '10%',
   },

@@ -89,7 +89,7 @@ const SerialNumber = ({openPopup}) => {
               margin: 0,
             }}
             textStyle={{
-              font: 13,
+              fontSize: 13,
               color: '#959595',
             }}
           />
@@ -109,7 +109,7 @@ const SerialNumber = ({openPopup}) => {
               margin: 0,
             }}
             textStyle={{
-              font: 13,
+              fontSize: 13,
               color: '#959595',
             }}
           />

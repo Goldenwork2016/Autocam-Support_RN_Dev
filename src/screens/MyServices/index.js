@@ -1,18 +1,25 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {NavigationContext} from 'react-navigation';
-import {ImageBackground, StatusBar, View, Text, Dimensions} from 'react-native';
-import {Button, CheckBox, Icon} from 'react-native-elements';
+import {
+  ImageBackground,
+  StatusBar,
+  View,
+  Text,
+  Dimensions,
+  Image,
+} from 'react-native';
+import {Button} from 'react-native-elements';
 import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 import ButtonComponent from '~/components/Button';
+import CheckBox from '~/components/Checkbox';
 
 import devices from '~/config/myServices';
 
 const MyServices = () => {
   const navigation = useContext(NavigationContext);
-  const [checked, setChecked] = useState(false);
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -63,30 +70,9 @@ const MyServices = () => {
           ) : (
             <View style={styles.list} key={index}>
               <CheckBox
-                title={
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      color: colors.lightGrey,
-                    }}>
-                    {device.number}
-                  </Text>
-                }
-                iconLeft
-                type="material"
-                checkedIcon={
-                  <Icon name="check-box" size={30} color="#676767" />
-                }
-                uncheckedIcon={
-                  <Icon
-                    name="check-box-outline-blank"
-                    size={30}
-                    color="#676767"
-                  />
-                }
-                checked={checked}
-                containerStyle={styles.instructionsContainer}
-                onPress={() => setChecked(!checked)}
+                title={device.number}
+                fontSize={20}
+                color={colors.lightGrey}
               />
               <Text
                 style={{
@@ -112,30 +98,7 @@ const MyServices = () => {
             }}
           />
           <View style={styles.list}>
-            <CheckBox
-              title={
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: colors.lightGrey,
-                  }}>
-                  985252
-                </Text>
-              }
-              iconLeft
-              type="material"
-              checkedIcon={<Icon name="check-box" size={30} color="#676767" />}
-              uncheckedIcon={
-                <Icon
-                  name="check-box-outline-blank"
-                  size={30}
-                  color="#676767"
-                />
-              }
-              checked={checked}
-              containerStyle={styles.instructionsContainer}
-              onPress={() => setChecked(!checked)}
-            />
+            <CheckBox title={'985252'} fontSize={20} color={colors.lightGrey} />
             <View
               style={{
                 flexDirection: 'row',
@@ -156,7 +119,30 @@ const MyServices = () => {
               />
             </View>
           </View>
+          <View style={styles.list}>
+            <CheckBox title={'985252'} fontSize={20} color={colors.lightGrey} />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: colors.lightGrey,
+                  marginRight: 8,
+                }}>
+                $120 per unit
+              </Text>
+              <Button
+                title="Add"
+                titleStyle={{color: colors.lightGrey}}
+                buttonStyle={styles.button}
+              />
+            </View>
+          </View>
         </View>
+
         <View style={{paddingTop: '10%'}}>
           <Text style={styles.title}>Your Dedicated Server</Text>
           <View
@@ -167,82 +153,25 @@ const MyServices = () => {
           />
           <View style={styles.list}>
             <CheckBox
-              title={
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: colors.lightGrey,
-                  }}>
-                  Deploy New Server
-                </Text>
-              }
-              iconLeft
-              type="material"
-              checkedIcon={<Icon name="check-box" size={30} color="#676767" />}
-              uncheckedIcon={
-                <Icon
-                  name="check-box-outline-blank"
-                  size={30}
-                  color="#676767"
-                />
-              }
-              checked={checked}
-              containerStyle={styles.instructionsContainer}
-              onPress={() => setChecked(!checked)}
+              title={'Deploy New Server'}
+              fontSize={20}
+              color={colors.lightGrey}
             />
             <Text style={styles.values}>$5000</Text>
           </View>
           <View style={styles.list}>
             <CheckBox
-              title={
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: colors.lightGrey,
-                  }}>
-                  Renew License Fee on existing Server
-                </Text>
-              }
-              iconLeft
-              type="material"
-              checkedIcon={<Icon name="check-box" size={30} color="#676767" />}
-              uncheckedIcon={
-                <Icon
-                  name="check-box-outline-blank"
-                  size={30}
-                  color="#676767"
-                />
-              }
-              checked={checked}
-              containerStyle={styles.instructionsContainer}
-              onPress={() => setChecked(!checked)}
+              title={'Renew License Fee on existing Server'}
+              fontSize={20}
+              color={colors.lightGrey}
             />
             <Text style={styles.values}>$4000</Text>
           </View>
           <View style={styles.list}>
             <CheckBox
-              title={
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: colors.lightGrey,
-                  }}>
-                  Server Monthly Fee
-                </Text>
-              }
-              iconLeft
-              type="material"
-              checkedIcon={<Icon name="check-box" size={30} color="#676767" />}
-              uncheckedIcon={
-                <Icon
-                  name="check-box-outline-blank"
-                  size={30}
-                  color="#676767"
-                />
-              }
-              checked={checked}
-              containerStyle={styles.instructionsContainer}
-              onPress={() => setChecked(!checked)}
+              title={'Server Monthly Fee'}
+              fontSize={20}
+              color={colors.lightGrey}
             />
             <Text style={styles.values}>$120</Text>
           </View>

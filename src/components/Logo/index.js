@@ -59,10 +59,7 @@ const Logo = ({img, lessMargin}) => {
   ) : (
     <Image
       source={img}
-      style={[
-        styles.lessMargin,
-        {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
-      ]}
+      style={[styles.lessMargin, {marginTop: useHeaderHeight()}]}
       resizeMode="contain"
     />
   );

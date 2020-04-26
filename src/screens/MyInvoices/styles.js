@@ -28,10 +28,6 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     margin: 0,
   },
-  invoice: {
-    color: colors.grey,
-    fontSize: 20,
-  },
 });
 
 export default styles;

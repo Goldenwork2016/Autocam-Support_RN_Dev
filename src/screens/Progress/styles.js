@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   stepText: {
     fontSize: 17,
     color: colors.lightGrey,
-    marginVertical: '15%',
+    marginBottom: '15%',
   },
 });
 
