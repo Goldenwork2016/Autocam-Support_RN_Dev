@@ -18,6 +18,7 @@ const Chat = ({user, date, message}) => {
         <Text style={styles.title}>{date}</Text>
       </View>
       <Input
+        disabled
         inputContainerStyle={styles.input}
         inputStyle={{
           fontSize: 18,

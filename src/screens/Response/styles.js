@@ -26,6 +26,14 @@ const styles = StyleSheet.create({
     elevation: 8,
     marginBottom: '2%',
   },
+  card: {
+    width: '100%',
+  },
+  input: {
+    borderBottomWidth: 0.5,
+    width: '100%',
+    backgroundColor: colors.snowWhite,
+  },
 });
 
 export default styles;
