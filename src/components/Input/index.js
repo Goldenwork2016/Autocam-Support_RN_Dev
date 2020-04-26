@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {StyleSheet, Dimensions} from 'react-native';
 import {Input} from 'react-native-elements';
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.snowWhite,
+    color: colors.lightGrey,
     paddingHorizontal: 2,
     paddingVertical: 0,
   },
@@ -36,27 +37,38 @@ const styles = StyleSheet.create({
   },
 });
 
-const InputField = ({content, password, disabled}) =>
-  Dimensions.get('window').height < 650 ? (
+const InputField = ({content, password, disabled, value}) => {
+  const [inputValue, setInputValue] = value
+    ? useState(content)
+    : useState(false);
+
+  return Dimensions.get('window').height < 650 ? (
     <Input
-      placeholder={content}
+      clearButtonMode={value ? 'never' : 'always'}
+      placeholder={inputValue ? inputValue : content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
+      value={value ? inputValue : null}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainerSmall}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   ) : (
     <Input
-      placeholder={content}
+      clearButtonMode={value ? 'never' : 'always'}
+      placeholder={inputValue ? inputValue : content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
+      value={value ? inputValue : null}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   );
+};
 
 export default InputField;

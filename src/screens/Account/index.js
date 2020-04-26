@@ -36,26 +36,35 @@ const Account = () => {
         <ScrollView style={{maxHeight: '60%', width: '100%', marginLeft: 0}}>
           <View>
             <Text style={styles.title}>First Name</Text>
-            <Input content="Christobel" disabled={edit ? false : true} />
+            <Input content="Christobel" disabled={edit ? false : true} value />
           </View>
           <View>
             <Text style={styles.title}>Surname</Text>
-            <Input content="Nweke" disabled={edit ? false : true} />
+            <Input content="Nweke" disabled={edit ? false : true} value />
           </View>
           <View>
             <Text style={styles.title}>Email</Text>
             <Input
               content="chris.newke@gmail.com"
               disabled={edit ? false : true}
+              value
             />
           </View>
           <View>
             <Text style={styles.title}>Phone Number</Text>
-            <Input content="+1 919 590 5228" disabled={edit ? false : true} />
+            <Input
+              content="+1 919 590 5228"
+              disabled={edit ? false : true}
+              value
+            />
           </View>
           <View>
             <Text style={styles.title}>Address</Text>
-            <Input content="123 St.Huntsville" disabled={edit ? false : true} />
+            <Input
+              content="123 St.Huntsville"
+              disabled={edit ? false : true}
+              value
+            />
           </View>
         </ScrollView>
         <View style={styles.button}>
