@@ -74,9 +74,11 @@ const CheckOut = () => {
               <Text style={[styles.subtitle, styles.marginBottom]}>
                 Subtotal
               </Text>
-              <Text style={[styles.subtitle, styles.marginBottom]}>
-                Delivery Cost
-              </Text>
+              {!myServices ? (
+                <Text style={[styles.subtitle, styles.marginBottom]}>
+                  Delivery Cost
+                </Text>
+              ) : null}
               <Text style={[styles.subtitle, styles.marginBottom]}>
                 Discount
               </Text>
@@ -85,13 +87,15 @@ const CheckOut = () => {
               <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
                 $5759.00
               </Text>
-              <Text
-                style={[
-                  styles.marginBottom,
-                  {textAlign: 'right', color: colors.lightGrey},
-                ]}>
-                Free
-              </Text>
+              {!myServices ? (
+                <Text
+                  style={[
+                    styles.marginBottom,
+                    {textAlign: 'right', color: colors.lightGrey},
+                  ]}>
+                  Free
+                </Text>
+              ) : null}
               <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
                 -$100.00
               </Text>
