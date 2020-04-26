@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: colors.lightGrey,
   },
   button: {
-    marginVertical: '5%',
+    marginBottom: '5%',
   },
 });
 
