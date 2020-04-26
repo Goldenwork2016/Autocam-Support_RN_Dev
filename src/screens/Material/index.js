@@ -50,7 +50,7 @@ const Material = () => {
                 fontSize: 20,
                 color: colors.lightGrey,
               }}>
-              User
+              User Guide
             </Text>
             <Icon
               name="navigate-next"

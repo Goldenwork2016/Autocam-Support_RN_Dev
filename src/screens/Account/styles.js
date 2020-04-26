@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
     paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   row: {},
   title: {
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Dimensions.get('window').width * 0.08,
   },
   button: {
-    paddingTop: '4%',
+    marginBottom: '5%',
   },
 });
 
