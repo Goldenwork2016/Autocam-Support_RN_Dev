@@ -8,7 +8,7 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
-import {Icon, CheckBox} from 'react-native-elements';
+import CheckBox from '~/components/Checkbox';
 import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import styles from './styles';
@@ -19,7 +19,6 @@ import myInvoices from '~/config/myInvoices';
 
 const MyInvoices = () => {
   const navigation = useContext(NavigationContext);
-  const [checked, setChecked] = useState(false);
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -32,26 +31,13 @@ const MyInvoices = () => {
           }}
         />
         {myInvoices.map((invoice, index) => (
-          <ScrollView style={styles.scrollview}>
+          <ScrollView style={styles.scrollview} key={index}>
             <View style={styles.list}>
               <CheckBox
                 center
-                title={<Text style={styles.invoice}>Inv 10{index++}</Text>}
-                iconLeft
-                type="material"
-                checkedIcon={
-                  <Icon name="check-box" size={30} color="#676767" />
-                }
-                uncheckedIcon={
-                  <Icon
-                    name="check-box-outline-blank"
-                    size={30}
-                    color="#676767"
-                  />
-                }
-                checked={checked}
-                containerStyle={styles.instructionsContainer}
-                onPress={() => setChecked(!checked)}
+                title={'Inv 10' + index++}
+                color={colors.grey}
+                fontSize={20}
               />
               <Text
                 style={{

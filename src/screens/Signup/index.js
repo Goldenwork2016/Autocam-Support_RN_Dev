@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
-import {ImageBackground, StatusBar, View, Text} from 'react-native';
-import {CheckBox, Icon} from 'react-native-elements';
+import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
+import {CheckBox} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
@@ -12,6 +12,9 @@ import Input from '~/components/Input';
 import styles from './styles';
 import bg from '~/assets/background/bg.png';
 import logo from '~/assets/logo/logo.png';
+
+import checkboxChecked from '~/assets/checkbox/check.png';
+import checkboxUnchecked from '~/assets/checkbox/unchecked.png';
 
 const Signup = () => {
   const navigation = useContext(NavigationContext);
@@ -38,8 +41,12 @@ const Signup = () => {
         }
         iconLeft
         type="material"
-        checkedIcon={<Icon name="check-box" />}
-        uncheckedIcon={<Icon name="check-box-outline-blank" />}
+        checkedIcon={
+          <Image source={checkboxChecked} style={{width: 30, height: 30}} />
+        }
+        uncheckedIcon={
+          <Image source={checkboxUnchecked} style={{width: 30, height: 30}} />
+        }
         checked={checked}
         containerStyle={styles.instructionsContainer}
         onPress={() => setChecked(!checked)}

@@ -43,7 +43,6 @@ const InputField = ({content, password, disabled}) =>
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainerSmall}
-      placeholderTextColor={colors.opacityWhite}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
@@ -54,7 +53,6 @@ const InputField = ({content, password, disabled}) =>
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
-      placeholderTextColor={colors.opacityWhite}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ImageBackground, StatusBar, View, Text, Dimensions} from 'react-native';
 
 import {NavigationContext} from 'react-navigation';
@@ -14,6 +14,7 @@ import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 
 const Account = () => {
   const navigation = useContext(NavigationContext);
+  const [edit, setEdit] = useState(false);
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -21,45 +22,47 @@ const Account = () => {
       <View
         style={{
           paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
+          marginVertical: 0,
           alignItems: 'center',
           flexDirection: 'column',
           justifyContent: 'space-between',
         }}>
         <Logo img={emptyProfile} lessMargin />
-        <View style={styles.row}>
+        <View>
           <Text style={styles.title}>First Name</Text>
-          <Input content="Christobel" disabled />
+          <Input content="Christobel" disabled={edit ? false : true} />
         </View>
-        <View style={styles.row}>
+        <View>
           <Text style={styles.title}>Surname</Text>
-          <Input content="Nweke" disabled />
+          <Input content="Nweke" disabled={edit ? false : true} />
         </View>
-        <View style={styles.row}>
+        <View>
           <Text style={styles.title}>Email</Text>
-          <Input content="chris.newke@gmail.com" disabled />
+          <Input
+            content="chris.newke@gmail.com"
+            disabled={edit ? false : true}
+          />
         </View>
-        <View style={styles.row}>
+        <View>
           <Text style={styles.title}>Phone Number</Text>
-          <Input content="+1 919 590 5228" disabled />
+          <Input content="+1 919 590 5228" disabled={edit ? false : true} />
         </View>
-        <View style={styles.row}>
+        <View>
           <Text style={styles.title}>Address</Text>
-          <Input content="123 St.Huntsville" disabled />
+          <Input content="123 St.Huntsville" disabled={edit ? false : true} />
         </View>
       </View>
 
+      <Button
+        noAuth
+        title="Change Password"
+        onPress={() => navigation.navigate('AuthEnterEmail')}
+      />
       <View style={styles.button}>
         <Button
           noAuth
-          title="Change Password"
-          onPress={() => navigation.navigate('AuthEnterEmail')}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          noAuth
-          title="Edit Profile"
-          onPress={() => navigation.navigate('AuthEnterEmail')}
+          title={edit ? 'Save Profile' : 'Edit Profile'}
+          onPress={() => setEdit(!edit)}
         />
       </View>
     </ImageBackground>
