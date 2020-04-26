@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {ImageBackground, StatusBar, View, Text} from 'react-native';
+import {ImageBackground, StatusBar, View, Text, Dimensions} from 'react-native';
 
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
@@ -18,32 +18,34 @@ const Account = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-
-      <Logo img={emptyProfile} lessMargin />
-
-      <View style={styles.row}>
-        <Text style={styles.title}>First Name</Text>
-        <Input content="Christobel" disabled />
-      </View>
-
-      <View style={styles.row}>
-        <Text style={styles.title}>Surname</Text>
-        <Input content="Nweke" disabled />
-      </View>
-
-      <View style={styles.row}>
-        <Text style={styles.title}>Email</Text>
-        <Input content="chris.newke@gmail.com" disabled />
-      </View>
-
-      <View style={styles.row}>
-        <Text style={styles.title}>Phone Number</Text>
-        <Input content="+1 919 590 5228" disabled />
-      </View>
-
-      <View style={styles.row}>
-        <Text style={styles.title}>Address</Text>
-        <Input content="123 St.Huntsville" disabled />
+      <View
+        style={{
+          paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
+          alignItems: 'center',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}>
+        <Logo img={emptyProfile} lessMargin />
+        <View style={styles.row}>
+          <Text style={styles.title}>First Name</Text>
+          <Input content="Christobel" disabled />
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.title}>Surname</Text>
+          <Input content="Nweke" disabled />
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.title}>Email</Text>
+          <Input content="chris.newke@gmail.com" disabled />
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.title}>Phone Number</Text>
+          <Input content="+1 919 590 5228" disabled />
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.title}>Address</Text>
+          <Input content="123 St.Huntsville" disabled />
+        </View>
       </View>
 
       <View style={styles.button}>
@@ -53,7 +55,6 @@ const Account = () => {
           onPress={() => navigation.navigate('AuthEnterEmail')}
         />
       </View>
-
       <View style={styles.button}>
         <Button
           noAuth

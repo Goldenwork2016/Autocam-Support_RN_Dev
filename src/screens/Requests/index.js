@@ -47,7 +47,7 @@ const Requests = () => {
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  marginVertical: '2%',
+                  marginBottom: '2%',
                 }}>
                 <Text
                   style={{

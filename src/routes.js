@@ -184,7 +184,7 @@ const AuthRoutes = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'Account',
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <Image source={menuButton} />
           </TouchableOpacity>
         ),
@@ -248,7 +248,7 @@ const AuthRoutes = createStackNavigator(
     UserGuide: {
       screen: UserGuide,
       navigationOptions: ({navigation}) => ({
-        title: 'Material',
+        title: 'User Guide',
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={backButton} />
