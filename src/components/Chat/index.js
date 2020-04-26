@@ -26,7 +26,7 @@ const Chat = ({user, date, message}) => {
           textAlignVertical: 'top',
         }}
         placeholder={message}
-        placeholderTextColor={'#5E5E5E'}
+        placeholderTextColor={colors.darkestGrey}
         multiline={true}
         numberOfLines={3}
       />

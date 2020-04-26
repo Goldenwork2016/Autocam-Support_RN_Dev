@@ -9,16 +9,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   list: {
-    marginTop: 0,
+    paddingTop: '5%',
+    borderRadius: 5,
   },
 });
 
 const TimelineProgress = ({sliderHeight}) => {
   const [data] = useState([
-    {
-      lineColor: '#E18700',
-      circleColor: 'transparent',
-    },
     {
       title: 'Device is Recieved',
       lineColor: '#E18700',
@@ -47,11 +44,13 @@ const TimelineProgress = ({sliderHeight}) => {
         lineWidth={10}
         renderFullLine={true}
         circleColor="#E18700"
+        circleStyle={{alignSelf: 'center'}}
         rowContainerStyle={{height: sliderHeight / 6}}
         titleStyle={{
           color: colors.lightGrey,
           fontSize: 17,
           fontWeight: 'normal',
+          paddingTop: '5%',
         }}
         style={styles.list}
         data={data}
