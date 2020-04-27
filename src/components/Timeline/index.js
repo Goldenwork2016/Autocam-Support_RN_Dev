@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import colors from '~/styles';
 
@@ -17,21 +17,33 @@ const styles = StyleSheet.create({
 const TimelineProgress = ({sliderHeight}) => {
   const [data] = useState([
     {
-      title: 'Device is Recieved',
+      title:
+        Platform.OS === 'ios' ? '\nDevice is Recieved\n' : 'Device is Received',
       lineColor: '#E18700',
     },
     {
-      title: 'Device is Fixed',
+      title: Platform.OS === 'ios' ? '\nDevice is Fixed\n' : 'Device is Fixed',
       lineColor: '#E18700',
     },
     {
-      title: 'Invoice is Generated',
+      title:
+        Platform.OS === 'ios'
+          ? '\nInvoice is Generated\n'
+          : 'Invoice is Generated',
       lineColor: '#C0C0C0',
       circleColor: '#C0C0C0',
     },
-    {title: 'Device is Shipping', lineColor: '#C0C0C0', circleColor: '#C0C0C0'},
     {
-      title: 'Device is Recieved Back',
+      title:
+        Platform.OS === 'ios' ? '\nDevice is Shipping\n' : 'Device is Shipping',
+      lineColor: '#C0C0C0',
+      circleColor: '#C0C0C0',
+    },
+    {
+      title:
+        Platform.OS === 'ios'
+          ? '\nDevice is Recieved Back\n'
+          : 'Device is Recieved Back',
       lineColor: '#C0C0C0',
       circleColor: '#C0C0C0',
     },
@@ -45,12 +57,14 @@ const TimelineProgress = ({sliderHeight}) => {
         renderFullLine={true}
         circleColor="#E18700"
         circleStyle={{alignSelf: 'center'}}
-        rowContainerStyle={{height: sliderHeight / 6}}
+        rowContainerStyle={{
+          height: Platform.OS === 'ios' ? null : sliderHeight / 6,
+        }}
         titleStyle={{
           color: colors.lightGrey,
           fontSize: 17,
           fontWeight: 'normal',
-          paddingTop: '5%',
+          paddingTop: Platform.OS === 'ios' ? null : '5%',
         }}
         style={styles.list}
         data={data}
