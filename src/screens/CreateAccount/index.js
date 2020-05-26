@@ -37,7 +37,7 @@ const CreateAccount = () => {
       );
     }
     const res = await sendData();
-    res.userinfo
+    res.status === 200
       ? clearInput()
       : Alert.alert(
           'Something went wrong!',
