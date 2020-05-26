@@ -5,10 +5,11 @@ import {
   StatusBar,
   TouchableOpacity,
   View,
-  Dimensions,
+  Platform,
+  Alert,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
-import {useHeaderHeight} from 'react-navigation-stack';
+import api from '~/server/index';
 
 import Button from '~/components/Button';
 import Input from '~/components/Input';
@@ -23,6 +24,40 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  filterData = async () => {
+    if (email === '' || password === '') {
+      return Alert.alert(
+        'Empty Fields',
+        'fill in the required fields',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+    const res = await sendData();
+    res.userinfo
+      ? navigation.navigate('Products')
+      : Alert.alert(
+          'Something went wrong!',
+          'Please check again your email and password!',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+  };
+
+  sendData = async () => {
+    const data = new FormData();
+    data.append('email', email);
+    data.append('password', password);
+    data.append('device_type', Platform.OS === 'ios' ? '0' : '1');
+    data.append('device_token', '');
+
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+
+    const res = await api.post('/user/user_login', data, headers);
+    return res.data;
+  };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
@@ -46,11 +81,7 @@ const Login = () => {
         <Text style={styles.instructions}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style={styles.bottomView}>
-        <Button
-          noAuth
-          title="Log In"
-          onPress={() => navigation.navigate('Products')}
-        />
+        <Button noAuth title="Log In" onPress={() => filterData()} />
 
         <View>
           <Text style={[styles.instructions, styles.bottomText]}>
