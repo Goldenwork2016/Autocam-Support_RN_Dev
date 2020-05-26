@@ -1,9 +1,18 @@
 import React, {useContext, useState} from 'react';
-import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
+import {
+  ImageBackground,
+  StatusBar,
+  View,
+  Text,
+  Image,
+  Alert,
+  Platform,
+} from 'react-native';
 import {CheckBox} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';
-import {useHeaderHeight} from 'react-navigation-stack';
+
+import api from '~/server/index';
 
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
@@ -19,16 +28,91 @@ import checkboxUnchecked from '~/assets/checkbox/unchecked.png';
 const Signup = () => {
   const navigation = useContext(NavigationContext);
   const [checked, setChecked] = useState(false);
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
+  filterData = async () => {
+    if (!checked) {
+      return Alert.alert(
+        'Unchecked Field',
+        'To create an account you need to accept our terms',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+    if (fullname === '' || password === '' || email === '') {
+      return Alert.alert(
+        'Empty Fields',
+        'fill in the required fields',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+    if (password !== confirmPassword) {
+      return Alert.alert(
+        'Password problem!!',
+        'Password and confirm password are not the same!',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
+
+    const res = await sendData();
+    console.log(res.userinfo);
+
+    res.userinfo
+      ? navigation.navigate('CreateAccount')
+      : Alert.alert(
+          'Something is wrong!!',
+          'Please check again your fields!',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+          {cancelable: false},
+        );
+  };
+
+  sendData = async () => {
+    const data = new FormData();
+    data.append('fullname', fullname);
+    data.append('email', email);
+    data.append('password', password);
+    data.append('device_type', Platform.OS === 'ios' ? '0' : '1');
+
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    };
+
+    const res = await api.post('/user/user_signup', data, headers);
+    return res.data;
+  };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
 
       <Logo img={logo} lessMargin />
-      <Input content="Full Name" />
-      <Input content="Email Address" />
-      <Input content="Password" password />
-      <Input content="Confirm Password" password />
+      <Input
+        content="Full Name"
+        value={fullname}
+        setInputValue={(text) => setFullname(text)}
+      />
+      <Input
+        content="Email Address"
+        value={email}
+        setInputValue={(text) => setEmail(text)}
+      />
+      <Input
+        content="Password"
+        password
+        value={password}
+        setInputValue={(text) => setPassword(text)}
+      />
+      <Input
+        content="Confirm Password"
+        password
+        value={confirmPassword}
+        setInputValue={(text) => setConfirmPassword(text)}
+      />
 
       <CheckBox
         center
@@ -53,11 +137,7 @@ const Signup = () => {
       />
 
       <View style={styles.bottomView}>
-        <Button
-          noAuth
-          title="Sign Up"
-          onPress={() => navigation.navigate('CreateAccount')}
-        />
+        <Button noAuth title="Sign Up" onPress={() => filterData()} />
 
         <View>
           <Text style={[styles.bottomInstructions]}>

@@ -37,36 +37,32 @@ const styles = StyleSheet.create({
   },
 });
 
-const InputField = ({content, password, disabled, value}) => {
-  const [inputValue, setInputValue] = value
-    ? useState(content)
-    : useState(false);
-
+const InputField = ({content, password, disabled, value, setInputValue}) => {
   return Dimensions.get('window').height < 650 ? (
     <Input
-      clearButtonMode={value ? 'never' : 'always'}
-      placeholder={inputValue ? inputValue : content}
+      clearButtonMode={'always'}
+      placeholder={content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
-      value={value ? inputValue : null}
+      value={value}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainerSmall}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChangeText={setInputValue}
     />
   ) : (
     <Input
-      clearButtonMode={value ? 'never' : 'always'}
-      placeholder={inputValue ? inputValue : content}
+      clearButtonMode={'always'}
+      placeholder={content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
-      value={value ? inputValue : null}
+      value={value}
       inputStyle={styles.input}
       inputContainerStyle={styles.inputContainer}
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChangeText={setInputValue}
     />
   );
 };

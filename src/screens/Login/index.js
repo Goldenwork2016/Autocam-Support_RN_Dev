@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   Text,
   ImageBackground,
@@ -20,21 +20,31 @@ import logo from '~/assets/logo/logo.png';
 
 const Login = () => {
   const navigation = useContext(NavigationContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-
       <Logo img={logo} />
 
-      <Input content="Email Address" />
-      <Input content="Password" password />
+      <Input
+        content="Email Address"
+        value={email}
+        setInputValue={(text) => setEmail(text)}
+      />
+      <Input
+        content="Password"
+        password
+        value={password}
+        setInputValue={(text) => setPassword(text)}
+      />
 
       <TouchableOpacity
         style={styles.alignRight}
         onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.instructions}>Forgot Password?</Text>
       </TouchableOpacity>
-
       <View style={styles.bottomView}>
         <Button
           noAuth
