@@ -8,6 +8,7 @@ import {
   Alert,
   Platform,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {CheckBox} from 'react-native-elements';
 
 import {NavigationContext} from 'react-navigation';
@@ -61,15 +62,19 @@ const Signup = () => {
 
     const res = await sendData();
     console.log(res.userinfo);
-
-    res.userinfo
-      ? navigation.navigate('CreateAccount')
-      : Alert.alert(
-          'Something is wrong!!',
-          'Please check again your fields!',
-          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-          {cancelable: false},
-        );
+    try {
+      await AsyncStorage.setItem('@user_info', res.userinfo.userID);
+      res.userinfo
+        ? navigation.navigate('CreateAccount')
+        : Alert.alert(
+            'Something is wrong!!',
+            'Please check all fields again!',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false},
+          );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   sendData = async () => {
