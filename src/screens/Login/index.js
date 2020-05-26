@@ -34,7 +34,13 @@ const Login = () => {
       );
     }
     const res = await sendData();
-    res.userinfo
+    Alert.alert(
+      'Empty Fields',
+      res,
+      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+      {cancelable: false},
+    );
+    res.status === 200
       ? clearInput()
       : Alert.alert(
           'Something went wrong!',
