@@ -38,7 +38,7 @@ const CreateAccount = () => {
     }
     const res = await sendData();
     res.userinfo
-      ? navigation.navigate('Products')
+      ? clearInput()
       : Alert.alert(
           'Something went wrong!',
           'Please check all fields again!',
@@ -62,6 +62,15 @@ const CreateAccount = () => {
 
     const res = await api.post('/user/user_update_profile', data, headers);
     return res.data;
+  };
+
+  clearInput = () => {
+    setCity('');
+    setCountry('');
+    setPhoneNumber('');
+    setCompanyName('');
+    setCompanyAddress('');
+    navigation.navigate('Products');
   };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
