@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 const InputField = ({content, password, disabled, value, setInputValue}) => {
   return Dimensions.get('window').height < 650 ? (
     <Input
-      clearButtonMode={'always'}
+      clearButtonMode="always"
       placeholder={content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       value={value}
@@ -53,7 +53,7 @@ const InputField = ({content, password, disabled, value, setInputValue}) => {
     />
   ) : (
     <Input
-      clearButtonMode={'always'}
+      clearButtonMode="always"
       placeholder={content}
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       value={value}

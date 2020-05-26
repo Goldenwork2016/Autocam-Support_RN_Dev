@@ -65,7 +65,7 @@ const Signup = () => {
     try {
       await AsyncStorage.setItem('@user_info', res.userinfo.userID);
       res.userinfo
-        ? navigation.navigate('CreateAccount')
+        ? clearInput()
         : Alert.alert(
             'Something is wrong!!',
             'Please check all fields again!',
@@ -90,6 +90,14 @@ const Signup = () => {
 
     const res = await api.post('/user/user_signup', data, headers);
     return res.data;
+  };
+
+  clearInput = () => {
+    setFullname('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    navigation.navigate('CreateAccount');
   };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">

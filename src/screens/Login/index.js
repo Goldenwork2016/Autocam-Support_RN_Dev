@@ -35,7 +35,7 @@ const Login = () => {
     }
     const res = await sendData();
     res.userinfo
-      ? navigation.navigate('Products')
+      ? clearInput()
       : Alert.alert(
           'Something went wrong!',
           'Please check again your email and password!',
@@ -57,6 +57,12 @@ const Login = () => {
 
     const res = await api.post('/user/user_login', data, headers);
     return res.data;
+  };
+
+  clearInput = () => {
+    setEmail('');
+    setPassword('');
+    navigation.navigate('Products');
   };
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
