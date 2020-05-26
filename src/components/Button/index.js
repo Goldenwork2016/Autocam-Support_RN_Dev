@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const Btn = ({title, onPress, noAuth}) => (
+const Btn = ({title, onPress, noAuth, loading}) => (
   <Button
+    loading={loading ? true : false}
     title={title}
     buttonStyle={[
       styles.button,
