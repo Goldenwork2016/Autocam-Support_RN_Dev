@@ -15,6 +15,7 @@ import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 
 const CreateAccount = () => {
   const navigation = useContext(NavigationContext);
+  const [loading, setLoading] = useState(false);
   const [id, setId] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
@@ -23,9 +24,6 @@ const CreateAccount = () => {
   const [companyAddress, setCompanyAddress] = useState('');
 
   filterData = async () => {
-    try {
-      setId(await AsyncStorage.getItem('@user_info'));
-    } catch (err) {}
     if (city === '' || country === '' || phoneNumber === '') {
       return Alert.alert(
         'Empty Fields',
@@ -34,6 +32,11 @@ const CreateAccount = () => {
         {cancelable: false},
       );
     }
+    try {
+      setId(await AsyncStorage.getItem('@user_info'));
+    } catch (err) {}
+
+    setLoading(true);
     const res = await sendData();
     res.status === 200
       ? clearInput()
@@ -43,6 +46,7 @@ const CreateAccount = () => {
           [{text: 'OK'}],
           {cancelable: false},
         );
+    setLoading(false);
   };
 
   sendData = async () => {
@@ -106,7 +110,12 @@ const CreateAccount = () => {
         setInputValue={(text) => setCompanyAddress(text)}
       />
       <View style={styles.button}>
-        <Button noAuth title="Save" onPress={() => filterData()} />
+        <Button
+          noAuth
+          title="Save"
+          onPress={() => filterData()}
+          loading={loading}
+        />
       </View>
     </ImageBackground>
   );

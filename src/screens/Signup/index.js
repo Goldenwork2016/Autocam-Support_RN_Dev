@@ -28,6 +28,7 @@ import checkboxUnchecked from '~/assets/checkbox/unchecked.png';
 
 const Signup = () => {
   const navigation = useContext(NavigationContext);
+  const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
@@ -60,8 +61,8 @@ const Signup = () => {
       );
     }
 
+    setLoading(true);
     const res = await sendData();
-    console.log('ta no final');
     try {
       await AsyncStorage.setItem('@user_info', res.userinfo.userID);
       res.status === 200
@@ -73,6 +74,7 @@ const Signup = () => {
             {cancelable: false},
           );
     } catch (err) {}
+    setLoading(false);
   };
 
   sendData = async () => {
@@ -152,7 +154,12 @@ const Signup = () => {
       />
 
       <View style={styles.bottomView}>
-        <Button noAuth title="Sign Up" onPress={() => filterData()} />
+        <Button
+          noAuth
+          title="Sign Up"
+          onPress={() => filterData()}
+          loading={loading}
+        />
 
         <View>
           <Text style={[styles.bottomInstructions]}>

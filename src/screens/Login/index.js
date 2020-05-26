@@ -21,6 +21,7 @@ import logo from '~/assets/logo/logo.png';
 
 const Login = () => {
   const navigation = useContext(NavigationContext);
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,6 +34,8 @@ const Login = () => {
         {cancelable: false},
       );
     }
+
+    setLoading(true);
     const res = await sendData();
     res.status === 200
       ? clearInput()
@@ -42,6 +45,7 @@ const Login = () => {
           [{text: 'OK'}],
           {cancelable: false},
         );
+    setLoading(false);
   };
 
   sendData = async () => {
@@ -91,7 +95,12 @@ const Login = () => {
         <Text style={styles.instructions}>Forgot Password?</Text>
       </TouchableOpacity>
       <View style={styles.bottomView}>
-        <Button noAuth title="Log In" onPress={() => filterData()} />
+        <Button
+          noAuth
+          title="Log In"
+          onPress={() => filterData()}
+          loading={loading}
+        />
 
         <View>
           <Text style={[styles.instructions, styles.bottomText]}>
