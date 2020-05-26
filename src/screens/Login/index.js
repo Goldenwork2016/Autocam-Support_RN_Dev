@@ -29,23 +29,17 @@ const Login = () => {
       return Alert.alert(
         'Empty Fields',
         'fill in the required fields',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        [{text: 'OK'}],
         {cancelable: false},
       );
     }
     const res = await sendData();
-    Alert.alert(
-      'Empty Fields',
-      res,
-      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-      {cancelable: false},
-    );
     res.status === 200
       ? clearInput()
       : Alert.alert(
           'Something went wrong!',
           'Please check again your email and password!',
-          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+          [{text: 'OK'}],
           {cancelable: false},
         );
   };
@@ -61,8 +55,12 @@ const Login = () => {
       'Content-Type': 'multipart/form-data',
     };
 
-    const res = await api.post('/user/user_login', data, headers);
-    return res.data;
+    try {
+      const res = await api.post('/user/user_login', data, headers);
+      return res.data;
+    } catch (err) {
+      throw err;
+    }
   };
 
   clearInput = () => {
