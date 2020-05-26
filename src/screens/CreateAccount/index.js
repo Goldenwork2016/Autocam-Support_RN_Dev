@@ -25,14 +25,12 @@ const CreateAccount = () => {
   filterData = async () => {
     try {
       setId(await AsyncStorage.getItem('@user_info'));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     if (city === '' || country === '' || phoneNumber === '') {
       return Alert.alert(
         'Empty Fields',
         'fill in the required fields',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        [{text: 'OK'}],
         {cancelable: false},
       );
     }
@@ -42,7 +40,7 @@ const CreateAccount = () => {
       : Alert.alert(
           'Something went wrong!',
           'Please check all fields again!',
-          [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+          [{text: 'OK'}],
           {cancelable: false},
         );
   };
@@ -60,8 +58,12 @@ const CreateAccount = () => {
       'Content-Type': 'multipart/form-data',
     };
 
-    const res = await api.post('/user/user_update_profile', data, headers);
-    return res.data;
+    try {
+      const res = await api.post('/user/user_update_profile', data, headers);
+      return res.data;
+    } catch (err) {
+      throw err;
+    }
   };
 
   clearInput = () => {

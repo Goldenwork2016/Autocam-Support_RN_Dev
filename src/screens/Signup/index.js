@@ -39,7 +39,7 @@ const Signup = () => {
       return Alert.alert(
         'Unchecked Field',
         'To create an account you need to accept our terms',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        [{text: 'OK'}],
         {cancelable: false},
       );
     }
@@ -47,7 +47,7 @@ const Signup = () => {
       return Alert.alert(
         'Empty Fields',
         'fill in the required fields',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        [{text: 'OK'}],
         {cancelable: false},
       );
     }
@@ -55,18 +55,13 @@ const Signup = () => {
       return Alert.alert(
         'Password problem!!',
         'Password and confirm password are not the same!',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        [{text: 'OK'}],
         {cancelable: false},
       );
     }
 
     const res = await sendData();
-    Alert.alert(
-      'Empty Fields',
-      res,
-      [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-      {cancelable: false},
-    );
+    console.log('ta no final');
     try {
       await AsyncStorage.setItem('@user_info', res.userinfo.userID);
       res.status === 200
@@ -74,12 +69,10 @@ const Signup = () => {
         : Alert.alert(
             'Something is wrong!!',
             'Please check all fields again!',
-            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            [{text: 'OK'}],
             {cancelable: false},
           );
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   sendData = async () => {
@@ -93,8 +86,12 @@ const Signup = () => {
       'Content-Type': 'multipart/form-data',
     };
 
-    const res = await api.post('/user/user_signup', data, headers);
-    return res.data;
+    try {
+      const res = await api.post('/user/user_signup', data, headers);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   clearInput = () => {
