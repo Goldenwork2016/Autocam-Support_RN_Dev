@@ -67,7 +67,7 @@ const CreateAccount = () => {
     data.append('phonenumber', phoneNumber);
     data.append('company_name', companyName);
     data.append('company_address', companyAddress);
-    data.append('photo_url', avatarSource);
+    data.append('photo', avatarSource);
 
     const headers = {
       'Content-Type': 'multipart/form-data',
