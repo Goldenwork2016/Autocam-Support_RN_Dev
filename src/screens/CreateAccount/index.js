@@ -44,19 +44,20 @@ const CreateAccount = () => {
     }
     try {
       setId(await AsyncStorage.getItem('@user_info'));
-    } catch (err) {}
-
-    setLoading(true);
-    const res = await sendData();
-    res.status === 200
-      ? clearInput()
-      : Alert.alert(
-          'Something went wrong!',
-          'Please check all fields again!',
-          [{text: 'OK'}],
-          {cancelable: false},
-        );
-    setLoading(false);
+      setLoading(true);
+      const res = await sendData();
+      res.status === 200
+        ? clearInput()
+        : Alert.alert(
+            'Something went wrong!',
+            'Please check all fields again!',
+            [{text: 'OK'}],
+            {cancelable: false},
+          );
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   sendData = async () => {
@@ -67,10 +68,11 @@ const CreateAccount = () => {
     data.append('phonenumber', phoneNumber);
     data.append('company_name', companyName);
     data.append('company_address', companyAddress);
-    data.append('photo', avatarSource);
+    data.append('photo', avatarSource.uri);
 
     const headers = {
       'Content-Type': 'multipart/form-data',
+      Accept: 'application/json',
     };
 
     try {
