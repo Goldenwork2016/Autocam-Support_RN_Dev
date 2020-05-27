@@ -68,7 +68,11 @@ const CreateAccount = () => {
     data.append('phonenumber', phoneNumber);
     data.append('company_name', companyName);
     data.append('company_address', companyAddress);
-    data.append('photo', avatarSource.uri);
+    data.append('photo', {
+      uri: avatarSource.uri,
+      type: avatarSource.type,
+      name: avatarSource.name,
+    });
 
     const headers = {
       'Content-Type': 'multipart/form-data',
@@ -112,7 +116,11 @@ const CreateAccount = () => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = {uri: response.uri};
+        const source = {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        };
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
