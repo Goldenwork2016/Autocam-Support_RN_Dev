@@ -1,11 +1,20 @@
 import React, {useState, useContext} from 'react';
-import {ImageBackground, StatusBar, View, Alert} from 'react-native';
+import {
+  ImageBackground,
+  StatusBar,
+  View,
+  Alert,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 
 import {NavigationContext} from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '~/server/index';
 
 import Logo from '~/components/Logo';
+import Profile from '~/components/ProfilePicture';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 
@@ -22,6 +31,7 @@ const CreateAccount = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [companyAddress, setCompanyAddress] = useState('');
+  const [avatarSource, setAvatarSource] = useState(null);
 
   filterData = async () => {
     if (city === '' || country === '' || phoneNumber === '') {
@@ -57,6 +67,7 @@ const CreateAccount = () => {
     data.append('phonenumber', phoneNumber);
     data.append('company_name', companyName);
     data.append('company_address', companyAddress);
+    data.append('photo_url', avatarSource);
 
     const headers = {
       'Content-Type': 'multipart/form-data',
@@ -76,14 +87,53 @@ const CreateAccount = () => {
     setPhoneNumber('');
     setCompanyName('');
     setCompanyAddress('');
+    setAvatarSource(null);
     navigation.navigate('Products');
   };
+
+  const options = {
+    title: 'Select Avatar',
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+  };
+
+  selectImage = async () => {
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = {uri: response.uri};
+
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        setAvatarSource(source);
+      }
+    });
+  };
+
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
 
-      <Logo img={emptyProfile} lessMargin />
+      {avatarSource && (
+        <TouchableOpacity onPress={() => selectImage()}>
+          <Profile img={avatarSource} lessMargin />
+        </TouchableOpacity>
+      )}
 
+      {!avatarSource && (
+        <TouchableOpacity onPress={() => selectImage()}>
+          <Logo img={emptyProfile} lessMargin />
+        </TouchableOpacity>
+      )}
       <Input
         content="City"
         value={city}
