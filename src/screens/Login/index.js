@@ -9,6 +9,8 @@ import {
   Alert,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import api from '~/server/index';
 
 import Button from '~/components/Button';
@@ -35,16 +37,34 @@ const Login = () => {
       );
     }
 
-    setLoading(true);
-    const res = await sendData();
-    res.status === 200
-      ? clearInput()
-      : Alert.alert(
-          'Something went wrong!',
-          'Please check again your email and password!',
-          [{text: 'OK'}],
-          {cancelable: false},
-        );
+    try {
+      setLoading(true);
+      const res = await sendData();
+
+      await AsyncStorage.setItem(
+        '@user',
+        JSON.stringify(res.userinfo),
+        (err) => {
+          if (err) {
+            throw err;
+          }
+        },
+      ).catch((err) => {
+        console.log('error is: ' + err);
+      });
+
+      res.status === 200
+        ? clearInput()
+        : Alert.alert(
+            'Something went wrong!',
+            'Please check again your email and password!',
+            [{text: 'OK'}],
+            {cancelable: false},
+          );
+    } catch (err) {
+      throw err;
+    }
+
     setLoading(false);
   };
 

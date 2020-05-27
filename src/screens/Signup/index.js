@@ -61,9 +61,9 @@ const Signup = () => {
       );
     }
 
-    setLoading(true);
-    const res = await sendData();
     try {
+      setLoading(true);
+      const res = await sendData();
       await AsyncStorage.setItem('@user_info', res.userinfo.userID);
       res.status === 200
         ? clearInput()
@@ -73,7 +73,10 @@ const Signup = () => {
             [{text: 'OK'}],
             {cancelable: false},
           );
-    } catch (err) {}
+    } catch (err) {
+      throw err;
+    }
+
     setLoading(false);
   };
 
