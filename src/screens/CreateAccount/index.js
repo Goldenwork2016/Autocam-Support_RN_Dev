@@ -5,7 +5,6 @@ import {
   View,
   Alert,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
@@ -54,10 +53,11 @@ const CreateAccount = () => {
             [{text: 'OK'}],
             {cancelable: false},
           );
-      setLoading(false);
     } catch (err) {
-      console.log(err);
+      throw err;
     }
+
+    setLoading(false);
   };
 
   sendData = async () => {
