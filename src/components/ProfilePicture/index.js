@@ -1,36 +1,42 @@
 import React from 'react';
 
-import {StyleSheet, Dimensions, Image} from 'react-native';
+import {StyleSheet, Dimensions, View, Image} from 'react-native';
 import {useHeaderHeight} from 'react-navigation-stack';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
   logoSmall: {
     alignItems: 'center',
     marginBottom: (Dimensions.get('window').height * 0.11) / 2.5,
-    width: Dimensions.get('window').height * 0.11 * 3,
-    height: Dimensions.get('window').height * 0.11 * 3,
-    borderRadius: 80,
+    width: 150,
+    height: 150,
+    borderRadius: 300,
   },
   lessMarginSmall: {
     alignItems: 'center',
     marginBottom: (Dimensions.get('window').height * 0.11) / 6,
-    width: Dimensions.get('window').height * 0.11 * 3,
-    height: Dimensions.get('window').height * 0.11 * 3,
-    borderRadius: 80,
+    width: 150,
+    height: 150,
+    borderRadius: 300,
   },
   logo: {
     alignItems: 'center',
     marginBottom: (Dimensions.get('window').height * 0.11) / 2,
-    width: Dimensions.get('window').height * 0.11 * 3,
-    height: Dimensions.get('window').height * 0.11 * 3,
-    borderRadius: 80,
+    width: 150,
+    height: 150,
+    borderRadius: 300,
   },
   lessMargin: {
     alignItems: 'center',
     marginBottom: (Dimensions.get('window').height * 0.11) / 6,
-    width: Dimensions.get('window').height * 0.11 * 3,
-    height: Dimensions.get('window').height * 0.11 * 3,
-    borderRadius: 80,
+    width: 150,
+    height: 150,
+    borderRadius: 300,
   },
 });
 const Profile = ({img, lessMargin, uri}) => {
