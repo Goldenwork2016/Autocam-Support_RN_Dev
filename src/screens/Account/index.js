@@ -42,6 +42,7 @@ const Account = () => {
 
   useEffect(() => {
     try {
+      console.log(user);
       filterNameSurname();
     } catch (err) {
       console.log(err);

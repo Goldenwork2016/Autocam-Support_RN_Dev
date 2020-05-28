@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
   ImageBackground,
   StatusBar,
@@ -24,7 +24,7 @@ import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 
 const CreateAccount = () => {
   const navigation = useContext(NavigationContext);
-  const {user} = useContext(Context);
+  const {user, setUser} = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState('');
   const [city, setCity] = useState('');
@@ -33,6 +33,16 @@ const CreateAccount = () => {
   const [companyName, setCompanyName] = useState('');
   const [companyAddress, setCompanyAddress] = useState('');
   const [avatarSource, setAvatarSource] = useState(null);
+
+  useEffect(() => {
+    try {
+      setId(user.userID);
+    } catch (err) {
+      console.log(err);
+      // Error retrieving data
+      throw err;
+    }
+  }, []);
 
   filterData = async () => {
     if (city === '' || country === '' || phoneNumber === '') {
@@ -47,6 +57,7 @@ const CreateAccount = () => {
       setId(user.userID);
       setLoading(true);
       const res = await sendData();
+      setUser(res.userinfo);
       res.status === 200
         ? clearInput()
         : Alert.alert(
@@ -76,8 +87,6 @@ const CreateAccount = () => {
         type: avatarSource.type,
         name: avatarSource.name,
       });
-
-    console.log(data);
 
     const headers = {
       'Content-Type': 'multipart/form-data',
