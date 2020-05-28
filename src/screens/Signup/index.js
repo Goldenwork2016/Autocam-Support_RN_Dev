@@ -8,12 +8,12 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import {CheckBox} from 'react-native-elements';
-
 import {NavigationContext} from 'react-navigation';
 
 import api from '~/server/index';
+import {Context} from '~/Store/index';
+
+import {CheckBox} from 'react-native-elements';
 
 import Logo from '~/components/Logo';
 import Button from '~/components/Button';
@@ -28,6 +28,7 @@ import checkboxUnchecked from '~/assets/checkbox/unchecked.png';
 
 const Signup = () => {
   const navigation = useContext(NavigationContext);
+  const {setUser} = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [fullname, setFullname] = useState('');
@@ -64,7 +65,7 @@ const Signup = () => {
     try {
       setLoading(true);
       const res = await sendData();
-      await AsyncStorage.setItem('@user_info', res.userinfo.userID);
+      setUser({userID: res.userinfo.userID});
       res.status === 200
         ? clearInput()
         : Alert.alert(

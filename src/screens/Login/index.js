@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
-import AsyncStorage from '@react-native-community/async-storage';
+import {Context} from '~/Store/index';
 
 import api from '~/server/index';
 
@@ -23,6 +23,7 @@ import logo from '~/assets/logo/logo.png';
 
 const Login = () => {
   const navigation = useContext(NavigationContext);
+  const {setUser} = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,17 +42,7 @@ const Login = () => {
       setLoading(true);
       const res = await sendData();
 
-      await AsyncStorage.setItem(
-        '@user',
-        JSON.stringify(res.userinfo),
-        (err) => {
-          if (err) {
-            throw err;
-          }
-        },
-      ).catch((err) => {
-        console.log('error is: ' + err);
-      });
+      setUser(res.userinfo);
 
       res.status === 200
         ? clearInput()
