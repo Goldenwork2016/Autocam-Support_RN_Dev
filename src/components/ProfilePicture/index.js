@@ -4,12 +4,6 @@ import {StyleSheet, Dimensions, View, Image} from 'react-native';
 import {useHeaderHeight} from 'react-navigation-stack';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
   logoSmall: {
     alignItems: 'center',
     marginBottom: (Dimensions.get('window').height * 0.11) / 2.5,
@@ -48,7 +42,7 @@ const Profile = ({img, lessMargin, uri}) => {
           styles.logoSmall,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
         ]}
-        resizeMode="contain"
+        resizeMode="cover"
       />
     ) : (
       <Image
@@ -57,7 +51,7 @@ const Profile = ({img, lessMargin, uri}) => {
           styles.lessMarginSmall,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
         ]}
-        resizeMode="contain"
+        resizeMode="cover"
       />
     );
   }
@@ -68,7 +62,7 @@ const Profile = ({img, lessMargin, uri}) => {
         styles.logo,
         {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
       ]}
-      resizeMode="contain"
+      resizeMode="cover"
     />
   ) : (
     <Image
@@ -77,7 +71,7 @@ const Profile = ({img, lessMargin, uri}) => {
         styles.lessMargin,
         {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
       ]}
-      resizeMode="contain"
+      resizeMode="cover"
     />
   );
 };
