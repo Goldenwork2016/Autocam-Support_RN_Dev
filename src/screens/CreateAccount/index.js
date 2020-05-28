@@ -6,10 +6,11 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import {Context} from '~/Store/index';
+
 import ImagePicker from 'react-native-image-picker';
 
 import {NavigationContext} from 'react-navigation';
-import AsyncStorage from '@react-native-community/async-storage';
 import api from '~/server/index';
 
 import Logo from '~/components/Logo';
@@ -23,6 +24,7 @@ import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 
 const CreateAccount = () => {
   const navigation = useContext(NavigationContext);
+  const {user} = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState('');
   const [city, setCity] = useState('');
@@ -42,7 +44,7 @@ const CreateAccount = () => {
       );
     }
     try {
-      setId(await AsyncStorage.getItem('@user_info'));
+      setId(user.userID);
       setLoading(true);
       const res = await sendData();
       res.status === 200
@@ -68,11 +70,14 @@ const CreateAccount = () => {
     data.append('phonenumber', phoneNumber);
     data.append('company_name', companyName);
     data.append('company_address', companyAddress);
-    data.append('photo', {
-      uri: avatarSource.uri,
-      type: avatarSource.type,
-      name: avatarSource.name,
-    });
+    avatarSource &&
+      data.append('photo', {
+        uri: avatarSource.uri,
+        type: avatarSource.type,
+        name: avatarSource.name,
+      });
+
+    console.log(data);
 
     const headers = {
       'Content-Type': 'multipart/form-data',
@@ -107,8 +112,6 @@ const CreateAccount = () => {
 
   selectImage = async () => {
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {

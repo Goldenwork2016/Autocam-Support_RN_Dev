@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
     borderRadius: 80,
   },
 });
-const Profile = ({img, lessMargin}) => {
+const Profile = ({img, lessMargin, uri}) => {
   if (Dimensions.get('window').height < 650) {
     return !lessMargin ? (
       <Image
-        source={img}
+        source={uri ? {uri: uri} : img}
         style={[
           styles.logoSmall,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
@@ -46,7 +46,7 @@ const Profile = ({img, lessMargin}) => {
       />
     ) : (
       <Image
-        source={img}
+        source={uri ? {uri: uri} : img}
         style={[
           styles.lessMarginSmall,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
@@ -57,7 +57,7 @@ const Profile = ({img, lessMargin}) => {
   }
   return !lessMargin ? (
     <Image
-      source={img}
+      source={uri ? {uri: uri} : img}
       style={[
         styles.logo,
         {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
@@ -66,7 +66,7 @@ const Profile = ({img, lessMargin}) => {
     />
   ) : (
     <Image
-      source={img}
+      source={uri ? {uri: uri} : img}
       style={[
         styles.lessMargin,
         {marginTop: useHeaderHeight() + useHeaderHeight() / 10},
