@@ -26,6 +26,7 @@ import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 const Account = () => {
   const navigation = useContext(NavigationContext);
   const {user, setUser} = useContext(Context);
+  const [loading, setLoading] = useState(false);
   const [avatarSource, setAvatarSource] = useState(null);
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState('');
@@ -42,7 +43,6 @@ const Account = () => {
 
   useEffect(() => {
     try {
-      console.log(user);
       filterNameSurname();
     } catch (err) {
       console.log(err);
@@ -84,6 +84,7 @@ const Account = () => {
   };
 
   sendData = async () => {
+    setLoading(!loading);
     const headers = {
       'Content-Type': 'multipart/form-data',
       Accept: 'application/json',
@@ -96,6 +97,7 @@ const Account = () => {
       setEdit(!edit);
       setChangePhoto(!changePhoto);
       res.data.userinfo && (await setUser(res.data.userinfo));
+      setLoading(!loading);
       navigation.push('Account');
     } catch (err) {
       console.log('err => ', err);
@@ -221,6 +223,7 @@ const Account = () => {
             noAuth
             title={edit ? 'Save Profile' : 'Edit Profile'}
             onPress={() => (edit ? sendData() : setEdit(!edit))}
+            loading={loading}
           />
         </View>
       </View>
