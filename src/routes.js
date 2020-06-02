@@ -33,6 +33,7 @@ import Requests from '~/screens/Requests';
 import MyInvoices from '~/screens/MyInvoices';
 import MyServices from '~/screens/MyServices';
 import Response from '~/screens/Response';
+import CreateRequest from '~screens/CreateRequest';
 
 import backButton from '~/assets/backButton/backButton.png';
 import menuButton from '~/assets/menu/hamburger.png';
@@ -161,6 +162,17 @@ const AuthRoutes = createStackNavigator(
       screen: Progress,
       navigationOptions: ({navigation}) => ({
         title: 'Progress',
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={backButton} />
+          </TouchableOpacity>
+        ),
+      }),
+    },
+    CreateRequest: {
+      screen: CreateRequest,
+      navigationOptions: ({navigation}) => ({
+        title: 'Create Request',
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={backButton} />
