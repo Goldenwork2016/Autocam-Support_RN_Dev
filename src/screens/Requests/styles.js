@@ -21,6 +21,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  plusButtonView: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  plusButtonLink: {
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    bottom: 40,
+    width: '10%',
+    height: '10%'
+  },
+  plusButton: {
+    width: '100%',
+    height: '100%'  
+  },
+  inputLine: {
+    borderTopWidth: 0.8,
+    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
+  },
+  formLabel: {
+    fontSize: 20,
+    color: colors.lightGrey,
+    width: '90%',
+  }
 });
 
 export default styles;

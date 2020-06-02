@@ -6,27 +6,23 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
+  Image,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useHeaderHeight} from 'react-navigation-stack';
 import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
+import plus from '~/assets/plus-minus/bigPlus.png';
 import requests from '~/config/requests';
 
 const Requests = () => {
   const navigation = useContext(NavigationContext);
   return (
-    <ImageBackground source={bg} style={styles.container} resizeMode="cover">
+    <ImageBackground source={bg} style={[styles.container]} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <View style={{marginTop: useHeaderHeight() + useHeaderHeight() / 4}}>
-        <View
-          style={{
-            borderTopWidth: 0.8,
-            marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
-          }}
-        />
+        <View style={styles.inputLine} />
         {requests.map((request, index) => (
           <TouchableOpacity
             style={styles.listContainer}
@@ -74,6 +70,13 @@ const Requests = () => {
             />
           </TouchableOpacity>
         ))}
+      </View>
+      <View style={styles.plusButtonView}>
+        <TouchableOpacity
+          style={styles.plusButtonLink}
+          onPress={() => navigation.navigate('CreateRequest')}>
+          <Image style={styles.plusButton} source={plus} />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
