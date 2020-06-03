@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     color: colors.lightGrey,
     width: '90%',
   },
-  scrollViewContainerStyles: {
+  scrollViewContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
   },
