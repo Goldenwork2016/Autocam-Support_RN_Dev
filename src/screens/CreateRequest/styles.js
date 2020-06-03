@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     fontSize: 18,
-    color: colors.opacityWhite,
+    color: colors.black,
     textAlignVertical: 'top',
   },
 });
