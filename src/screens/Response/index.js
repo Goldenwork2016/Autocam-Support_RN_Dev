@@ -3,7 +3,6 @@ import {
   ImageBackground,
   StatusBar,
   View,
-  Text,
   ScrollView,
   Dimensions,
 } from 'react-native';
