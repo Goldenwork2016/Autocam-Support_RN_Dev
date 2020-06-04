@@ -57,7 +57,6 @@ const Response = () => {
         receivedData.responselist.length
       ) {
         const {responselist: responseList} = receivedData;
-        setResponses(responseList);
         return responseList;
       }
       return [];
@@ -75,15 +74,19 @@ const Response = () => {
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
+      } else {
+        setResponses(results);
       }
       setRefreshing(false);
     });
-  //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refreshing]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshing, responses]);
 
   useLayoutEffect(() => {
     const subscription = navigation.addListener('didFocus', () => {
-      getResponses();
+      getResponses().then((results) => {
+        setResponses(results);
+      });
     });
 
     return () => subscription;
@@ -116,7 +119,9 @@ const Response = () => {
       await api.post('/user/send_response', data, headers);
       setLoading(false);
       setIsVisible(false);
-      getResponses();
+      getResponses().then((results) => {
+        setResponses(results);
+      });
     } catch (err) {
       console.log('err => ', err);
       throw err;
