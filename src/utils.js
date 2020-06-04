@@ -1,5 +1,5 @@
 export const timeAgo = (dateValue, type) => {
-  const date = type === 'string' ? new Date(new Date(dateValue)) : dateValue;
+  const date = type === 'string' ? new Date(dateValue) : dateValue;
   let seconds = Math.floor((Date.now() - date) / 1000);
   let unit = 'sec';
   let direction = 'ago';
