@@ -111,7 +111,7 @@ const Requests = () => {
                       fontSize: 12,
                       color: colors.lightGrey,
                     }}>
-                    {timeAgo(request.update_time, 'string')} ago
+                    {timeAgo(request.update_time, 'string')}
                   </Text>
                 </View>
               </View>
