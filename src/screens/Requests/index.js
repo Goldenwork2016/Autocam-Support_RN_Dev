@@ -19,6 +19,7 @@ import {Context as UserContext} from '~/Store/index';
 import {timeAgo} from '~/utils';
 import bg from '~/assets/background-white/whiteBg.png';
 import plus from '~/assets/plus-minus/altBigPlus.png';
+import Loader from '~/components/Loader';
 
 const Requests = () => {
   const navigation = useContext(NavigationContext);
@@ -68,17 +69,7 @@ const Requests = () => {
         contentContainerStyle={[styles.scrollViewContainerStyle]}>
         <View style={styles.inputLine} />
         {!requests.length ? (
-          <Text
-            style={{
-              textAlign: 'center', // <-- the magic
-              fontWeight: 'bold',
-              fontSize: 18,
-              marginTop: 0,
-              width: 400,
-              backgroundColor: colors.darkWhite,
-            }}>
-            loading...
-          </Text>
+          <Loader />
         ) : (
           requests.map((request, index) => (
             <TouchableOpacity
