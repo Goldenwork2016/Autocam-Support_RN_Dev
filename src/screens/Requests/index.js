@@ -1,4 +1,4 @@
-import React, {useContext, useState, useLayoutEffect} from 'react';
+import React, {useContext, useState, useLayoutEffect, useCallback} from 'react';
 import {NavigationContext} from 'react-navigation';
 import {
   ImageBackground,
@@ -48,7 +48,6 @@ const Requests = () => {
         receivedData.requestlist.length
       ) {
         const {requestlist: requestList} = receivedData;
-        setRequests(requestList);
         return requestList;
       }
       return [];
@@ -57,24 +56,29 @@ const Requests = () => {
     }
   };
 
-  const onRefresh = React.useCallback(async () => {
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
     getRequests().then((results) => {
+      console.log({a: results.length, b: requests.length});
       if (results.length === requests.length) {
         ToastAndroid.showWithGravity(
           'No New Requests',
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
+      } else {
+        setRequests(results);
       }
       setRefreshing(false);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refreshing]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshing, requests]);
 
   useLayoutEffect(() => {
     const subscription = navigation.addListener('didFocus', () => {
-      getRequests();
+      getRequests().then((results) => {
+        setRequests(results);
+      });
     });
 
     return () => subscription;
