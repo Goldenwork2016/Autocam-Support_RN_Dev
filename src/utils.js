@@ -1,28 +1,30 @@
 export const timeAgo = (dateValue, type) => {
   const date = type === 'string' ? new Date(new Date(dateValue)) : dateValue;
-
-  const seconds = Math.floor((new Date() - date) / 1000);
-  let interval = Math.floor(seconds / 31536000);
-  if (interval > 1) {
-    return interval + ' years';
+  let seconds = Math.floor((Date.now() - date) / 1000);
+  let unit = 'sec';
+  let direction = 'ago';
+  if (seconds < 0) {
+    seconds = -seconds;
+    direction = 'just now';
   }
-  interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
-    return interval + ' months';
+  let value = seconds;
+  if (seconds >= 31536000) {
+    value = Math.floor(seconds / 31536000);
+    unit = 'year';
+  } else if (seconds >= 86400) {
+    value = Math.floor(seconds / 86400);
+    unit = 'day';
+  } else if (seconds >= 3600) {
+    value = Math.floor(seconds / 3600);
+    unit = 'hr';
+  } else if (seconds >= 60) {
+    value = Math.floor(seconds / 60);
+    unit = 'min';
   }
-  interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return interval + ' days';
+  if (value !== 1) {
+    unit = unit + 's';
   }
-  interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
-    return interval + ' hours';
-  }
-  interval = Math.floor(seconds / 60);
-  if (interval > 1) {
-    return interval + ' minutes';
-  }
-  return Math.floor(seconds) + ' seconds';
+  return value + ' ' + unit + ' ' + direction;
 };
 
 export const formatPresentDate = () => {
