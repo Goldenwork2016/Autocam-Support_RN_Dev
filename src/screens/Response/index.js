@@ -122,7 +122,7 @@ const Response = () => {
         </View>
         <ScrollView>
           {!responses.length ? (
-            <Loader />
+            <Loader customStyles={{marginVertical: 10}}/>
           ) : (
             responses.map((chat, key) => (
               <Chat
