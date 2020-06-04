@@ -17,12 +17,12 @@ import bg from '~/assets/background-white/whiteBg.png';
 import {formatPresentDate} from '~/utils';
 
 import Chat from '~/components/Chat';
+import Loader from '~/components/Loader';
 import {Context as UserContext} from '~/Store/index';
 
 import api from '~/server/index';
 
 const Response = () => {
-
   // States
   const [isVisible, setIsVisible] = useState(false);
   const [message, setMessage] = useState('');
@@ -121,14 +121,18 @@ const Response = () => {
           />
         </View>
         <ScrollView>
-          {responses.map((chat, key) => (
-            <Chat
-              key={key}
-              message={chat.response_content}
-              user={chat.posterID === user.userID ? 'You' : 'Agency'}
-              date={chat.post_time}
-            />
-          ))}
+          {!responses.length ? (
+            <Loader />
+          ) : (
+            responses.map((chat, key) => (
+              <Chat
+                key={key}
+                message={chat.response_content}
+                user={chat.posterID === user.userID ? 'You' : 'Agency'}
+                date={chat.post_time}
+              />
+            ))
+          )}
         </ScrollView>
       </View>
       <Overlay
