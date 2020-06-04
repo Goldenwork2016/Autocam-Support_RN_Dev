@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect, useContext} from 'react';
+import {NavigationContext} from 'react-navigation';
 import {
   ImageBackground,
   StatusBar,
@@ -13,13 +14,93 @@ import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 
-import Chat from '~/components/Chat';
+import {formatPresentDate} from '~/utils';
 
-import chat from '~/config/response';
+import Chat from '~/components/Chat';
+import {Context as UserContext} from '~/Store/index';
+
+import api from '~/server/index';
 
 const Response = () => {
+
+  // States
   const [isVisible, setIsVisible] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [responses, setResponses] = useState([]);
+
+  // contexts
+  const navigation = useContext(NavigationContext);
+  const {user} = useContext(UserContext);
+
+  const requestID = navigation.state.params.requestID;
+
+  const getResponses = async () => {
+    const headers = {
+      Accept: 'application/json',
+    };
+    const sentData = new FormData();
+    sentData.append('requestID', navigation.state.params.requestID);
+
+    try {
+      const {data: receivedData = null} = await api.post(
+        'user/get_response_list',
+        sentData,
+        headers,
+      );
+      if (
+        receivedData &&
+        receivedData.status === 200 &&
+        receivedData.responselist.length
+      ) {
+        setResponses(receivedData.responselist);
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  useLayoutEffect(() => {
+    const subscription = navigation.addListener('didFocus', () => {
+      getResponses();
+    });
+
+    return () => subscription;
+  });
+
+  const createData = () => {
+    try {
+      const data = new FormData();
+      data.append('posterID', user.userID);
+      data.append('requestID', requestID);
+      data.append('response_content', message);
+      data.append('post_time', formatPresentDate());
+      return data;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
+
+  const sendData = async () => {
+    setLoading(!loading);
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+      Accept: 'application/json',
+    };
+
+    const data = await createData();
+
+    try {
+      await api.post('/user/send_response', data, headers);
+      setLoading(false);
+      setIsVisible(false);
+      getResponses();
+    } catch (err) {
+      console.log('err => ', err);
+      throw err;
+    }
+  };
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -40,12 +121,12 @@ const Response = () => {
           />
         </View>
         <ScrollView>
-          {chat.map((chat, key) => (
+          {responses.map((chat, key) => (
             <Chat
               key={key}
-              message={chat.message}
-              user={chat.user}
-              date={chat.date}
+              message={chat.response_content}
+              user={chat.posterID === user.userID ? 'You' : 'Agency'}
+              date={chat.post_time}
             />
           ))}
         </ScrollView>
@@ -69,7 +150,7 @@ const Response = () => {
             placeholderTextColor={colors.opacityWhite}
             multiline={true}
             numberOfLines={3}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChangeText={(text) => setMessage(text)}
           />
           <View
             style={{
@@ -79,10 +160,11 @@ const Response = () => {
               alignSelf: 'flex-end',
             }}>
             <Button
+              loading={loading}
               title="Reply"
               titleStyle={{color: colors.lightGrey}}
               buttonStyle={styles.button}
-              onPress={() => setIsVisible(!isVisible)}
+              onPress={() => sendData()}
             />
           </View>
         </View>
