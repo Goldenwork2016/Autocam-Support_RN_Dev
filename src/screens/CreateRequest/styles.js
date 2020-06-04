@@ -38,9 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.lightGrey,
   },
-  card: {
-    borderBottomWidth: 0.2,
-  },
+  card: {},
   button: {},
   topLine: {
     borderTopWidth: 0.8,

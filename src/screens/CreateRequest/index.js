@@ -81,7 +81,7 @@ const CreateRequest = () => {
           {marginTop: useHeaderHeight() + useHeaderHeight() / 4},
         ]}>
         <View style={styles.topLine} />
-        <View style={[styles.card]}>
+        <View style={styles.card}>
           <View style={styles.list}>
             <Text style={styles.title}>Subject</Text>
           </View>
@@ -96,7 +96,7 @@ const CreateRequest = () => {
           </View>
         </View>
 
-        <View style={[styles.card]}>
+        <View style={styles.card}>
           <View style={styles.list}>
             <Text style={styles.title}>Message</Text>
           </View>
