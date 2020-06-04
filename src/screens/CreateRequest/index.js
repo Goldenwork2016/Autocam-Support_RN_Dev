@@ -104,6 +104,7 @@ const CreateRequest = () => {
             <Input
               inputContainerStyle={styles.inputContainerStyle}
               inputStyle={styles.inputStyle}
+              value={message}
               placeholder="What can we help now?"
               multiline={true}
               numberOfLines={8}
