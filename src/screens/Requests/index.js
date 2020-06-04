@@ -83,7 +83,11 @@ const Requests = () => {
           requests.map((request, index) => (
             <TouchableOpacity
               style={styles.listContainer}
-              onPress={() => navigation.navigate('Response')}
+              onPress={() =>
+                navigation.navigate('Response', {
+                  requestID: request.requestID,
+                })
+              }
               key={index}>
               <View>
                 <View style={styles.list}>
