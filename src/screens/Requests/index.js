@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  RefreshControl,
+  ToastAndroid,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import {useHeaderHeight} from 'react-navigation-stack';
@@ -26,31 +28,51 @@ const Requests = () => {
   const {user} = useContext(UserContext);
   const [requests, setRequests] = useState([]);
 
-  useLayoutEffect(() => {
-    const getRequests = async () => {
-      const headers = {
-        Accept: 'application/json',
-      };
-      const sentData = new FormData();
-      sentData.append('userID', user.userID);
-      try {
-        const {data: receivedData = null} = await api.post(
-          'user/get_request_list',
-          sentData,
-          headers,
-        );
-        if (
-          receivedData &&
-          receivedData.status === 200 &&
-          receivedData.requestlist.length
-        ) {
-          setRequests(receivedData.requestlist);
-        }
-      } catch (err) {
-        throw err;
-      }
-    };
+  const [refreshing, setRefreshing] = useState(false);
 
+  const getRequests = async () => {
+    const headers = {
+      Accept: 'application/json',
+    };
+    const sentData = new FormData();
+    sentData.append('userID', user.userID);
+    try {
+      const {data: receivedData = null} = await api.post(
+        'user/get_request_list',
+        sentData,
+        headers,
+      );
+      if (
+        receivedData &&
+        receivedData.status === 200 &&
+        receivedData.requestlist.length
+      ) {
+        const {requestlist: requestList} = receivedData;
+        setRequests(requestList);
+        return requestList;
+      }
+      return [];
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    getRequests().then((results) => {
+      if (results.length === requests.length) {
+        ToastAndroid.showWithGravity(
+          'No New Requests',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      }
+      setRefreshing(false);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshing]);
+
+  useLayoutEffect(() => {
     const subscription = navigation.addListener('didFocus', () => {
       getRequests();
     });
@@ -66,7 +88,10 @@ const Requests = () => {
           styles.scrollView,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 4},
         ]}
-        contentContainerStyle={[styles.scrollViewContainerStyle]}>
+        contentContainerStyle={[styles.scrollViewContainerStyle]}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View style={styles.inputLine} />
         {!requests.length ? (
           <Loader />

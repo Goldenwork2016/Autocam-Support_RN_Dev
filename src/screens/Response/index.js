@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useContext} from 'react';
+import React, {useState, useLayoutEffect, useContext, useCallback} from 'react';
 import {NavigationContext} from 'react-navigation';
 import {
   ImageBackground,
@@ -6,6 +6,8 @@ import {
   View,
   ScrollView,
   Dimensions,
+  ToastAndroid,
+  RefreshControl,
 } from 'react-native';
 import {Button, Overlay, Input} from 'react-native-elements';
 import {useHeaderHeight} from 'react-navigation-stack';
@@ -28,6 +30,7 @@ const Response = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [responses, setResponses] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   // contexts
   const navigation = useContext(NavigationContext);
@@ -53,12 +56,30 @@ const Response = () => {
         receivedData.status === 200 &&
         receivedData.responselist.length
       ) {
-        setResponses(receivedData.responselist);
+        const {responselist: responseList} = receivedData;
+        setResponses(responseList);
+        return responseList;
       }
+      return [];
     } catch (err) {
       throw err;
     }
   };
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    getResponses().then((results) => {
+      if (results.length === responses.length) {
+        ToastAndroid.showWithGravity(
+          'No New Responses',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      }
+      setRefreshing(false);
+    });
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshing]);
 
   useLayoutEffect(() => {
     const subscription = navigation.addListener('didFocus', () => {
@@ -120,9 +141,12 @@ const Response = () => {
             onPress={() => setIsVisible(!isVisible)}
           />
         </View>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
           {!responses.length ? (
-            <Loader customStyles={{marginVertical: 10}}/>
+            <Loader customStyles={{marginVertical: 10}} />
           ) : (
             responses.map((chat, key) => (
               <Chat
