@@ -6,7 +6,7 @@ import minus from '~/assets/plus-minus/minus.png';
 import colors from '~/styles';
 import styles from './styles';
 
-const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
+const ListProducts = ({RMA, amount, avatar, name, price, repairCost}) => {
   const navigation = useContext(NavigationContext);
   const [qt, setQt] = useState(0);
   return !RMA ? (
@@ -14,7 +14,12 @@ const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
       <View style={styles.list}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={styles.productBg}>
-            <Image source={avatar} style={styles.productImage} />
+            <Image
+              source={{
+                uri: avatar,
+              }}
+              style={styles.productImage}
+            />
           </View>
           <View style={{paddingLeft: '5%'}}>
             <Text
@@ -29,21 +34,28 @@ const ListProducts = ({RMA, amount, avatar, name, subtitle, repairCost}) => {
               style={{
                 color: colors.lightGrey,
               }}>
-              {subtitle}
+              ${price} per unit
             </Text>
           </View>
         </View>
         <View
           style={{
-            flexDirection: 'row',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}>
-          <TouchableOpacity onPress={() => setQt(qt - 1)}>
-            <Image source={minus} style={styles.image} />
-          </TouchableOpacity>
-          <Text style={{color: colors.lightGrey}}>{qt ? qt : amount}</Text>
-          <TouchableOpacity onPress={() => setQt(qt + 1)}>
-            <Image source={plus} style={styles.image} />
-          </TouchableOpacity>
+          <Text style={{fontSize: 10}}> Number of Units</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <TouchableOpacity onPress={() => setQt(qt - 1)}>
+              <Image source={minus} style={styles.image} />
+            </TouchableOpacity>
+            <Text style={styles.amount}>{qt ? qt : amount}</Text>
+            <TouchableOpacity onPress={() => setQt(qt + 1)}>
+              <Image source={plus} style={styles.image} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
