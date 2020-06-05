@@ -1,11 +1,14 @@
-import config from '~/config/appConfig';
+import config from '../appConfig';
+
+// In MilliSeconds
+const timeZoneOffset = config.timezone * 60 * 60 * 1000;
 
 export const timeAgo = (dateValue, type) => {
   const dateString = type === 'string' ? new Date(dateValue) : dateValue;
   const date = new Date(dateString);
   const now = new Date();
   let seconds = Math.floor(
-    (now.getTime() - date.getTime() - config.timezone * 60 * 60 * 1000) / 1000,
+    (now.getTime() - date.getTime() - timeZoneOffset) / 1000,
   );
   let unit = 'sec';
   let direction = 'ago';
@@ -48,7 +51,7 @@ export const formatPresentDate = () => {
 
 export const convertByTimeZone = (timeString) => {
   let date = new Date(timeString);
-  const dateObj = new Date(date.getTime() - config.timezone * 60 * 60 * 1000);
+  const dateObj = new Date(date.getTime() + timeZoneOffset);
   const padDateValue = (value) => ('0' + value).slice(-2);
   let formattedDate = `${dateObj.getFullYear()}/${padDateValue(
     dateObj.getMonth() + 1,

@@ -1,3 +1,3 @@
 export default {
-  timezone: 1,
+  timezone: 0,
 };
