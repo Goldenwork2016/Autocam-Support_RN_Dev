@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     marginTop: '10%',
   },
   button: {
-    flex: 0.3,
+    flex: 0.2,
     paddingTop: '4%',
+    paddingHorizontal: '10%',
   },
 });
 

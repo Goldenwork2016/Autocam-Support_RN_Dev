@@ -43,7 +43,6 @@ const Products = () => {
   useEffect(() => {
     setLoading(true);
     getCategoryProducts(itemCategories, items).then((result) => {
-      console.log(JSON.stringify({result}));
       setReorderedItems(result);
       setLoading(false);
     });
@@ -85,7 +84,7 @@ const Products = () => {
 
       <View style={styles.button}>
         {!loading && (
-          <View style={{marginVertical: '15%'}}>
+          <View style={{marginVertical: '5%'}}>
             <Button
               title="Calculate Shipping"
               onPress={() => navigation.navigate('MyOrder')}
