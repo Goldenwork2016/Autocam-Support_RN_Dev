@@ -14,27 +14,86 @@ import Button from '~/components/Button';
 import bg from '~/assets/background-white/whiteBg.png';
 
 import Loader from '~/components/Loader';
-
-import items from '~/config/products';
-import itemCategories from '~/config/productCategories';
 import ListByCategory from '~/components/ListProducts/ListByCategory';
+import api from '~/server/index';
+import {Context as UserContext} from '~/Store/index';
 
 const Products = () => {
+  //contexts
   const navigation = useContext(NavigationContext);
+  const {user} = useContext(UserContext);
 
+  //States
   const [loading, setLoading] = useState(false);
-
   const [reorderedItems, setReorderedItems] = useState([]);
 
-  const getCategoryProducts = async (categories, products) => {
-    const reorderedArray = [];
-    for (let index = 0; index < categories.length; index++) {
-      const category = categories[index];
-      const reorderedItem = {};
-      reorderedItem.category = category;
-      reorderedItem.products = products.filter(
-        (item) => item.category === category,
+  const getProducts = async () => {
+    const headers = {
+      Accept: 'application/json',
+    };
+    const sentData = new FormData();
+    sentData.append('userID', user.userID);
+    try {
+      const {data: receivedData = null} = await api.post(
+        'user/get_product_list',
+        sentData,
+        headers,
       );
+      if (
+        receivedData &&
+        receivedData.status === 200 &&
+        receivedData.productslist.length
+      ) {
+        const {productslist: productList} = receivedData;
+        return productList;
+      }
+      return [];
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const getCategories = async () => {
+    const headers = {
+      Accept: 'application/json',
+    };
+    const sentData = new FormData();
+    sentData.append('userID', user.userID);
+    try {
+      const {data: receivedData = null} = await api.post(
+        'user/get_category_list',
+        sentData,
+        headers,
+      );
+      if (
+        receivedData &&
+        receivedData.status === 200 &&
+        receivedData.categorylist.length
+      ) {
+        const {categorylist: categoryList} = receivedData;
+        return categoryList;
+      }
+      return [];
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const getCategoryProducts = async () => {
+    const reorderedArray = [];
+    const products = await getProducts();
+    const categories = await getCategories();
+    for (let index = 0; index < categories.length; index++) {
+      const {categoryID, category_name: categoryName} = categories[index];
+      const reorderedItem = {};
+      reorderedItem.categoryID = categoryID;
+      reorderedItem.categoryName = categoryName;
+      reorderedItem.products = products.filter(
+        (item) => item.categoryID === categoryID,
+      );
+      if (!reorderedItem.products.length) {
+        continue;
+      }
       reorderedArray.push(reorderedItem);
     }
     return reorderedArray;
@@ -42,7 +101,7 @@ const Products = () => {
 
   useEffect(() => {
     setLoading(true);
-    getCategoryProducts(itemCategories, items).then((result) => {
+    getCategoryProducts().then((result) => {
       setReorderedItems(result);
       setLoading(false);
     });
@@ -63,9 +122,9 @@ const Products = () => {
           {loading ? (
             <Loader />
           ) : (
-            reorderedItems.map(({category, products}, key) => (
+            reorderedItems.map(({categoryName, products}, key) => (
               <ListByCategory
-                category={category}
+                category={categoryName}
                 products={products}
                 key={key}
                 customStyle={

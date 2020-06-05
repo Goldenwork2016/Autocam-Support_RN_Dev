@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'space-between',
-     marginHorizontal: Dimensions.get('window').height < 700 ? '5%' : '7%',
+    marginHorizontal: Dimensions.get('window').height < 700 ? '5%' : '7%',
   },
   productBg: {
     alignItems: 'center',
@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  amount: {
+    color: colors.lightGrey,
+    paddingHorizontal: 5,
+    height: 20,
+  },
+  category: {paddingLeft: '2%', fontSize: 20, color: colors.lightGrey},
 });
 
 export default styles;
