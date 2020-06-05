@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   productImage: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
   },
   image: {
     width: 25,

@@ -3,7 +3,12 @@ import {View, Text} from 'react-native';
 import styles from './styles';
 import ListProducts from './index';
 
-const ListByCategory = ({category, products, customStyle}) => {
+const ListByCategory = ({
+  category,
+  products,
+  customStyle,
+  updateOrderedProducts,
+}) => {
   return (
     <View style={[customStyle]}>
       <Text style={styles.category}>{category.toUpperCase()}</Text>
@@ -14,6 +19,8 @@ const ListByCategory = ({category, products, customStyle}) => {
           avatar={item.product_photo_url}
           name={item.product_name}
           price={item.product_price}
+          productID={item.productID}
+          updateOrderedProducts={updateOrderedProducts}
         />
       ))}
     </View>

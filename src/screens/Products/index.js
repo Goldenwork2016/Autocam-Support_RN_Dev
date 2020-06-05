@@ -26,6 +26,9 @@ const Products = () => {
   //States
   const [loading, setLoading] = useState(false);
   const [reorderedItems, setReorderedItems] = useState([]);
+  const [orderedProducts, setOrderedProducts] = useState({});
+
+  console.log(JSON.stringify({orderedProducts}));
 
   const getProducts = async () => {
     const headers = {
@@ -107,6 +110,15 @@ const Products = () => {
     });
   }, []);
 
+  const updateOrderedProducts = (updatedProduct, id) => {
+    if (updatedProduct.units === 0) {
+      return;
+    }
+    const newOrderedProducts = JSON.parse(JSON.stringify(orderedProducts));
+    newOrderedProducts[id] = updatedProduct;
+    setOrderedProducts(newOrderedProducts);
+  };
+
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
@@ -127,6 +139,7 @@ const Products = () => {
                 category={categoryName}
                 products={products}
                 key={key}
+                updateOrderedProducts={updateOrderedProducts}
                 customStyle={
                   key !== 0
                     ? {
@@ -146,7 +159,11 @@ const Products = () => {
           <View style={{marginVertical: '5%'}}>
             <Button
               title="Calculate Shipping"
-              onPress={() => navigation.navigate('MyOrder')}
+              onPress={() =>
+                navigation.navigate('MyOrder', {
+                  orderedProducts,
+                })
+              }
             />
           </View>
         )}
