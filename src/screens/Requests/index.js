@@ -24,10 +24,12 @@ import plus from '~/assets/plus-minus/altBigPlus.png';
 import Loader from '~/components/Loader';
 
 const Requests = () => {
+  // Contexts
   const navigation = useContext(NavigationContext);
   const {user} = useContext(UserContext);
-  const [requests, setRequests] = useState([]);
 
+  // States
+  const [requests, setRequests] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const getRequests = async () => {

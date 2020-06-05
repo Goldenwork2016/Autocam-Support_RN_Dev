@@ -1,6 +1,12 @@
+import config from '~/config/appConfig';
+
 export const timeAgo = (dateValue, type) => {
-  const date = type === 'string' ? new Date(dateValue) : dateValue;
-  let seconds = Math.floor((Date.now() - date) / 1000);
+  const dateString = type === 'string' ? new Date(dateValue) : dateValue;
+  const date = new Date(dateString);
+  const now = new Date();
+  let seconds = Math.floor(
+    (now.getTime() - date.getTime() - config.timezone * 60 * 60 * 1000) / 1000,
+  );
   let unit = 'sec';
   let direction = 'ago';
   if (seconds < 0) {
@@ -29,6 +35,20 @@ export const timeAgo = (dateValue, type) => {
 
 export const formatPresentDate = () => {
   let dateObj = new Date();
+  const padDateValue = (value) => ('0' + value).slice(-2);
+  let formattedDate = `${dateObj.getUTCFullYear()}/${padDateValue(
+    dateObj.getUTCMonth() + 1,
+  )}/${padDateValue(dateObj.getUTCDate())} ${padDateValue(
+    dateObj.getUTCHours(),
+  )}:${padDateValue(dateObj.getUTCMinutes())}:${padDateValue(
+    dateObj.getUTCSeconds(),
+  )}`;
+  return formattedDate;
+};
+
+export const convertByTimeZone = (timeString) => {
+  let date = new Date(timeString);
+  const dateObj = new Date(date.getTime() - config.timezone * 60 * 60 * 1000);
   const padDateValue = (value) => ('0' + value).slice(-2);
   let formattedDate = `${dateObj.getFullYear()}/${padDateValue(
     dateObj.getMonth() + 1,

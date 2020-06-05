@@ -16,7 +16,7 @@ import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 
-import {formatPresentDate} from '~/utils';
+import {formatPresentDate, convertByTimeZone} from '~/utils';
 
 import Chat from '~/components/Chat';
 import Loader from '~/components/Loader';
@@ -158,7 +158,7 @@ const Response = () => {
                 key={key}
                 message={chat.response_content}
                 user={chat.posterID === user.userID ? 'You' : 'Agency'}
-                date={chat.post_time}
+                date={convertByTimeZone(chat.post_time)}
               />
             ))
           )}
