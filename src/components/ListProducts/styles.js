@@ -2,14 +2,19 @@ import {StyleSheet, Dimensions} from 'react-native';
 import colors from '~/styles';
 
 const styles = StyleSheet.create({
+  containerView: {
+    flexDirection: 'row',
+    paddingVertical: Dimensions.get('window').height < 700 ? '5%' : '7%',
+    borderBottomWidth: 2,
+    borderBottomColor: colors.darkerGrey,
+  },
   list: {
     flexDirection: 'row',
+    flex: 1,
     backgroundColor: 'transparent',
-    paddingVertical: Dimensions.get('window').height < 700 ? '2%' : '4%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: 0.8,
-    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
+     marginHorizontal: Dimensions.get('window').height < 700 ? '5%' : '7%',
   },
   productBg: {
     alignItems: 'center',
