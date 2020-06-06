@@ -63,10 +63,15 @@ const ListProducts = ({
             }}>
             <TouchableOpacity
               onPress={() => {
-                if (qt === 0) {
+                if (qt - 1 >= 0) {
+                  setQt(qt - 1);
+                }
+
+                if (qt - 1 <= 0) {
+                  updateOrderedProducts({}, productID, 'remove');
                   return;
                 }
-                setQt(qt - 1);
+
                 const productObj = {
                   units: qt - 1,
                   price,
@@ -80,7 +85,6 @@ const ListProducts = ({
             <TouchableOpacity
               onPress={() => {
                 setQt(qt + 1);
-                console.log(productID);
                 const productObj = {
                   units: qt + 1,
                   price,

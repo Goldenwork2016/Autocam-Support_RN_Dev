@@ -110,12 +110,12 @@ const Products = () => {
     });
   }, []);
 
-  const updateOrderedProducts = (updatedProduct, id) => {
+  const updateOrderedProducts = (updatedProduct, id, type = 'add') => {
     if (updatedProduct.units === 0) {
       return;
     }
     const newOrderedProducts = JSON.parse(JSON.stringify(orderedProducts));
-    newOrderedProducts[id] = updatedProduct;
+    newOrderedProducts[id] = type === 'add' ? updatedProduct : undefined;
     setOrderedProducts(newOrderedProducts);
   };
 

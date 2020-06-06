@@ -5,7 +5,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
-    paddingVertical: (Dimensions.get('window').width * 0.1) / 2,
+  },
+  secondaryContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    marginLeft: 5,
+    marginVertical: 20,
+  },
+  productListView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 5,
+  },
+  productList: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  productListTitleView: {flex: 3},
+  productListNonTitleView: {
+    flex: 2,
+    flexDirection: 'row',
+  },
+  productTotal: {
+    flex: 0.2,
+    flexDirection: 'column',
   },
   topContainer: {
     flexDirection: 'row',
@@ -44,7 +67,7 @@ const styles = StyleSheet.create({
     height: 25,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.lightGrey,
   },
@@ -55,14 +78,26 @@ const styles = StyleSheet.create({
   },
   amount: {
     fontWeight: 'bold',
-    paddingHorizontal: 5,
+    paddingHorizontal: 20,
     color: colors.lightGrey,
+    flex: 1,
+    fontSize: 16,
   },
   price: {
     paddingHorizontal: 5,
     letterSpacing: 0,
     fontSize: 16,
     color: colors.lightGrey,
+    flex: 3,
+  },
+  deleteIcon: {
+    flex: 1,
+    paddingLeft: 1,
+  },
+  topLine: {
+    borderTopWidth: 0.8,
+    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
+    marginVertical: '1%',
   },
 });
 
