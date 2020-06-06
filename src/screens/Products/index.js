@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useCallback} from 'react';
 import {NavigationContext} from 'react-navigation';
 import {
   ImageBackground,
@@ -6,6 +6,8 @@ import {
   View,
   ScrollView,
   Dimensions,
+  ToastAndroid,
+  RefreshControl,
 } from 'react-native';
 import {useHeaderHeight} from 'react-navigation-stack';
 
@@ -27,8 +29,7 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   const [reorderedItems, setReorderedItems] = useState([]);
   const [orderedProducts, setOrderedProducts] = useState({});
-
-  console.log(JSON.stringify({orderedProducts}));
+  const [refreshing, setRefreshing] = useState(false);
 
   const getProducts = async () => {
     const headers = {
@@ -110,6 +111,22 @@ const Products = () => {
     });
   }, []);
 
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    getCategoryProducts().then((result) => {
+      if (result.length === reorderedItems.length) {
+        ToastAndroid.showWithGravity(
+          'No New Products',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+      } else {
+        setReorderedItems(result);
+      }
+      setRefreshing(false);
+    });
+  }, [refreshing, reorderedItems]);
+
   const updateOrderedProducts = (updatedProduct, id, type = 'add') => {
     if (updatedProduct.units === 0) {
       return;
@@ -130,7 +147,10 @@ const Products = () => {
         <ScrollView
           style={{
             height: '70%',
-          }}>
+          }}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
           {loading ? (
             <Loader />
           ) : (
