@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity, Dimensions} from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import {connect} from 'react-redux';
 import plus from '~/assets/plus-minus/plus.png';
 import minus from '~/assets/plus-minus/minus.png';
 import colors from '~/styles';
@@ -17,7 +18,6 @@ const ListProducts = ({
   updateOrderedProducts,
 }) => {
   const navigation = useContext(NavigationContext);
-  const [qt, setQt] = useState(0);
 
   return !RMA ? (
     <View style={styles.containerView}>
@@ -63,34 +63,37 @@ const ListProducts = ({
             }}>
             <TouchableOpacity
               onPress={() => {
+                /****
+                 *
                 if (qt - 1 >= 0) {
                   setQt(qt - 1);
                 }
+                 */
 
-                if (qt - 1 <= 0) {
-                  updateOrderedProducts({}, productID, 'remove');
+                if (amount - 1 <= 0) {
+                  updateOrderedProducts({}, productID, 'REMOVE');
                   return;
                 }
-
                 const productObj = {
-                  units: qt - 1,
+                  units: amount - 1,
                   price,
                   name,
                 };
-                updateOrderedProducts(productObj, productID);
+                updateOrderedProducts(productObj, productID, 'ADD');
               }}>
               <Image source={minus} style={styles.image} />
             </TouchableOpacity>
-            <Text style={styles.amount}>{qt ? qt : amount}</Text>
+            <Text style={styles.amount}>{amount}</Text>
             <TouchableOpacity
               onPress={() => {
-                setQt(qt + 1);
                 const productObj = {
-                  units: qt + 1,
+                  units: amount + 1,
                   price,
                   name,
                 };
-                updateOrderedProducts(productObj, productID);
+
+                console.log({amount, productObj, updateOrderedProducts});
+                updateOrderedProducts(productObj, productID, 'ADD');
               }}>
               <Image source={plus} style={styles.image} />
             </TouchableOpacity>
@@ -136,4 +139,17 @@ const ListProducts = ({
   );
 };
 
-export default ListProducts;
+function mapStateToProps(state) {
+  return {
+    orderedProducts: state.orderedProducts,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateOrderedProducts: (product, productID, type) =>
+      dispatch({type, product, productID}),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);

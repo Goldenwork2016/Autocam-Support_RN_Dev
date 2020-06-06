@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {connect} from 'react-redux';
 import styles from './styles';
 import ListProducts from './index';
 
@@ -7,7 +8,7 @@ const ListByCategory = ({
   category,
   products,
   customStyle,
-  updateOrderedProducts,
+  orderedProducts: orderedProductsInGlobalStore,
 }) => {
   return (
     <View style={[customStyle]}>
@@ -15,16 +16,26 @@ const ListByCategory = ({
       {products.map((item, key) => (
         <ListProducts
           key={key}
-          amount={0}
+          amount={
+            orderedProductsInGlobalStore[item.productID]
+              ? orderedProductsInGlobalStore[item.productID].units
+              : 0
+          }
           avatar={item.product_photo_url}
           name={item.product_name}
           price={item.product_price}
           productID={item.productID}
-          updateOrderedProducts={updateOrderedProducts}
         />
       ))}
     </View>
   );
 };
 
-export default ListByCategory;
+function mapStateToProps(state) {
+  return {
+    orderedProducts: state.orderedProducts,
+  };
+}
+
+
+export default connect(mapStateToProps)(ListByCategory);

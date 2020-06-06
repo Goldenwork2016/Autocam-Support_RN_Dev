@@ -33,7 +33,9 @@
     "react-navigation": "^4.3.7",
     "react-navigation-drawer": "^2.4.11",
     "react-navigation-stack": "^2.3.11",
-    "reactotron-react-native": "^5.0.0"
+    "react-redux": "^7.2.0",
+    "reactotron-react-native": "^5.0.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

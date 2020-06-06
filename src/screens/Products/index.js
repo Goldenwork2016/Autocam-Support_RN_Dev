@@ -10,7 +10,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import {useHeaderHeight} from 'react-navigation-stack';
-
+import {connect} from 'react-redux';
 import styles from './styles';
 import Button from '~/components/Button';
 import bg from '~/assets/background-white/whiteBg.png';
@@ -20,7 +20,10 @@ import ListByCategory from '~/components/ListProducts/ListByCategory';
 import api from '~/server/index';
 import {Context as UserContext} from '~/Store/index';
 
-const Products = () => {
+const Products = ({
+  orderedProducts: orderedProductsInGlobalStore,
+  updateOrderedProducts: updateGlobalStore,
+}) => {
   //contexts
   const navigation = useContext(NavigationContext);
   const {user} = useContext(UserContext);
@@ -28,7 +31,6 @@ const Products = () => {
   //States
   const [loading, setLoading] = useState(false);
   const [reorderedItems, setReorderedItems] = useState([]);
-  const [orderedProducts, setOrderedProducts] = useState({});
   const [refreshing, setRefreshing] = useState(false);
 
   const getProducts = async () => {
@@ -127,22 +129,6 @@ const Products = () => {
     });
   }, [refreshing, reorderedItems]);
 
-  const updateOrderedProducts = (updatedProduct, id, type = 'add') => {
-    if (updatedProduct.units === 0) {
-      return;
-    }
-    const newOrderedProducts = JSON.parse(JSON.stringify(orderedProducts));
-    if (type === 'add') {
-      newOrderedProducts[id] = updatedProduct;
-    }
-
-    if (type === 'remove') {
-      delete newOrderedProducts[id];
-    }
-
-    setOrderedProducts(newOrderedProducts);
-  };
-
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
@@ -166,7 +152,6 @@ const Products = () => {
                 category={categoryName}
                 products={products}
                 key={key}
-                updateOrderedProducts={updateOrderedProducts}
                 customStyle={
                   key !== 0
                     ? {
@@ -186,11 +171,7 @@ const Products = () => {
           <View style={{marginVertical: '5%'}}>
             <Button
               title="Calculate Shipping"
-              onPress={() =>
-                navigation.navigate('MyOrder', {
-                  orderedProducts,
-                })
-              }
+              onPress={() => navigation.navigate('MyOrder')}
             />
           </View>
         )}
@@ -199,4 +180,16 @@ const Products = () => {
   );
 };
 
-export default Products;
+function mapStateToProps(state) {
+  return {
+    orderedProducts: state.orderedProducts,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateOrderedProducts: (products) => dispatch({type: 'UPDATE', products}),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
