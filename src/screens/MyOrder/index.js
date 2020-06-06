@@ -91,7 +91,7 @@ const MyOrder = () => {
         </View>
       </View>
       <View style={styles.button}>
-        <View style={{marginVertical: '5%'}}>
+        <View style={{marginVertical: 0}}>
           <Button
             title="Check Out"
             onPress={() =>

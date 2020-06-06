@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   productListTitleView: {flex: 3},
   productListNonTitleView: {
-    flex: 2,
+    flex: 3.5,
     flexDirection: 'row',
   },
   productTotal: {
@@ -41,14 +41,12 @@ const styles = StyleSheet.create({
   list: {
     flexDirection: 'row',
     backgroundColor: 'transparent',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
     marginBottom: 10,
   },
   button: {
     marginHorizontal: '1%',
-    flex: 0.2,
+    flex: 0.15,
   },
   productBg: {
     alignItems: 'center',
@@ -67,12 +65,12 @@ const styles = StyleSheet.create({
     height: 25,
   },
   title: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
     color: colors.lightGrey,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     color: colors.lightGrey,
   },
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
   },
   topLine: {
     borderTopWidth: 0.8,
-    marginHorizontal: (Dimensions.get('window').width * 0.2) / 4,
     marginVertical: '1%',
   },
 });
