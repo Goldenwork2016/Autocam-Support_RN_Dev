@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    borderTopWidth: 0.8,
     marginHorizontal: '1%',
+    flex: 0.2,
   },
   productBg: {
     alignItems: 'center',
