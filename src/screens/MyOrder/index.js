@@ -78,7 +78,7 @@ const MyOrder = ({
             title="Check Out"
             onPress={() =>
               navigation.navigate('CheckOut', {
-                orderedProducts,
+                subTotal
               })
             }
           />
