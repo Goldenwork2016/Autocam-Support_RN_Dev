@@ -132,7 +132,14 @@ const Products = () => {
       return;
     }
     const newOrderedProducts = JSON.parse(JSON.stringify(orderedProducts));
-    newOrderedProducts[id] = type === 'add' ? updatedProduct : undefined;
+    if (type === 'add') {
+      newOrderedProducts[id] = updatedProduct;
+    }
+
+    if (type === 'remove') {
+      delete newOrderedProducts[id];
+    }
+
     setOrderedProducts(newOrderedProducts);
   };
 

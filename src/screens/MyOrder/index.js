@@ -7,6 +7,7 @@ import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 import {ScrollView, TouchableHighlight} from 'react-native-gesture-handler';
+import Button from '~/components/Button';
 
 const MyOrder = () => {
   const navigation = useContext(NavigationContext);
@@ -41,13 +42,11 @@ const MyOrder = () => {
     const key = orderedProductsKeys[index];
     const price = orderedProducts[key].units * orderedProducts[key].price;
     productList.push(
-      <View
-        style={styles.productListView}>
+      <View style={styles.productListView}>
         <View style={styles.productListTitleView}>
           <Text style={styles.title}>{orderedProducts[key].name}</Text>
         </View>
-        <View
-          style={styles.productListNonTitleView}>
+        <View style={styles.productListNonTitleView}>
           <Text style={styles.amount}>{orderedProducts[key].units}x</Text>
           <Text style={styles.price}>${price}.00</Text>
           <View style={styles.deleteIcon}>
@@ -89,6 +88,18 @@ const MyOrder = () => {
               </Text>
             </View>
           </View>
+        </View>
+      </View>
+      <View style={styles.button}>
+        <View style={{marginVertical: '5%'}}>
+          <Button
+            title="Check Out"
+            onPress={() =>
+              navigation.navigate('CheckOut', {
+                orderedProducts,
+              })
+            }
+          />
         </View>
       </View>
     </ImageBackground>
