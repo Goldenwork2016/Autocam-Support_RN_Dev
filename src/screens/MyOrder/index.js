@@ -1,39 +1,21 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
+import {connect} from 'react-redux';
 import colors from '~/styles';
 import styles from './styles';
 import bg from '~/assets/background-white/whiteBg.png';
 import {ScrollView, TouchableHighlight} from 'react-native-gesture-handler';
 import Button from '~/components/Button';
 
-const MyOrder = () => {
+const MyOrder = ({
+  orderedProducts,
+  updateOrderedProducts: updateGlobalStore,
+}) => {
   const navigation = useContext(NavigationContext);
-
-  const [orderedProducts, setOrderedProducts] = useState(
-    navigation.state.params.orderedProducts,
-  );
   const orderedProductsKeys = Object.keys(orderedProducts);
-
-  console.log({orderedProductsKeys, orderedProducts});
-
-  const updateOrderedProducts = (updatedProduct, id, type = 'add') => {
-    if (updatedProduct.units === 0) {
-      return;
-    }
-    const newOrderedProducts = JSON.parse(JSON.stringify(orderedProducts));
-    if (type === 'add') {
-      newOrderedProducts[id] = updatedProduct;
-    }
-
-    if (type === 'remove') {
-      delete newOrderedProducts[id];
-    }
-
-    setOrderedProducts(newOrderedProducts);
-  };
 
   let subTotal = 0;
   const productList = [];
@@ -52,7 +34,7 @@ const MyOrder = () => {
           <View style={styles.deleteIcon}>
             <TouchableHighlight
               onPress={() => {
-                updateOrderedProducts({}, key, 'remove');
+                updateGlobalStore({}, key, 'REMOVE');
               }}>
               <Icon name="delete" color={colors.grey} size={20} />
             </TouchableHighlight>
@@ -106,4 +88,16 @@ const MyOrder = () => {
   );
 };
 
-export default MyOrder;
+function mapStateToProps(state) {
+  return {
+    orderedProducts: state.orderedProducts,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateOrderedProducts: (product, productID, type) =>
+      dispatch({type, product, productID}),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MyOrder);

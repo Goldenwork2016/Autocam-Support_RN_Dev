@@ -3,11 +3,37 @@ import {AuthProvider} from './Store';
 
 import Routes from '~/routes';
 import CodePush from 'react-native-code-push';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+const initialState = {
+  orderedProducts: {},
+};
+
+const reducer = (state = initialState, {type, product, productID}) => {
+  const newOrderedProducts = JSON.parse(JSON.stringify(state.orderedProducts));
+  switch (type) {
+    case 'ADD': {
+      newOrderedProducts[productID] = product;
+      return {orderedProducts: newOrderedProducts};
+    }
+    case 'REMOVE': {
+      delete newOrderedProducts[productID];
+      return {orderedProducts: newOrderedProducts};
+    }
+    default:
+      return {orderedProducts: state.orderedProducts};
+  }
+};
+
+const store = createStore(reducer);
 
 const App = () => {
   return (
     <AuthProvider>
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     </AuthProvider>
   );
 };
