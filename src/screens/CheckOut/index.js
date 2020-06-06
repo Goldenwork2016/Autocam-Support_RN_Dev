@@ -2,9 +2,8 @@ import React, {useContext} from 'react';
 import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
-
 import {Icon, Input, Button} from 'react-native-elements';
-
+import {Context as UserContext} from '~/Store/index';
 import colors from '~/styles';
 import styles from './styles';
 import ButtonComponent from '~/components/Button';
@@ -15,7 +14,11 @@ import visa from '~/assets/payments/visa.png';
 
 const CheckOut = () => {
   const navigation = useContext(NavigationContext);
+  const {user} = useContext(UserContext);
   const myServices = navigation.getParam('myServices');
+
+  const subTotal = navigation.state.params.subTotal;
+  const discount = 100;
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -41,7 +44,7 @@ const CheckOut = () => {
               />
             </View>
             <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>
-              123 York StBrooklyn, NY, 11201, USA
+              {user.company_address}, {user.city}, {user.country}
             </Text>
           </View>
         ) : null}
@@ -85,7 +88,7 @@ const CheckOut = () => {
             </View>
             <View>
               <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
-                $5759.00
+                ${subTotal}.00
               </Text>
               {!myServices ? (
                 <Text
@@ -97,14 +100,16 @@ const CheckOut = () => {
                 </Text>
               ) : null}
               <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
-                -$100.00
+                -${discount}.00
               </Text>
             </View>
           </View>
         </View>
         <View style={styles.list}>
           <Text style={styles.title}>Total</Text>
-          <Text style={{color: colors.lightGrey}}>$5659.00</Text>
+          <Text style={{color: colors.lightGrey}}>
+            ${subTotal - discount}.00
+          </Text>
         </View>
       </View>
 
