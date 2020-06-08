@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {DrawerActions} from 'react-navigation-drawer';
 
 import menu from '~/assets/menu/hamburger.png';
 import emptyProfile from '~/assets/emptyProfile/empty-profile.png';
 import colors from '~/styles';
+import {Context as UserContext} from '~/Store/index';
 
 const items = [
   {
@@ -46,11 +47,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   sideMenuProfileIcon: {
-    resizeMode: 'center',
     width: 150,
     height: 150,
     marginTop: 10,
-    borderRadius: 150 / 2,
+    borderRadius: 75,
   },
   img: {
     paddingLeft: '5%',
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
 });
 
 const CustomSidebarMenu = ({navigation}) => {
+  const {user} = useContext(UserContext);
   const getActiveRouteState = function (route) {
     if (
       !route.routes ||
@@ -81,9 +82,19 @@ const CustomSidebarMenu = ({navigation}) => {
         onPress={() => navigation.closeDrawer()}>
         <Image source={menu} resizeMode="contain" />
       </TouchableOpacity>
-      <Image source={emptyProfile} style={styles.sideMenuProfileIcon} />
-      <Text style={{color: colors.lightGrey, fontSize: 26, fontWeight: 'bold'}}>
-        Chris Nweke
+      <Image
+        source={user.photo_url ? {uri: user.photo_url} : emptyProfile}
+        style={styles.sideMenuProfileIcon}
+      />
+      <Text
+        allowFontScaling
+        style={{
+          color: colors.lightGrey,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          fontSize: 24,
+        }}>
+        {user.fullname}
       </Text>
       <View
         style={{
