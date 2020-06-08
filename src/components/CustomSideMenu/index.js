@@ -92,7 +92,9 @@ const CustomSidebarMenu = ({navigation}) => {
           color: colors.lightGrey,
           fontWeight: 'bold',
           textAlign: 'center',
-          fontSize: 24,
+          fontSize: 18,
+          paddingHorizontal: 20,
+          paddingVertical: 10,
         }}>
         {user.fullname}
       </Text>
