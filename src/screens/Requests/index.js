@@ -61,7 +61,6 @@ const Requests = () => {
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     getRequests().then((results) => {
-      console.log({a: results.length, b: requests.length});
       if (results.length === requests.length) {
         ToastAndroid.showWithGravity(
           'No New Requests',
@@ -77,14 +76,13 @@ const Requests = () => {
   }, [refreshing, requests]);
 
   useLayoutEffect(() => {
-    const subscription = navigation.addListener('didFocus', () => {
+    const subscription = navigation.addListener('willFocus', () => {
       getRequests().then((results) => {
         setRequests(results);
       });
     });
-
     return () => subscription;
-  });
+  },[navigation]);
 
   return (
     <ImageBackground source={bg} style={[styles.container]} resizeMode="cover">
