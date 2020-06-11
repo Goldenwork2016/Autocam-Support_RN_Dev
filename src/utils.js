@@ -6,10 +6,18 @@ const timeZoneOffset = config.timezone * 60 * 60 * 1000;
 export const timeAgo = (dateValue, type) => {
   const dateString = type === 'string' ? new Date(dateValue) : dateValue;
   const date = new Date(dateString);
-  const now = new Date();
-  let seconds = Math.floor(
-    (now.getTime() - date.getTime() - timeZoneOffset) / 1000,
+  var now_utc = new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+    ),
   );
+  let seconds = Math.floor((now_utc - date.valueOf()) / 1000);
+
   let unit = 'sec';
   let direction = 'ago';
   if (seconds < 0) {
@@ -37,7 +45,7 @@ export const timeAgo = (dateValue, type) => {
 };
 
 export const formatPresentDate = () => {
-  let dateObj = new Date();
+  const dateObj = new Date();
   const padDateValue = (value) => ('0' + value).slice(-2);
   let formattedDate = `${dateObj.getUTCFullYear()}/${padDateValue(
     dateObj.getUTCMonth() + 1,
