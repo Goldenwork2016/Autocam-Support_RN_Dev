@@ -47,6 +47,7 @@ const CheckOut = () => {
                 title="Change"
                 titleStyle={{color: colors.lightGrey}}
                 buttonStyle={styles.changeButton}
+                onPress={() => navigation.navigate('Account')}
               />
             </View>
             <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>

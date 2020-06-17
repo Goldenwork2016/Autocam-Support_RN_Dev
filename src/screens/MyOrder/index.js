@@ -24,7 +24,7 @@ const MyOrder = ({
     const key = orderedProductsKeys[index];
     const price = orderedProducts[key].units * orderedProducts[key].price;
     productList.push(
-      <View style={styles.productListView}>
+      <View style={styles.productListView} key={key}>
         <View style={styles.productListTitleView}>
           <Text style={styles.title}>{orderedProducts[key].name}</Text>
         </View>
@@ -78,7 +78,7 @@ const MyOrder = ({
             title="Check Out"
             onPress={() =>
               navigation.navigate('CheckOut', {
-                subTotal
+                subTotal,
               })
             }
           />

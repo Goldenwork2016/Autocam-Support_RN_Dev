@@ -10,16 +10,31 @@ const styles = StyleSheet.create({
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
     marginBottom: (Dimensions.get('window').height * 0.1) / 20,
-    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
     width: Dimensions.get('window').width * 0.8,
+
+    backgroundColor: 'blue',
+  },
+  inputContainerSmallHalf: {
+    borderBottomWidth: 0.3,
+    borderWidth: 0.3,
+    borderColor: colors.lightestGrey,
+    marginBottom: (Dimensions.get('window').height * 0.1) / 20,
+    flex: 0.5,
   },
   inputContainer: {
     borderBottomWidth: 0.3,
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
     marginBottom: (Dimensions.get('window').height * 0.1) / 6,
-    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
     width: Dimensions.get('window').width * 0.8,
+    backgroundColor: 'blue',
+  },
+  inputContainerHalf: {
+    borderBottomWidth: 0.3,
+    borderWidth: 0.3,
+    borderColor: colors.lightestGrey,
+    marginBottom: (Dimensions.get('window').height * 0.1) / 6,
+    flex: 0.5,
   },
   input: {
     backgroundColor: colors.snowWhite,
@@ -37,7 +52,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const InputField = ({content, password, disabled, value, setInputValue}) => {
+const InputField = ({
+  content,
+  password,
+  disabled,
+  value,
+  setInputValue,
+  half = false,
+}) => {
   return Dimensions.get('window').height < 650 ? (
     <Input
       clearButtonMode="always"
@@ -45,7 +67,9 @@ const InputField = ({content, password, disabled, value, setInputValue}) => {
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       value={value}
       inputStyle={styles.input}
-      inputContainerStyle={styles.inputContainerSmall}
+      inputContainerStyle={
+        half ? styles.inputContainerSmallHalf : styles.inputContainerSmall
+      }
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}
@@ -58,7 +82,9 @@ const InputField = ({content, password, disabled, value, setInputValue}) => {
       placeholderTextColor={disabled ? colors.lightGrey : colors.opacityWhite}
       value={value}
       inputStyle={styles.input}
-      inputContainerStyle={styles.inputContainer}
+      inputContainerStyle={
+        half ? styles.inputContainerHalf : styles.inputContainer
+      }
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
       disabledInputStyle={styles.disabledInput}

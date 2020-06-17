@@ -139,7 +139,6 @@ const Account = () => {
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <View
         style={{
-          paddingHorizontal: (Dimensions.get('window').width * 0.1) / 4,
           marginVertical: 0,
           alignItems: 'center',
           flexDirection: 'column',
@@ -158,9 +157,15 @@ const Account = () => {
           </TouchableOpacity>
         )}
 
-        <ScrollView style={{maxHeight: '60%', width: '100%', marginLeft: 0}}>
+        <ScrollView
+          style={{
+            maxHeight: '60%',
+            width: '100%',
+            marginLeft: 0,
+            paddingHorizontal: 2,
+          }}>
           <View>
-            <Text style={styles.title}>Name</Text>
+            <Text style={styles.title}>First Name</Text>
             <Input
               content={user ? name : 'name'}
               disabled={edit ? false : true}
@@ -209,6 +214,33 @@ const Account = () => {
                 setUser((prevState) => ({...prevState, company_address: text}))
               }
             />
+          </View>
+
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={styles.halfBox}>
+              <Text style={styles.title}>City</Text>
+              <Input
+                content={user ? user.city : 'City'}
+                disabled={edit ? false : true}
+                value={user ? user.city : ''}
+                setInputValue={(text) =>
+                  setUser((prevState) => ({...prevState, city: text}))
+                }
+                half
+              />
+            </View>
+            <View style={styles.halfBox}>
+              <Text style={styles.title}>Country</Text>
+              <Input
+                content={user ? user.country : 'Country'}
+                disabled={edit ? false : true}
+                value={user ? user.country : ''}
+                setInputValue={(text) =>
+                  setUser((prevState) => ({...prevState, country: text}))
+                }
+                half
+              />
+            </View>
           </View>
         </ScrollView>
         <View style={styles.button}>
