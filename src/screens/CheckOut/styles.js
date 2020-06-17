@@ -30,9 +30,6 @@ const styles = StyleSheet.create({
   paddingLeft: {
     paddingLeft: '2.5%',
   },
-  button: {
-    paddingTop: '8%',
-  },
   changeButton: {
     backgroundColor: colors.darkWhite,
     borderColor: colors.lightestGrey,

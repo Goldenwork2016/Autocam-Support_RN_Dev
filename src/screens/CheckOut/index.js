@@ -1,5 +1,12 @@
 import React, {useContext} from 'react';
-import {ImageBackground, StatusBar, View, Text, Image} from 'react-native';
+import {
+  ImageBackground,
+  StatusBar,
+  View,
+  Text,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
 import {Icon, Input, Button} from 'react-native-elements';
@@ -18,12 +25,11 @@ const CheckOut = () => {
   const myServices = navigation.getParam('myServices');
 
   const subTotal = navigation.state.params.subTotal;
-  const discount = 100;
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
-      <View
+      <ScrollView
         style={[
           styles.listContainer,
           {marginTop: useHeaderHeight() + useHeaderHeight() / 8},
@@ -82,9 +88,6 @@ const CheckOut = () => {
                   Delivery Cost
                 </Text>
               ) : null}
-              <Text style={[styles.subtitle, styles.marginBottom]}>
-                Discount
-              </Text>
             </View>
             <View>
               <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
@@ -99,21 +102,15 @@ const CheckOut = () => {
                   Free
                 </Text>
               ) : null}
-              <Text style={(styles.marginBottom, {color: colors.lightGrey})}>
-                -${discount}.00
-              </Text>
             </View>
           </View>
         </View>
         <View style={styles.list}>
           <Text style={styles.title}>Total</Text>
-          <Text style={{color: colors.lightGrey}}>
-            ${subTotal - discount}.00
-          </Text>
+          <Text style={{color: colors.lightGrey}}>${subTotal}.00</Text>
         </View>
-      </View>
-
-      <View style={styles.button}>
+      </ScrollView>
+      <View>
         <ButtonComponent
           title="Send Order"
           onPress={() => navigation.navigate('Products')}
