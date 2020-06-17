@@ -17,6 +17,11 @@ const ListProducts = ({
   productID,
   updateOrderedProducts,
 }) => {
+  console.log({
+    units: amount,
+    price,
+    name,
+  });
   const navigation = useContext(NavigationContext);
 
   return !RMA ? (
@@ -63,14 +68,7 @@ const ListProducts = ({
             }}>
             <TouchableOpacity
               onPress={() => {
-                /****
-                 *
-                if (qt - 1 >= 0) {
-                  setQt(qt - 1);
-                }
-                 */
-
-                if (amount - 1 <= 0) {
+                if (amount === 0) {
                   updateOrderedProducts({}, productID, 'REMOVE');
                   return;
                 }
