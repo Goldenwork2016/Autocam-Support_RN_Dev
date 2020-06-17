@@ -157,16 +157,6 @@ const CreateAccount = () => {
         </TouchableOpacity>
       )}
       <Input
-        content="City"
-        value={city}
-        setInputValue={(text) => setCity(text)}
-      />
-      <Input
-        content="Country"
-        value={country}
-        setInputValue={(text) => setCountry(text)}
-      />
-      <Input
         content="Phone Number"
         value={phoneNumber}
         setInputValue={(text) => setPhoneNumber(text)}
@@ -180,6 +170,16 @@ const CreateAccount = () => {
         content="Company Address"
         value={companyAddress}
         setInputValue={(text) => setCompanyAddress(text)}
+      />
+      <Input
+        content="City"
+        value={city}
+        setInputValue={(text) => setCity(text)}
+      />
+      <Input
+        content="Country"
+        value={country}
+        setInputValue={(text) => setCountry(text)}
       />
       <View style={styles.button}>
         <Button

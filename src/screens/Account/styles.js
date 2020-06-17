@@ -11,15 +11,17 @@ const styles = StyleSheet.create({
   },
   row: {},
   title: {
-    color: '#898989',
     alignSelf: 'baseline',
     fontSize: 12,
     fontWeight: 'bold',
-    paddingHorizontal: Dimensions.get('window').width * 0.08,
     color: colors.lightGrey,
+    marginHorizontal: 10,
   },
   button: {
     marginBottom: '5%',
+  },
+  halfBox: {
+    flex: 1,
   },
 });
 
