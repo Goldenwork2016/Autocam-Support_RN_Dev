@@ -134,43 +134,46 @@ const Account = () => {
     });
   };
 
+  console.log({user});
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
       <View
         style={{
           marginVertical: 0,
-          alignItems: 'center',
           flexDirection: 'column',
         }}>
-        {avatarSource &&
-          (edit ? (
-            <TouchableOpacity onPress={() => selectImage()}>
+        <View
+          style={{
+            alignItems: 'center',
+          }}>
+          {avatarSource &&
+            (edit ? (
+              <TouchableOpacity onPress={() => selectImage()}>
+                <Profile lessMargin uri={avatarSource.uri} />
+              </TouchableOpacity>
+            ) : (
               <Profile lessMargin uri={avatarSource.uri} />
+            ))}
+          {!avatarSource && (
+            <TouchableOpacity onPress={() => selectImage()}>
+              <Logo img={emptyProfile} lessMargin />
             </TouchableOpacity>
-          ) : (
-            <Profile lessMargin uri={avatarSource.uri} />
-          ))}
-        {!avatarSource && (
-          <TouchableOpacity onPress={() => selectImage()}>
-            <Logo img={emptyProfile} lessMargin />
-          </TouchableOpacity>
-        )}
-
+          )}
+        </View>
         <ScrollView
           style={{
-            maxHeight: '60%',
-            width: '100%',
-            marginLeft: 0,
-            paddingHorizontal: 2,
+            marginHorizontal: (Dimensions.get('window').width * 0.1) / 3,
+            flexDirection: 'column',
           }}>
-          <View>
+          <View style={{flex: 1}}>
             <Text style={styles.title}>First Name</Text>
             <Input
               content={user ? name : 'name'}
               disabled={edit ? false : true}
               value={user ? name : ''}
               setInputValue={(text) => setName(text)}
+              customContainerStyles={styles.inputContainerStyle}
             />
           </View>
           <View>
@@ -180,6 +183,7 @@ const Account = () => {
               disabled={edit ? false : true}
               value={user ? surname : ''}
               setInputValue={(text) => setSurname(text)}
+              customContainerStyles={styles.inputContainerStyle}
             />
           </View>
           <View>
@@ -191,6 +195,7 @@ const Account = () => {
               setInputValue={(text) =>
                 setUser((prevState) => ({...prevState, email: text}))
               }
+              customContainerStyles={styles.inputContainerStyle}
             />
           </View>
           <View>
@@ -202,6 +207,7 @@ const Account = () => {
               setInputValue={(text) =>
                 setUser((prevState) => ({...prevState, phonenumber: text}))
               }
+              customContainerStyles={styles.inputContainerStyle}
             />
           </View>
           <View>
@@ -213,6 +219,7 @@ const Account = () => {
               setInputValue={(text) =>
                 setUser((prevState) => ({...prevState, company_address: text}))
               }
+              customContainerStyles={styles.inputContainerStyle}
             />
           </View>
 
@@ -227,6 +234,7 @@ const Account = () => {
                   setUser((prevState) => ({...prevState, city: text}))
                 }
                 half
+                customContainerStyles={styles.inputContainerStyle}
               />
             </View>
             <View style={styles.halfBox}>
@@ -239,6 +247,7 @@ const Account = () => {
                   setUser((prevState) => ({...prevState, country: text}))
                 }
                 half
+                customContainerStyles={styles.inputContainerStyle}
               />
             </View>
           </View>

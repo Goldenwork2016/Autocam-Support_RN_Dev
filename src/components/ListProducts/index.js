@@ -69,6 +69,9 @@ const ListProducts = ({
             <TouchableOpacity
               onPress={() => {
                 if (amount === 0) {
+                  return;
+                }
+                if (amount === 1) {
                   updateOrderedProducts({}, productID, 'REMOVE');
                   return;
                 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {StyleSheet, Dimensions} from 'react-native';
 import {Input} from 'react-native-elements';
@@ -9,25 +9,23 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
-    marginBottom: (Dimensions.get('window').height * 0.1) / 20,
-    width: Dimensions.get('window').width * 0.8,
-
-    backgroundColor: 'blue',
+    marginBottom: (Dimensions.get('window').height * 0.1) / 5,
+    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
   },
   inputContainerSmallHalf: {
     borderBottomWidth: 0.3,
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
     marginBottom: (Dimensions.get('window').height * 0.1) / 20,
+    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
     flex: 0.5,
   },
   inputContainer: {
     borderBottomWidth: 0.3,
     borderWidth: 0.3,
     borderColor: colors.lightestGrey,
-    marginBottom: (Dimensions.get('window').height * 0.1) / 6,
-    width: Dimensions.get('window').width * 0.8,
-    backgroundColor: 'blue',
+    marginBottom: (Dimensions.get('window').height * 0.1) / 5,
+    marginHorizontal: (Dimensions.get('window').width * 0.1) / 2,
   },
   inputContainerHalf: {
     borderBottomWidth: 0.3,
@@ -58,6 +56,7 @@ const InputField = ({
   disabled,
   value,
   setInputValue,
+  customContainerStyles = false,
   half = false,
 }) => {
   return Dimensions.get('window').height < 650 ? (
@@ -68,7 +67,9 @@ const InputField = ({
       value={value}
       inputStyle={styles.input}
       inputContainerStyle={
-        half ? styles.inputContainerSmallHalf : styles.inputContainerSmall
+        half
+          ? customContainerStyles || styles.inputContainerSmallHalf
+          : customContainerStyles || styles.inputContainerSmall
       }
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}
@@ -83,7 +84,9 @@ const InputField = ({
       value={value}
       inputStyle={styles.input}
       inputContainerStyle={
-        half ? styles.inputContainerHalf : styles.inputContainer
+        half
+          ? customContainerStyles || styles.inputContainerSmallHalf
+          : customContainerStyles || styles.inputContainerSmall
       }
       secureTextEntry={password ? true : false}
       disabled={disabled ? disabled : false}

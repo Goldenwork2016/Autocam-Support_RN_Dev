@@ -8,6 +8,7 @@ import {
   Dimensions,
   ToastAndroid,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import {useHeaderHeight} from 'react-navigation-stack';
 import {connect} from 'react-redux';
@@ -129,6 +130,9 @@ const Products = ({
     });
   }, [refreshing, reorderedItems]);
 
+  console.log({
+    orderedProductsInGlobalStore,
+  });
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
@@ -171,7 +175,15 @@ const Products = ({
           <View style={{marginVertical: '5%'}}>
             <Button
               title="Calculate Shipping"
-              onPress={() => navigation.navigate('MyOrder')}
+              onPress={() => {
+                if (!Object.keys(orderedProductsInGlobalStore).length) {
+                  return Alert.alert(
+                    'Message',
+                    'You need to order at least a product',
+                  );
+                }
+                navigation.navigate('MyOrder');
+              }}
             />
           </View>
         )}
