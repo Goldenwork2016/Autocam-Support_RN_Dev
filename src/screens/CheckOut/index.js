@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   ImageBackground,
   StatusBar,
@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   ScrollView,
+  TextInput,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {useHeaderHeight} from 'react-navigation-stack';
@@ -22,6 +23,9 @@ import visa from '~/assets/payments/visa.png';
 const CheckOut = () => {
   const navigation = useContext(NavigationContext);
   const {user} = useContext(UserContext);
+
+  // States
+  const [editAddress, setEditAddress] = useState(false);
   const myServices = navigation.getParam('myServices');
 
   const subTotal = navigation.state.params.subTotal;
@@ -47,12 +51,23 @@ const CheckOut = () => {
                 title="Change"
                 titleStyle={{color: colors.lightGrey}}
                 buttonStyle={styles.changeButton}
-                onPress={() => navigation.navigate('Account')}
+                onPress={() => setEditAddress(true)}
               />
             </View>
-            <Text style={(styles.paddingLeft, {color: colors.lightGrey})}>
-              {user.company_address}, {user.city}, {user.country}
-            </Text>
+            <TextInput
+              style={[
+                styles.paddingLeft,
+                {
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: colors.lightGrey,
+                  borderWidth: 0,
+                },
+              ]}
+              editable={editAddress}
+              onChangeText={(text) => console.log(text)}
+              value={`${user.company_address}, ${user.city}, ${user.country}`}
+            />
           </View>
         ) : null}
         {!myServices ? (
@@ -63,19 +78,31 @@ const CheckOut = () => {
             <Text style={styles.title}>Payment Method</Text>
             <Image source={plus} />
           </View>
-          <Input
+          {/* <Input
             containerStyle={styles.paddingLeft}
             inputContainerStyle={styles.input}
             placeholder="**** **** **** 1233"
             leftIcon={<Image source={visa} style={styles.image} />}
           />
-          <Input
+         <Input
             containerStyle={styles.paddingLeft}
             inputContainerStyle={styles.input}
             placeholder="jacky@gmail.com"
             leftIcon={<Image source={paypal} style={styles.image} />}
             rightIcon={<Icon name="check" color={colors.lightGrey} />}
-          />
+          />*/}
+          <View style={[{marginVertical: 10}]}>
+            <ButtonComponent
+              title="Pay With Paypal"
+              onPress={() => console.log('Pay With Paypal')}
+            />
+          </View>
+          <View>
+            <ButtonComponent
+              title="Pay With Credit Card"
+              onPress={() => console.log('Pay With Credit Card')}
+            />
+          </View>
         </View>
         <View style={styles.card}>
           <Text style={[styles.title, styles.marginBottom]}>Summary</Text>
