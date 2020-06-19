@@ -7,8 +7,11 @@ import {
   Image,
   ScrollView,
   TextInput,
+  Alert,
+  Modal,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
+import {connect} from 'react-redux';
 import {useHeaderHeight} from 'react-navigation-stack';
 import {Icon, Input, Button} from 'react-native-elements';
 import {Context as UserContext} from '~/Store/index';
@@ -19,16 +22,31 @@ import plus from '~/assets/plus-minus/bigPlus.png';
 import bg from '~/assets/background-white/whiteBg.png';
 import paypal from '~/assets/payments/paypal.png';
 import visa from '~/assets/payments/visa.png';
+import Overlay from '~/components/Overlay';
+import Paypal from '~/screens/Paypal';
 
-const CheckOut = () => {
+const CheckOut = ({clearOrderedProducts}) => {
   const navigation = useContext(NavigationContext);
   const {user} = useContext(UserContext);
 
   // States
   const [editAddress, setEditAddress] = useState(false);
+  const [showCreditCard, setShowCreditCard] = useState(false);
+
   const myServices = navigation.getParam('myServices');
 
   const subTotal = navigation.state.params.subTotal;
+
+  const paymentClosed = (paymentReceived = false) => {
+    console.log(12);
+    setShowCreditCard(false);
+
+    if (paymentReceived) {
+      console.log('Paid');
+      clearOrderedProducts();
+      navigation.navigate('Products');
+    }
+  };
 
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
@@ -78,31 +96,70 @@ const CheckOut = () => {
             <Text style={styles.title}>Payment Method</Text>
             <Image source={plus} />
           </View>
-          {/* <Input
-            containerStyle={styles.paddingLeft}
-            inputContainerStyle={styles.input}
-            placeholder="**** **** **** 1233"
-            leftIcon={<Image source={visa} style={styles.image} />}
+          <Overlay
+            behind={
+              <Input
+                containerStyle={styles.paddingLeft}
+                inputContainerStyle={styles.input}
+                placeholder="**** **** **** 1233"
+                leftIcon={<Image source={visa} style={styles.image} />}
+                onChangeText={(text) => {
+                  console.log(text);
+                }}
+              />
+            }
+            front={
+              <ButtonComponent
+                customContainerStyle={{
+                  backgroundColor: 'transparent',
+                }}
+                customTitleStyle={{
+                  textAlign: 'left',
+                  color: '#676767',
+                }}
+                title=" "
+                onPress={() => Alert.alert('Pay With Paypahl')}
+              />
+            }
           />
-         <Input
-            containerStyle={styles.paddingLeft}
-            inputContainerStyle={styles.input}
-            placeholder="jacky@gmail.com"
-            leftIcon={<Image source={paypal} style={styles.image} />}
-            rightIcon={<Icon name="check" color={colors.lightGrey} />}
-          />*/}
-          <View style={[{marginVertical: 10}]}>
-            <ButtonComponent
-              title="Pay With Paypal"
-              onPress={() => console.log('Pay With Paypal')}
-            />
-          </View>
-          <View>
-            <ButtonComponent
-              title="Pay With Credit Card"
-              onPress={() => console.log('Pay With Credit Card')}
-            />
-          </View>
+          <Overlay
+            behind={
+              <Input
+                containerStyle={styles.paddingLeft}
+                inputContainerStyle={styles.input}
+                placeholder="jacky@gmail.com"
+                leftIcon={<Image source={paypal} style={styles.image} />}
+                rightIcon={<Icon name="check" color={colors.lightGrey} />}
+              />
+            }
+            front={
+              <ButtonComponent
+                title=" "
+                customContainerStyle={{
+                  backgroundColor: 'transparent',
+                }}
+                customTitleStyle={{
+                  textAlign: 'left',
+                  color: '#676767',
+                }}
+                onPress={() => setShowCreditCard(true)}
+              />
+            }
+          />
+          {showCreditCard && (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={showCreditCard}>
+              <View style={styles.modalView}>
+                <Paypal
+                  closeView={paymentClosed}
+                  price={subTotal}
+                  currency="USD"
+                />
+              </View>
+            </Modal>
+          )}
         </View>
         <View style={styles.card}>
           <Text style={[styles.title, styles.marginBottom]}>Summary</Text>
@@ -148,4 +205,16 @@ const CheckOut = () => {
   );
 };
 
-export default CheckOut;
+function mapStateToProps(state) {
+  return {
+    orderedProducts: state.orderedProducts,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    clearOrderedProducts: (products) => dispatch({type: 'CLEAR', products}),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckOut);

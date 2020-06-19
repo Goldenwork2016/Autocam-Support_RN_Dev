@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
   marginBottom: {
     marginBottom: '5%',
   },
+  modalView: {
+    flex: 1,
+    backgroundColor: '#dfc',
+  },
 });
 
 export default styles;
