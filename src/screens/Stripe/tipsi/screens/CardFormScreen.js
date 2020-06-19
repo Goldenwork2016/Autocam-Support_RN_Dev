@@ -5,13 +5,14 @@ import {
   StyleSheet,
   Alert,
   TouchableHighlight,
-  Platform,
+  StatusBar,
 } from 'react-native';
 import stripe from 'tipsi-stripe';
 import Button from '../components/Button';
 import testID from '../utils/testID';
 import api from '~/server/index';
 import config from '~/appConfig';
+import colors from '../../../../styles';
 
 stripe.setOptions({
   publishableKey: config.stripeKey,
@@ -27,13 +28,10 @@ export default class CardFormScreen extends PureComponent {
 
   handleCardPayPress = async () => {
     try {
-      console.log({
-        a: this.props,
-      });
       this.setState({loading: true, token: null});
       const token = await stripe.paymentRequestWithCardForm();
       const data = new FormData();
-      data.append('amount', this.props.amount);
+      data.append('amount', this.props.price);
       data.append('currency', this.props.currency);
       data.append('token', token.tokenId);
       data.append('description', this.props.description);
@@ -56,41 +54,53 @@ export default class CardFormScreen extends PureComponent {
     } catch (error) {
       console.log({error});
       this.setState({loading: false});
+      Alert.alert('Failure', error);
     }
   };
 
   render() {
-    const {loading, token} = this.state;
+    const {loading} = this.state;
 
+    console.log({
+      a: this.props,
+    });
     return (
       <View style={styles.container}>
-        <View style={styles.backToApp}>
-          <View>
-            <TouchableHighlight
-              onPress={() => {
-                this.props.closeView();
-              }}
-              underlayColor="royalblue">
-              <Text style={{fontSize: 20, textAlign: 'center', color: '#fff'}}>
-                Back to the AutoCam Store
-              </Text>
-            </TouchableHighlight>
-          </View>
-        </View>
+        <StatusBar barStyle="light-content" backgroundColor={colors.darkGrey} />
         <Text style={styles.header}>Pay With Credit Card</Text>
-        <Text style={styles.instruction}>
-          Click button to show Card Form dialog.
-        </Text>
-        <Button
-          text="Enter you card and pay"
-          loading={loading}
-          onPress={this.handleCardPayPress}
-          {...testID('cardFormButton')}
-        />
-        <View style={styles.token} {...testID('cardFormToken')}>
-          {token && (
-            <Text style={styles.instruction}>Token: {token.tokenId}</Text>
-          )}
+        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableHighlight
+            onPress={() => {
+              this.props.closeView();
+            }}
+            style={styles.backToApp}
+            underlayColor="royalblue">
+            <Text style={{fontSize: 20, textAlign: 'center', color: '#fff'}}>
+              Back to the AutoCam Store
+            </Text>
+          </TouchableHighlight>
+        </View>
+
+        <View
+          style={{flex: 10, alignItems: 'center', justifyContent: 'center'}}>
+          <View
+            style={{
+              borderColor: colors.grey,
+              borderWidth: 5,
+              backgroundColor: colors.opacityWhite,
+              borderRadius: 10,
+              padding: 10,
+            }}>
+            <Text style={styles.instruction}>
+              Click button to Pay With Credit Card
+            </Text>
+            <Button
+              text="Enter you card and pay"
+              loading={loading}
+              onPress={this.handleCardPayPress}
+              {...testID('cardFormButton')}
+            />
+          </View>
         </View>
       </View>
     );
@@ -100,32 +110,32 @@ export default class CardFormScreen extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#ccc',
+    flexDirection: 'column',
   },
   header: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    marginVertical: 5,
+    padding: 10,
+    borderBottomColor: colors.lightestGrey,
+    borderBottomWidth: 4,
+    flex: 0.8,
   },
   instruction: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
+    margin: 15,
+    fontSize: 20,
   },
   token: {
     height: 20,
   },
   backToApp: {
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 20 : 10,
-    paddingBottom: 5,
-    backgroundColor: 'royalblue',
-    flexDirection: 'row',
+    padding: 10,
+    marginHorizontal: 60,
+    backgroundColor: colors.darkestGrey,
     borderWidth: 1,
     borderColor: '#fff',
-    marginHorizontal: 50,
-    marginVertical: 20,
-    padding: 15,
   },
 });

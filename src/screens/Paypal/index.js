@@ -20,6 +20,7 @@ const Paypal = ({price, closeView, currency}) => {
   const [approvalUrl, setApprovalUrl] = useState(null);
   const [token, setToken] = useState(null);
   const [paymentId, setPaymentId] = useState(null);
+  const [confirmingPayment, setConfirmingPayment] = useState(false);
 
   const pressCheckout = async () => {
     setLoading(true);
@@ -97,6 +98,7 @@ const Paypal = ({price, closeView, currency}) => {
     setLoading(false);
     if (webViewState.url.includes('https://example.com')) {
       setApprovalUrl(null);
+      setConfirmingPayment(true);
     }
 
     const paymentID = getQueryParams('paymentId', webViewState.url);
@@ -116,7 +118,9 @@ const Paypal = ({price, closeView, currency}) => {
           },
         });
         setToken(null);
+        setConfirmingPayment(true);
         Alert.alert('Success', 'Payment has Been Successfully Received');
+
         closeView(true);
       } catch (err) {
         console.log('Execute-Payment-Error----->', {
@@ -159,19 +163,25 @@ const Paypal = ({price, closeView, currency}) => {
         />
       ) : (
         <View style={{flex: 5}}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              color: '#000',
-              padding: 20,
-            }}>
-            Total:
-            <Text style={{fontWeight: 'bold'}}>
-              {price} {currency}
-            </Text>
-          </Text>
-          <Button title="Pay Now" onPress={pressCheckout} />
+          {confirmingPayment ? (
+            <Loading message="Confirming Payment...." />
+          ) : (
+            <View>
+              <Text
+                style={{
+                  fontSize: 25,
+                  textAlign: 'center',
+                  color: '#000',
+                  padding: 20,
+                }}>
+                Total:
+                <Text style={{fontWeight: 'bold'}}>
+                  {price} {currency}
+                </Text>
+              </Text>
+              <Button title="Pay Now" onPress={pressCheckout} />
+            </View>
+          )}
         </View>
       )}
     </View>
