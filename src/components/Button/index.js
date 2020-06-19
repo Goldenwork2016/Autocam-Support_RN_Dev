@@ -29,15 +29,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const Btn = ({title, onPress, noAuth, loading}) => (
+const Btn = ({
+  title,
+  onPress,
+  noAuth,
+  loading,
+  customContainerStyle = false,
+  customTitleStyle = false,
+}) => (
   <Button
     loading={loading ? true : false}
     title={title}
-    buttonStyle={[
-      styles.button,
-      noAuth ? styles.marginNoAuth : styles.marginAuth,
-    ]}
-    titleStyle={{color: colors.lightGrey}}
+    buttonStyle={
+      customContainerStyle
+        ? [customContainerStyle]
+        : [styles.button, noAuth ? styles.marginNoAuth : styles.marginAuth]
+    }
+    titleStyle={customTitleStyle || {color: colors.lightGrey}}
     onPress={onPress}
   />
 );

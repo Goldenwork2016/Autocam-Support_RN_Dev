@@ -21,6 +21,9 @@ const reducer = (state = initialState, {type, product, productID}) => {
       delete newOrderedProducts[productID];
       return {orderedProducts: newOrderedProducts};
     }
+    case 'CLEAR': {
+      return {orderedProducts: {}};
+    }
     default:
       return {orderedProducts: state.orderedProducts};
   }

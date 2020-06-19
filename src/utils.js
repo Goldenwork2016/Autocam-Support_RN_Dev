@@ -1,4 +1,4 @@
-import config from '../appConfig';
+import config from './appConfig';
 
 // In MilliSeconds
 const timeZoneOffset = config.timezone * 60 * 60 * 1000;
@@ -69,4 +69,11 @@ export const convertByTimeZone = (timeString) => {
     dateObj.getSeconds(),
   )}`;
   return formattedDate;
+};
+
+export const getQueryParams = (params, url) => {
+  let href = url;
+  let reg = new RegExp('[?&]' + params + '=([^&#]*)', 'i');
+  let queryString = reg.exec(href);
+  return queryString ? queryString[1] : null;
 };
