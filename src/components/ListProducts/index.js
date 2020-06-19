@@ -17,11 +17,6 @@ const ListProducts = ({
   productID,
   updateOrderedProducts,
 }) => {
-  console.log({
-    units: amount,
-    price,
-    name,
-  });
   const navigation = useContext(NavigationContext);
 
   return !RMA ? (
@@ -93,7 +88,6 @@ const ListProducts = ({
                   name,
                 };
 
-                console.log({amount, productObj, updateOrderedProducts});
                 updateOrderedProducts(productObj, productID, 'ADD');
               }}>
               <Image source={plus} style={styles.image} />

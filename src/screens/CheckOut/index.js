@@ -7,7 +7,6 @@ import {
   Image,
   ScrollView,
   TextInput,
-  Alert,
   Modal,
 } from 'react-native';
 import {NavigationContext} from 'react-navigation';
@@ -24,6 +23,7 @@ import paypal from '~/assets/payments/paypal.png';
 import visa from '~/assets/payments/visa.png';
 import Overlay from '~/components/Overlay';
 import Paypal from '~/screens/Paypal';
+import CardFormScreen from '../Stripe/tipsi/screens/CardFormScreen';
 
 const CheckOut = ({clearOrderedProducts}) => {
   const navigation = useContext(NavigationContext);
@@ -31,15 +31,21 @@ const CheckOut = ({clearOrderedProducts}) => {
 
   // States
   const [editAddress, setEditAddress] = useState(false);
-  const [showCreditCard, setShowCreditCard] = useState(false);
+  const [showPaypal, setShowPayPal] = useState(false);
+  const [showStripe, setShowStripe] = useState(false);
 
   const myServices = navigation.getParam('myServices');
 
   const subTotal = navigation.state.params.subTotal;
 
-  const paymentClosed = (paymentReceived = false) => {
-    console.log(12);
-    setShowCreditCard(false);
+  const paymentClosed = (paymentReceived = false, type = 'paypal') => {
+    if (type === 'paypal') {
+      setShowPayPal(false);
+    }
+
+    if (type === 'stripe') {
+      setShowStripe(false);
+    }
 
     if (paymentReceived) {
       console.log('Paid');
@@ -118,7 +124,7 @@ const CheckOut = ({clearOrderedProducts}) => {
                   color: '#676767',
                 }}
                 title=" "
-                onPress={() => Alert.alert('Pay With Paypahl')}
+                onPress={() => setShowStripe(true)}
               />
             }
           />
@@ -142,20 +148,35 @@ const CheckOut = ({clearOrderedProducts}) => {
                   textAlign: 'left',
                   color: '#676767',
                 }}
-                onPress={() => setShowCreditCard(true)}
+                onPress={() => setShowPayPal(true)}
               />
             }
           />
-          {showCreditCard && (
+          {showPaypal && (
             <Modal
               animationType="slide"
               transparent={true}
-              visible={showCreditCard}>
+              visible={showPaypal}>
               <View style={styles.modalView}>
                 <Paypal
-                  closeView={paymentClosed}
+                  closeView={(paid) => paymentClosed(paid, 'paypal')}
                   price={subTotal}
                   currency="USD"
+                />
+              </View>
+            </Modal>
+          )}
+          {showStripe && (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={showStripe}>
+              <View style={styles.modalView}>
+                <CardFormScreen
+                  price={subTotal}
+                  description={'Payment from AutoCam'}
+                  currency="USD"
+                  closeView={(paid) => paymentClosed(paid, 'stripe')}
                 />
               </View>
             </Modal>

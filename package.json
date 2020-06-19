@@ -38,7 +38,8 @@
     "react-navigation-stack": "^2.3.11",
     "react-redux": "^7.2.0",
     "reactotron-react-native": "^5.0.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "tipsi-stripe": "^7.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

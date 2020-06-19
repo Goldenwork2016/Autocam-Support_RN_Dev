@@ -138,7 +138,6 @@ const Paypal = ({price, closeView, currency}) => {
         <View style={{flex: 6}}>
           <TouchableHighlight
             onPress={() => {
-              console.log('here');
               closeView();
             }}
             underlayColor="royalblue">

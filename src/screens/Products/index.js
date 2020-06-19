@@ -129,10 +129,6 @@ const Products = ({
       setRefreshing(false);
     });
   }, [refreshing, reorderedItems]);
-
-  console.log({
-    orderedProductsInGlobalStore,
-  });
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
