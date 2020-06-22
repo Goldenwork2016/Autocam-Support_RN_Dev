@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     flex: 1,
-    backgroundColor: '#dfc',
+    backgroundColor: '#fff',
   },
 });
 
