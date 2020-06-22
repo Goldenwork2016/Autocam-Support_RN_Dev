@@ -4,15 +4,19 @@ import {
   Text,
   StyleSheet,
   Alert,
-  TouchableHighlight,
+  TouchableOpacity,
   StatusBar,
+  ImageBackground,
+  Image,
 } from 'react-native';
 import stripe from 'tipsi-stripe';
-import Button from '../components/Button';
 import testID from '../utils/testID';
 import api from '~/server/index';
 import config from '~/appConfig';
 import colors from '../../../../styles';
+import bg from '~/assets/background-white/whiteBg.png';
+import backButton from '~/assets/backButton/backButton.png';
+import ButtonComponent from '~/components/Button';
 
 stripe.setOptions({
   publishableKey: config.stripeKey,
@@ -40,6 +44,7 @@ export default class CardFormScreen extends PureComponent {
         Accept: 'application/json',
       };
 
+      console.log('got here');
       const res = await api.post('/user/pay_with_stripe', data, headers);
       console.log(JSON.stringify({data}));
       console.log(res);
@@ -54,55 +59,49 @@ export default class CardFormScreen extends PureComponent {
     } catch (error) {
       console.log({error});
       this.setState({loading: false});
-      Alert.alert('Failure', error);
     }
   };
 
   render() {
     const {loading} = this.state;
 
-    console.log({
-      a: this.props,
-    });
     return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor={colors.darkGrey} />
-        <Text style={styles.header}>Pay With Credit Card</Text>
-        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-          <TouchableHighlight
-            onPress={() => {
-              this.props.closeView();
-            }}
-            style={styles.backToApp}
-            underlayColor="royalblue">
-            <Text style={{fontSize: 20, textAlign: 'center', color: '#fff'}}>
-              Back to the AutoCam Store
-            </Text>
-          </TouchableHighlight>
+      <ImageBackground source={bg} style={styles.container} resizeMode="cover">
+        <StatusBar barStyle="light-content" backgroundColor={colors.white} />
+        <View
+          style={{
+            flexDirection: 'row',
+            paddingLeft: 10,
+            paddingTop: 20,
+          }}>
+          <View style={{flex: 0.3}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.closeView();
+              }}>
+              <Image source={backButton} />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.header}>Pay With Credit Card</Text>
         </View>
-
         <View
           style={{flex: 10, alignItems: 'center', justifyContent: 'center'}}>
           <View
             style={{
-              borderColor: colors.grey,
-              borderWidth: 5,
-              backgroundColor: colors.opacityWhite,
-              borderRadius: 10,
               padding: 10,
             }}>
             <Text style={styles.instruction}>
-              Click button to Pay With Credit Card
+              Click button below to Pay With Credit Card
             </Text>
-            <Button
-              text="Enter you card and pay"
+            <ButtonComponent
+              title="Enter you card and pay"
               loading={loading}
               onPress={this.handleCardPayPress}
               {...testID('cardFormButton')}
             />
           </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -110,22 +109,19 @@ export default class CardFormScreen extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccc',
     flexDirection: 'column',
   },
   header: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginVertical: 5,
-    padding: 10,
-    borderBottomColor: colors.lightestGrey,
-    borderBottomWidth: 4,
-    flex: 0.8,
+    color: colors.lightGrey,
+    fontSize: 26,
+    fontWeight: 'bold',
+    flex: 1,
   },
   instruction: {
     textAlign: 'center',
     color: '#333333',
-    margin: 15,
+    margin: 10,
+    marginBottom: 30,
     fontSize: 20,
   },
   token: {

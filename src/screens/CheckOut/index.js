@@ -21,7 +21,6 @@ import plus from '~/assets/plus-minus/bigPlus.png';
 import bg from '~/assets/background-white/whiteBg.png';
 import paypal from '~/assets/payments/paypal.png';
 import visa from '~/assets/payments/visa.png';
-import Overlay from '~/components/Overlay';
 import Paypal from '~/screens/Paypal';
 import CardFormScreen from '../Stripe/tipsi/screens/CardFormScreen';
 
@@ -102,55 +101,27 @@ const CheckOut = ({clearOrderedProducts}) => {
             <Text style={styles.title}>Payment Method</Text>
             <Image source={plus} />
           </View>
-          <Overlay
-            behind={
-              <Input
-                containerStyle={styles.paddingLeft}
-                inputContainerStyle={styles.input}
-                placeholder="**** **** **** 1233"
-                leftIcon={<Image source={visa} style={styles.image} />}
-                onChangeText={(text) => {
-                  console.log(text);
-                }}
-              />
-            }
-            front={
-              <ButtonComponent
-                customContainerStyle={{
-                  backgroundColor: 'transparent',
-                }}
-                customTitleStyle={{
-                  textAlign: 'left',
-                  color: '#676767',
-                }}
-                title=" "
-                onPress={() => setShowStripe(true)}
-              />
-            }
+          <Input
+            containerStyle={styles.paddingLeft}
+            inputContainerStyle={styles.input}
+            placeholder="**** **** **** 1233"
+            leftIcon={<Image source={visa} style={styles.image} />}
+            onChangeText={(text) => {
+              console.log(text);
+            }}
+            onFocus={() => {
+              setShowStripe(true);
+            }}
           />
-          <Overlay
-            behind={
-              <Input
-                containerStyle={styles.paddingLeft}
-                inputContainerStyle={styles.input}
-                placeholder="jacky@gmail.com"
-                leftIcon={<Image source={paypal} style={styles.image} />}
-                rightIcon={<Icon name="check" color={colors.lightGrey} />}
-              />
-            }
-            front={
-              <ButtonComponent
-                title=" "
-                customContainerStyle={{
-                  backgroundColor: 'transparent',
-                }}
-                customTitleStyle={{
-                  textAlign: 'left',
-                  color: '#676767',
-                }}
-                onPress={() => setShowPayPal(true)}
-              />
-            }
+          <Input
+            containerStyle={styles.paddingLeft}
+            inputContainerStyle={styles.input}
+            placeholder="jacky@gmail.com"
+            leftIcon={<Image source={paypal} style={styles.image} />}
+            rightIcon={<Icon name="check" color={colors.lightGrey} />}
+            onFocus={() => {
+              setShowPayPal(true);
+            }}
           />
           {showPaypal && (
             <Modal

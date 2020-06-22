@@ -4,16 +4,21 @@ import {
   Text,
   StatusBar,
   Alert,
-  TouchableHighlight,
-  ActivityIndicator,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
-import {Button} from 'react-native-elements';
 import styles from './styles';
 import axios from 'axios';
 import {WebView} from 'react-native-webview';
 import Loading from '~/components/Loader';
+import bg from '~/assets/background-white/whiteBg.png';
 import config from '~/appConfig';
 import {getQueryParams} from '~/utils';
+import ButtonComponent from '~/components/Button';
+import backButton from '~/assets/backButton/backButton.png';
+
+import colors from '~/styles';
 
 const Paypal = ({price, closeView, currency}) => {
   const [loading, setLoading] = useState(false);
@@ -131,27 +136,41 @@ const Paypal = ({price, closeView, currency}) => {
   };
 
   return (
-    <View style={{flex: 1, paddingBottom: 0, backgroundColor: '#fff'}}>
-      <StatusBar barStyle="light-content" backgroundColor="royalblue" />
-      <View style={styles.header}>
-        <View style={{flex: 6}}>
-          <Text style={{fontSize: 20, textAlign: 'center'}}>Checkout</Text>
-        </View>
-      </View>
-      <View style={styles.backToApp}>
-        <View style={{flex: 6}}>
-          <TouchableHighlight
+    <ImageBackground source={bg} style={styles.container} resizeMode="cover">
+      <StatusBar barStyle="light-content" backgroundColor={colors.white} />
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingLeft: 10,
+          paddingTop: 20,
+        }}>
+        <View style={{flex: 0.3}}>
+          <TouchableOpacity
             onPress={() => {
               closeView();
-            }}
-            underlayColor="royalblue">
-            <Text style={{fontSize: 20, textAlign: 'center', color: '#fff'}}>
-              Back to the AutoCam Store
-            </Text>
-          </TouchableHighlight>
+            }}>
+            <Image source={backButton} />
+          </TouchableOpacity>
         </View>
+        <Text
+          style={{
+            color: colors.lightGrey,
+            fontSize: 26,
+            fontWeight: 'bold',
+            flex: 1,
+            marginBottom: 20,
+          }}>
+          Pay With PayPal
+        </Text>
       </View>
-      {loading && <Loading message="Redirecting You To Paypal...." />}
+      {loading && (
+        <Loading
+          customStyles={{
+            marginBottom: 10,
+          }}
+          message="Redirecting You To Paypal...."
+        />
+      )}
       {approvalUrl ? (
         <WebView
           source={{uri: approvalUrl}}
@@ -166,25 +185,41 @@ const Paypal = ({price, closeView, currency}) => {
           {confirmingPayment ? (
             <Loading message="Confirming Payment...." />
           ) : (
-            <View>
-              <Text
+            <View style={{flex: 1}}>
+              <View
                 style={{
-                  fontSize: 25,
-                  textAlign: 'center',
-                  color: '#000',
-                  padding: 20,
+                  flex: 3,
+                  justifyContent: 'center',
                 }}>
-                Total:
-                <Text style={{fontWeight: 'bold'}}>
-                  {price} {currency}
+                <Text
+                  style={{
+                    fontSize: 25,
+                    textAlign: 'center',
+                    color: '#000',
+                    padding: 20,
+                  }}>
+                  Total:{' '}
+                  <Text style={{fontWeight: 'bold'}}>
+                    {price} {currency}
+                  </Text>
                 </Text>
-              </Text>
-              <Button title="Pay Now" onPress={pressCheckout} />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <ButtonComponent
+                  loading={loading}
+                  title="Pay Now"
+                  onPress={pressCheckout}
+                />
+              </View>
             </View>
           )}
         </View>
       )}
-    </View>
+    </ImageBackground>
   );
 };
 
