@@ -141,8 +141,8 @@ const Paypal = ({price, closeView, currency}) => {
       <View
         style={{
           flexDirection: 'row',
-          paddingLeft: 10,
-          paddingTop: 20,
+          paddingLeft: 15,
+          paddingTop: 10,
         }}>
         <View style={{flex: 0.3}}>
           <TouchableOpacity
@@ -159,6 +159,7 @@ const Paypal = ({price, closeView, currency}) => {
             fontWeight: 'bold',
             flex: 1,
             marginBottom: 20,
+            paddingLeft: '6%',
           }}>
           Pay With PayPal
         </Text>

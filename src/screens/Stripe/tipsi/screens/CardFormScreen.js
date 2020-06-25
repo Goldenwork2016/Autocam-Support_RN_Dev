@@ -71,10 +71,10 @@ export default class CardFormScreen extends PureComponent {
         <View
           style={{
             flexDirection: 'row',
-            paddingLeft: 10,
-            paddingTop: 20,
+            paddingLeft: 15,
+            paddingTop: 10,
           }}>
-          <View style={{flex: 0.3}}>
+          <View style={{flex: 0.2}}>
             <TouchableOpacity
               onPress={() => {
                 this.props.closeView();
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     flex: 1,
+    paddingLeft: '6%',
   },
   instruction: {
     textAlign: 'center',
