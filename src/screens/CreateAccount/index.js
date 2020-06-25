@@ -5,6 +5,7 @@ import {
   View,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {Context} from '~/Store/index';
 
@@ -44,7 +45,7 @@ const CreateAccount = () => {
     }
   }, []);
 
-  filterData = async () => {
+  const filterData = async () => {
     if (city === '' || country === '' || phoneNumber === '') {
       return Alert.alert(
         'Empty Fields',
@@ -73,7 +74,7 @@ const CreateAccount = () => {
     setLoading(false);
   };
 
-  sendData = async () => {
+  const sendData = async () => {
     const data = new FormData();
     data.append('userID', id);
     data.append('city', city);
@@ -101,7 +102,7 @@ const CreateAccount = () => {
     }
   };
 
-  clearInput = () => {
+  const clearInput = () => {
     setCity('');
     setCountry('');
     setPhoneNumber('');
@@ -119,7 +120,7 @@ const CreateAccount = () => {
     },
   };
 
-  selectImage = async () => {
+  const selectImage = async () => {
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -144,44 +145,50 @@ const CreateAccount = () => {
   return (
     <ImageBackground source={bg} style={styles.container} resizeMode="cover">
       <StatusBar barStyle="light-content" backgroundColor="white" />
+      <View style={{flex: 0.8}}>
+        {avatarSource && (
+          <TouchableOpacity onPress={() => selectImage()}>
+            <Profile img={avatarSource} lessMargin />
+          </TouchableOpacity>
+        )}
 
-      {avatarSource && (
-        <TouchableOpacity onPress={() => selectImage()}>
-          <Profile img={avatarSource} lessMargin />
-        </TouchableOpacity>
-      )}
+        {!avatarSource && (
+          <TouchableOpacity onPress={() => selectImage()}>
+            <Logo img={emptyProfile} lessMargin />
+          </TouchableOpacity>
+        )}
+      </View>
+      <ScrollView
+        style={{width: '100%', flex: 1.5}}
+        showsVerticalScrollIndicator={false}>
+        <Input
+          content="Phone Number"
+          value={phoneNumber}
+          setInputValue={(text) => setPhoneNumber(text)}
+        />
+        <Input
+          content="Company Name"
+          value={companyName}
+          setInputValue={(text) => setCompanyName(text)}
+        />
+        <Input
+          content="Company Address"
+          value={companyAddress}
+          setInputValue={(text) => setCompanyAddress(text)}
+        />
+        <Input
+          content="City"
+          value={city}
+          setInputValue={(text) => setCity(text)}
+        />
+        <Input
+          content="Country"
+          value={country}
+          setInputValue={(text) => setCountry(text)}
+        />
+      </ScrollView>
 
-      {!avatarSource && (
-        <TouchableOpacity onPress={() => selectImage()}>
-          <Logo img={emptyProfile} lessMargin />
-        </TouchableOpacity>
-      )}
-      <Input
-        content="Phone Number"
-        value={phoneNumber}
-        setInputValue={(text) => setPhoneNumber(text)}
-      />
-      <Input
-        content="Company Name"
-        value={companyName}
-        setInputValue={(text) => setCompanyName(text)}
-      />
-      <Input
-        content="Company Address"
-        value={companyAddress}
-        setInputValue={(text) => setCompanyAddress(text)}
-      />
-      <Input
-        content="City"
-        value={city}
-        setInputValue={(text) => setCity(text)}
-      />
-      <Input
-        content="Country"
-        value={country}
-        setInputValue={(text) => setCountry(text)}
-      />
-      <View style={styles.button}>
+      <View style={[styles.button, {flex: 0.2}]}>
         <Button
           noAuth
           title="Save"
