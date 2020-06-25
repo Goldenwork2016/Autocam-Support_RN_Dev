@@ -36,7 +36,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  filterData = async () => {
+  const filterData = async () => {
     if (!checked) {
       return Alert.alert(
         'Unchecked Field',
@@ -65,23 +65,22 @@ const Signup = () => {
     try {
       setLoading(true);
       const res = await sendData();
-      setUser({userID: res.userinfo.userID});
-      res.status === 200
-        ? clearInput()
-        : Alert.alert(
-            'Something is wrong!!',
-            'Please check all fields again!',
-            [{text: 'OK'}],
-            {cancelable: false},
-          );
+      if (res.status === 200) {
+        setUser({userID: res.userinfo.userID});
+        return clearInput();
+      }
+      return Alert.alert(
+        'Something is wrong!!',
+        'Please check all fields again!',
+        [{text: 'OK'}],
+        {cancelable: false},
+      );
     } catch (err) {
       throw err;
     }
-
-    setLoading(false);
   };
 
-  sendData = async () => {
+  const sendData = async () => {
     const data = new FormData();
     data.append('fullname', fullname);
     data.append('email', email);
@@ -100,7 +99,7 @@ const Signup = () => {
     }
   };
 
-  clearInput = () => {
+  const clearInput = () => {
     setFullname('');
     setEmail('');
     setPassword('');
@@ -161,7 +160,9 @@ const Signup = () => {
         <Button
           noAuth
           title="Sign Up"
-          onPress={() => filterData()}
+          onPress={() => {
+            filterData().then(() => setLoading(false));
+          }}
           loading={loading}
         />
 
