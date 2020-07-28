@@ -44,6 +44,22 @@ const styles = StyleSheet.create({
     height: 20,
   },
   category: {paddingLeft: '2%', fontSize: 20, color: colors.lightGrey},
+  inputView: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  unitInput: {
+    flex: 0.8,
+    borderWidth: 2,
+    borderColor: '#D0D0D0',
+    height: 35,
+    backgroundColor: '#fff',
+    color: '#D0D0D0',
+    fontSize: 16,
+    paddingVertical: 5,
+    textAlign: 'center',
+  },
 });
 
 export default styles;

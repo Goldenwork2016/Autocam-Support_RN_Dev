@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  productListTitleView: {flex: 3},
+  productListTitleView: {flex: 2},
   productListNonTitleView: {
     flex: 3.5,
     flexDirection: 'row',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingHorizontal: 20,
     color: colors.lightGrey,
-    flex: 1,
+    flex: 2,
     fontSize: 16,
   },
   price: {

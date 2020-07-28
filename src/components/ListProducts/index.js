@@ -1,9 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {View, Text, Image, TouchableOpacity, Dimensions} from 'react-native';
+import React, {useContext, useState, useLayoutEffect, useEffect} from 'react';
+import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
 import {NavigationContext} from 'react-navigation';
 import {connect} from 'react-redux';
-import plus from '~/assets/plus-minus/plus.png';
-import minus from '~/assets/plus-minus/minus.png';
 import colors from '~/styles';
 import styles from './styles';
 
@@ -18,6 +16,12 @@ const ListProducts = ({
   updateOrderedProducts,
 }) => {
   const navigation = useContext(NavigationContext);
+
+  const [unit, setUnit] = useState();
+
+  useEffect(() => {
+    setUnit(amount.toString());
+  }, [amount]);
 
   return !RMA ? (
     <View style={styles.containerView}>
@@ -50,49 +54,31 @@ const ListProducts = ({
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            flex: 0.8,
-          }}>
-          <Text style={{fontSize: 10}}> Number of Units</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                if (amount === 0) {
-                  return;
-                }
-                if (amount === 1) {
-                  updateOrderedProducts({}, productID, 'REMOVE');
-                  return;
-                }
-                const productObj = {
-                  units: amount - 1,
-                  price,
-                  name,
-                };
-                updateOrderedProducts(productObj, productID, 'ADD');
-              }}>
-              <Image source={minus} style={styles.image} />
-            </TouchableOpacity>
-            <Text style={styles.amount}>{amount}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                const productObj = {
-                  units: amount + 1,
-                  price,
-                  name,
-                };
-
-                updateOrderedProducts(productObj, productID, 'ADD');
-              }}>
-              <Image source={plus} style={styles.image} />
-            </TouchableOpacity>
-          </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.unitInput}
+            keyboardType="numeric"
+            onChangeText={(unitInText) => {
+              unitInText = unitInText.trim();
+              setUnit(unitInText);
+              if (unitInText === '') {
+                return;
+              }
+              if (unitInText === '0') {
+                updateOrderedProducts({}, productID, 'REMOVE');
+                return;
+              }
+              const numericUnit = parseInt(unitInText, 10);
+              console.log({numericUnit});
+              const productObj = {
+                units: numericUnit,
+                price,
+                name,
+              };
+              updateOrderedProducts(productObj, productID, 'ADD');
+            }}
+            value={unit}
+          />
         </View>
       </View>
     </View>
