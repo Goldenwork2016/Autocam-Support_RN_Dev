@@ -3489,9 +3489,9 @@ getpass@^0.1.1:
     assert-plus "^1.0.0"
 
 glob-parent@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.1.tgz#b6c1ef417c4e5663ea498f1c45afac6916bbc229"
-  integrity sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
+  integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
   dependencies:
     is-glob "^4.0.1"
 
@@ -7482,6 +7482,11 @@ time-stamp@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.1.0.tgz#764a5a11af50561921b133f3b44e618687e0f5c3"
   integrity sha1-dkpaEa9QVhkhsTPztE5hhofg9cM=
+
+tipsi-stripe@^7.5.3:
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/tipsi-stripe/-/tipsi-stripe-7.5.3.tgz#dbfccf1aeb4d881091ad5c2ae69cd433169c3097"
+  integrity sha512-KL6kDAwfHPWVpKrzMeFovLGC7uoJL/PBvzjdwy7e6aEFUiBXW+1RuAd7be7JVwSePnqkkXDKcWtJZLLLMvqsRw==
 
 tmp@^0.0.33:
   version "0.0.33"
